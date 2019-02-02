@@ -28,7 +28,7 @@ class EventTableViewController: UITableViewController {
    
     
         // Don't forget to call the fucking Function you dumbass!
-      loadSampleEvent()
+      //loadSampleEvent()
     
     }
    
@@ -44,13 +44,12 @@ class EventTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return events.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
         let cellIdentifier = "EventTableViewCell"
@@ -61,9 +60,40 @@ class EventTableViewController: UITableViewController {
         // Configure the cell...
 
         cell.EventNameLabel.text = event.EventName
-        cell.DefaultEventPhoto.image = event.EventPhoto
+        
+        if event.does_have_photo == true {
+        cell.DefaultEventPhoto.image = event.EventPhoto}
    
-        //Add some more objects in the quick view here
+        // Functions to control the cell view emojis:
+        
+        if event.Happy_Sad_Value == 0 {
+        cell.Cell_Happy_Sad_Emoji.isHidden = true
+        //cell.Cell_Happy_Sad_Emoji.text = "😶"
+        }
+        else if event.Happy_Sad_Value == 3{
+        cell.Cell_Happy_Sad_Emoji.text = "😁"
+        }
+        else if event.Happy_Sad_Value == 2{
+        cell.Cell_Happy_Sad_Emoji.text = "😊"
+        }
+        else if event.Happy_Sad_Value == 1 {
+        cell.Cell_Happy_Sad_Emoji.text = "🙂"
+        }
+        else if event.Happy_Sad_Value == -1{
+        cell.Cell_Happy_Sad_Emoji.text = "😕"
+        }
+        else if event.Happy_Sad_Value == -2{
+        cell.Cell_Happy_Sad_Emoji.text = "☹️"
+        }
+        else if event.Happy_Sad_Value == -3{
+        cell.Cell_Happy_Sad_Emoji.text = "😭"
+        }
+    
+        //Hide the default photo if the photo is not changed
+        
+//        if event.does_have_photo == false{
+//        cell.DefaultEventPhoto.isHidden = true
+//        }
         
         return cell
     }
@@ -118,9 +148,6 @@ class EventTableViewController: UITableViewController {
         case "AddNewItem":
             os_log("Adding a new Event.", log: OSLog.default, type: .debug)
 
-        
-        
-        
         case "ShowEventDetail":
             guard let eventDetailsViewController = segue.destination as?
                 EventDetailsViewController else {
@@ -128,8 +155,8 @@ class EventTableViewController: UITableViewController {
             }
             
             guard let selectedeventcell = sender as? EventTableViewCell else {
-                fatalError("Unexpected sender: \(sender)")
-                
+                fatalError("Unexpected sender: \(String(describing: sender))")
+                //fatalError("Unexpected sender: \(sender)")
             }
             
             guard let indexPath = tableView.indexPath(for: selectedeventcell) else {fatalError("The Selected Cell is not being displayed by the table")
@@ -137,10 +164,7 @@ class EventTableViewController: UITableViewController {
             let selectedevent = events[indexPath.row]
             eventDetailsViewController.event = selectedevent
             
-      
-       
-        
-        //case "EditEvent":
+            //case "EditEvent":
            // guard let editEventsViewController = segue.destination as?
           //      NewEventViewController else {
           //          fatalError("Unexpeceted Destination: \(segue.destination)")
@@ -159,24 +183,15 @@ class EventTableViewController: UITableViewController {
         //    editEventsViewController.event = selectedevent
             
         default:
-           fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+            fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
+            //fatalError("Unexpected Segue Identifier; \(segue.identifier)")
 
-        
-        
         }
         }
-    
-        
-        
-        
-        // Get the new view controller using segue.destinationViewController.
+    // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     
- 
-
-
-
-    @IBAction func unwindToEventList(sender: UIStoryboardSegue){
+ @IBAction func unwindToEventList(sender: UIStoryboardSegue){
         
         if let sourceViewController = sender.source as?
             NewEventViewController, let event = sourceViewController.event{
@@ -203,17 +218,17 @@ class EventTableViewController: UITableViewController {
     
     
     
-    private func loadSampleEvent() {
-
-        let EventPhoto1 = UIImage(named: "event1")
-        //let EventPhoto2 = UIImage(named: "event2")
-        //let EventPhoto3 = UIImage(named: "event3")
-
-        guard let event1 = Event(Detail_EventName: "Sad", Detail_EventPhoto: EventPhoto1, Detail_does_have_photo: true, Detail_EventDescription: "I just hate life u know what I'm saying" ,Detail_Happy_Sad_Value: 0, Detail_Anger_fear_Value: 0, Detail_Interest_bordem_Value: 0, Detail_Love_hate_Value: 0)
-            else {
-                fatalError("Unable to Load Event")
-
-        }
+//    private func loadSampleEvent() {
+//
+//        let EventPhoto1 = UIImage(named: "event1")
+//        //let EventPhoto2 = UIImage(named: "event2")
+//        //let EventPhoto3 = UIImage(named: "event3")
+//
+//        guard let event1 = Event(Detail_EventName: "Sad", Detail_EventPhoto: EventPhoto1, Detail_does_have_photo: true, Detail_EventDescription: "I just hate life u know what I'm saying" ,Detail_Happy_Sad_Value: 0, Detail_Anger_fear_Value: 0, Detail_Interest_bordem_Value: 0, Detail_Love_hate_Value: 0)
+//            else {
+//                fatalError("Unable to Load Event")
+//
+//        }
 
 //        guard let event2 = Event(EventName: "Depressing", EventPhoto: EventPhoto2, Detail_Happy_Sad_Value: 0)
 //            else {
@@ -228,6 +243,5 @@ class EventTableViewController: UITableViewController {
 //        }
 
         //events += [event1]
-    }
 
 }

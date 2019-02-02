@@ -49,9 +49,30 @@ func get_happy_value () -> Int{
     var a = 0
     for e in events{
     a += e.Happy_Sad_Value
-
-        }
+    }
     return a
     }
 
+func get_anger_value () -> Int{
+    var a = 0
+    for e in events{
+    a += e.Anger_fear_Value
+    }
+    return a
+    }
 
+func get_interest_value () -> Int{
+    var a = 0
+    for e in events{
+    a += e.Interest_bordem_Value
+    }
+    return a
+    }
+
+func get_love_value () -> Int{
+    var a = 0
+    for e in events{
+    a += e.Love_hate_Value
+    }
+    return a
+    }

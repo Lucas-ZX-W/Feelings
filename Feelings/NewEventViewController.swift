@@ -88,6 +88,14 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     }
     
+    func get_emotion_values (Raw: String) -> Int{
+    if Raw == "Sad" || Raw == "Fear" || Raw == "Bordem" || Raw == "Hate" {
+    return 1
+        } else {
+        return Int(Raw)!
+        }
+    }
+    
   var event: Event?
     
     override func viewDidLoad() {
@@ -197,13 +205,13 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         }
         
         
-        let HAPPY_SAD_VALUE = (New_Happy_Sad_Value.text!)
-        let ANGER_FEAR_VALUE = (New_Anger_Fear_Value.text!)
-        let INTEREST_BORDEM_VALUE = (New_Interest_Bordem_Value.text!)
-        let LOVE_HATE_VALUE = (New_Love_Hate_Value.text!)
+        let HAPPY_SAD_VALUE = get_emotion_values(Raw: New_Happy_Sad_Value.text!)
+        let ANGER_FEAR_VALUE = get_emotion_values(Raw: New_Anger_Fear_Value.text!)
+        let INTEREST_BORDEM_VALUE = get_emotion_values(Raw: New_Interest_Bordem_Value.text!)
+        let LOVE_HATE_VALUE = get_emotion_values(Raw: New_Love_Hate_Value.text!)
         
         
-        event = Event(Detail_EventName: EventName, Detail_EventPhoto: EventPhoto, Detail_does_have_photo: DOES_HAVE_PHOTO, Detail_EventDescription: EventDescription ,Detail_Happy_Sad_Value: Int(HAPPY_SAD_VALUE)!, Detail_Anger_fear_Value: Int(ANGER_FEAR_VALUE)!, Detail_Interest_bordem_Value: Int(INTEREST_BORDEM_VALUE)!, Detail_Love_hate_Value: Int(LOVE_HATE_VALUE)!)
+        event = Event(Detail_EventName: EventName, Detail_EventPhoto: EventPhoto, Detail_does_have_photo: DOES_HAVE_PHOTO, Detail_EventDescription: EventDescription ,Detail_Happy_Sad_Value: Int(HAPPY_SAD_VALUE), Detail_Anger_fear_Value: Int(ANGER_FEAR_VALUE), Detail_Interest_bordem_Value: Int(INTEREST_BORDEM_VALUE), Detail_Love_hate_Value: Int(LOVE_HATE_VALUE))
     
     }
     

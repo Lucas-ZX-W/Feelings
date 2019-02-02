@@ -7,13 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A000538A20B3D31600060DD5 /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A000538920B3D31600060DD5 /* EventTableViewController.swift */; };
 		A014EE2220AA4ECF0083DDA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A014EE2120AA4ECF0083DDA0 /* AppDelegate.swift */; };
 		A014EE2420AA4ECF0083DDA0 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = A014EE2320AA4ECF0083DDA0 /* art.scnassets */; };
-		A014EE2620AA4ECF0083DDA0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A014EE2520AA4ECF0083DDA0 /* ViewController.swift */; };
 		A014EE2920AA4ECF0083DDA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A014EE2720AA4ECF0083DDA0 /* Main.storyboard */; };
 		A014EE2B20AA4ED10083DDA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A014EE2A20AA4ED10083DDA0 /* Assets.xcassets */; };
 		A014EE2E20AA4ED10083DDA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A014EE2C20AA4ED10083DDA0 /* LaunchScreen.storyboard */; };
 		A014EE3920AA4ED10083DDA0 /* FeelingsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A014EE3820AA4ED10083DDA0 /* FeelingsUITests.swift */; };
+		A0A4EC5020BD1C7700CA0D2E /* NewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A4EC4F20BD1C7700CA0D2E /* NewEventViewController.swift */; };
+		A0F2C4AA20B251A600D49A39 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2C4A920B251A600D49A39 /* Data.swift */; };
+		A0F2C4AC20B255FE00D49A39 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2C4AB20B255FE00D49A39 /* EventTableViewCell.swift */; };
+		A0F2C4AE20B2564F00D49A39 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2C4AD20B2564F00D49A39 /* MenuViewController.swift */; };
+		A0FBBA3B20BF4F88001CDC7F /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FBBA3A20BF4F88001CDC7F /* EventDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,10 +32,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A000538920B3D31600060DD5 /* EventTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
 		A014EE1E20AA4ECF0083DDA0 /* Feelings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Feelings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A014EE2120AA4ECF0083DDA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A014EE2320AA4ECF0083DDA0 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		A014EE2520AA4ECF0083DDA0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A014EE2820AA4ECF0083DDA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A014EE2A20AA4ED10083DDA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A014EE2D20AA4ED10083DDA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -38,6 +43,11 @@
 		A014EE3420AA4ED10083DDA0 /* FeelingsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeelingsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A014EE3820AA4ED10083DDA0 /* FeelingsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingsUITests.swift; sourceTree = "<group>"; };
 		A014EE3A20AA4ED10083DDA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0A4EC4F20BD1C7700CA0D2E /* NewEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
+		A0F2C4A920B251A600D49A39 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		A0F2C4AB20B255FE00D49A39 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		A0F2C4AD20B2564F00D49A39 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		A0FBBA3A20BF4F88001CDC7F /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,10 +89,15 @@
 		A014EE2020AA4ECF0083DDA0 /* Feelings */ = {
 			isa = PBXGroup;
 			children = (
-				A014EE2120AA4ECF0083DDA0 /* AppDelegate.swift */,
 				A014EE2320AA4ECF0083DDA0 /* art.scnassets */,
-				A014EE2520AA4ECF0083DDA0 /* ViewController.swift */,
+				A014EE2120AA4ECF0083DDA0 /* AppDelegate.swift */,
+				A0F2C4A920B251A600D49A39 /* Data.swift */,
 				A014EE2720AA4ECF0083DDA0 /* Main.storyboard */,
+				A0FBBA3A20BF4F88001CDC7F /* EventDetailsViewController.swift */,
+				A000538920B3D31600060DD5 /* EventTableViewController.swift */,
+				A0F2C4AD20B2564F00D49A39 /* MenuViewController.swift */,
+				A0F2C4AB20B255FE00D49A39 /* EventTableViewCell.swift */,
+				A0A4EC4F20BD1C7700CA0D2E /* NewEventViewController.swift */,
 				A014EE2A20AA4ED10083DDA0 /* Assets.xcassets */,
 				A014EE2C20AA4ED10083DDA0 /* LaunchScreen.storyboard */,
 				A014EE2F20AA4ED10083DDA0 /* Info.plist */,
@@ -149,9 +164,11 @@
 				TargetAttributes = {
 					A014EE1D20AA4ECF0083DDA0 = {
 						CreatedOnToolsVersion = 9.3.1;
+						LastSwiftMigration = 1000;
 					};
 					A014EE3320AA4ED10083DDA0 = {
 						CreatedOnToolsVersion = 9.3.1;
+						LastSwiftMigration = 1000;
 						TestTargetID = A014EE1D20AA4ECF0083DDA0;
 					};
 				};
@@ -201,7 +218,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A014EE2620AA4ECF0083DDA0 /* ViewController.swift in Sources */,
+				A0F2C4AE20B2564F00D49A39 /* MenuViewController.swift in Sources */,
+				A0F2C4AA20B251A600D49A39 /* Data.swift in Sources */,
+				A0F2C4AC20B255FE00D49A39 /* EventTableViewCell.swift in Sources */,
+				A0FBBA3B20BF4F88001CDC7F /* EventDetailsViewController.swift in Sources */,
+				A0A4EC5020BD1C7700CA0D2E /* NewEventViewController.swift in Sources */,
+				A000538A20B3D31600060DD5 /* EventTableViewController.swift in Sources */,
 				A014EE2220AA4ECF0083DDA0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,14 +387,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9HEUH9ZE2Q;
 				INFOPLIST_FILE = Feelings/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.FeelingBlue.Feelings;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -383,14 +406,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9HEUH9ZE2Q;
 				INFOPLIST_FILE = Feelings/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.FeelingBlue.Feelings;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -408,7 +432,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.FeelingBlue.FeelingsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Feelings;
 			};
@@ -428,7 +452,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.FeelingBlue.FeelingsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Feelings;
 			};

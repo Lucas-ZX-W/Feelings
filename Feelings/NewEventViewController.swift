@@ -102,8 +102,7 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
     let month = Calendar.current.component(.month, from: Date())
     let year = Calendar.current.component(.year, from: Date())
     
-    let result = time + " | " + String(month) + "/" + String(day) + "/" + String(year)
-    print(result)
+    let result = time + "   " + String(month) + "/" + String(day) + "/" + String(year)
     return result
     }
     

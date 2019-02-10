@@ -14,6 +14,7 @@ class EventDetailsViewController: UIViewController {
     @IBOutlet weak var DetailEventName: UILabel!
     @IBOutlet weak var DetailEventImage: UIImageView!
     @IBOutlet weak var DetailEventDescription: UITextView!
+    @IBOutlet weak var DetailEventTime: UILabel!
     
     
     @IBOutlet weak var Detail_Happy_Sad_Value: UILabel!
@@ -34,23 +35,17 @@ class EventDetailsViewController: UIViewController {
 
         if let event = event {
         
-            //This sets the scene up to display the correct content inside the array.
+        //This sets the scene up to display the correct content inside the array.
         DetailEventName.text = event.EventName
-        
         if event.does_have_photo == true{
         DetailEventImage.image = event.EventPhoto
         } else {
         DetailEventImage.isHidden = true}
-        
         DetailEventDescription.text = event.EventDescription
-        
-    
         Detail_Happy_Sad_Value.text = String(event.Happy_Sad_Value)
-        
-        
+        DetailEventTime.text = event.EventTime
         }
-    
-
+        
         // Controlling Emojis
         //Happy / Sad
        
@@ -92,11 +87,8 @@ class EventDetailsViewController: UIViewController {
   
        // event = Event(EventName: EventName, EventPhoto: EventPhoto)
    // }
-        
-        
-        
-        
-        
+    
+    
         /*
     // MARK: - Navigation
 

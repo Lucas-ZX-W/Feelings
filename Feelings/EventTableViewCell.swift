@@ -18,6 +18,7 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var Cell_Anger_Fear_Emoji: UILabel!
     @IBOutlet weak var Cell_Interest_Bordem_Emoji: UILabel!
     @IBOutlet weak var Cell_Love_Hate_Emoji: UILabel!
+    @IBOutlet weak var Cell_EventTime: UILabel!
     
     @IBOutlet weak var EditEventButton: UIButton!
    

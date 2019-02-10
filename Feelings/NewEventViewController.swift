@@ -87,13 +87,24 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
         New_Love_Hate_Value.text = String(Int(sender.value))
     
     }
-    
+    // Return 0 if the steppers are not touched, the corresponding value is it was touched
     func get_emotion_values (Raw: String) -> Int{
     if Raw == "Sad" || Raw == "Fear" || Raw == "Bordem" || Raw == "Hate" {
     return 1
         } else {
         return Int(Raw)!
         }
+    }
+    // Get the time and date from the device, function called when new event is created
+    func get_Event_Time () -> String{
+    let time = DateFormatter.localizedString(from: Date(), dateStyle: DateFormatter.Style.none, timeStyle: .short)
+    let day = Calendar.current.component(.day, from: Date())
+    let month = Calendar.current.component(.month, from: Date())
+    let year = Calendar.current.component(.year, from: Date())
+    
+    let result = time + " | " + String(month) + "/" + String(day) + "/" + String(year)
+    print(result)
+    return result
     }
     
   var event: Event?
@@ -105,6 +116,13 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
         NewEventNameField.delegate = self
         
         updateSaveButtonState()
+    
+    // Clear the textview of the default text when selected - Does not work; only runs once
+    //if NewEventDescription.isFirstResponder == true && NewEventDescription.text == "Tap to Enter Text"{
+    //NewEventDescription.text = ""
+    //} else if NewEventDescription.isFirstResponder == true && NewEventDescription.text == "" {
+    //NewEventDescription.text = "Tap to Enter Text"
+        //}
     
     // Detecting Keyboard Activities
        NotificationCenter.default.addObserver(self, selector: #selector(keyboard_comingup(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -125,16 +143,11 @@ return
     }
     //let inset = UIEdgeInsets(top: 0, left: 0, bottom: -keyboardRect.height, right: 0)
     
- if (notification.name == UIResponder.keyboardWillShowNotification && NewEventDescription.isFirstResponder) || (notification.name == UIResponder.keyboardWillChangeFrameNotification && NewEventDescription.isFirstResponder)
- {
+ if (notification.name == UIResponder.keyboardWillShowNotification && NewEventDescription.isFirstResponder) || (notification.name == UIResponder.keyboardWillChangeFrameNotification && NewEventDescription.isFirstResponder){
     view.frame.origin.y = -keyboardRect.height
-    //scrollView.contentInset = inset
-    //scrollView.scrollIndicatorInsets = inset
     } else {
     view.frame.origin.y = 0
-    //scrollView.contentInset = UIEdgeInsets.zero
-    //scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
-}}
+    }}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -196,6 +209,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
     let EventName = NewEventNameField.text ?? ""
     let EventPhoto = NewEventImage.image
     let EventDescription = NewEventDescription.text ?? ""
+    let EventTime = get_Event_Time()
         
     var DOES_HAVE_PHOTO = true
     if did_select_photo == true{
@@ -211,7 +225,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         let LOVE_HATE_VALUE = get_emotion_values(Raw: New_Love_Hate_Value.text!)
         
         
-        event = Event(Detail_EventName: EventName, Detail_EventPhoto: EventPhoto, Detail_does_have_photo: DOES_HAVE_PHOTO, Detail_EventDescription: EventDescription ,Detail_Happy_Sad_Value: Int(HAPPY_SAD_VALUE), Detail_Anger_fear_Value: Int(ANGER_FEAR_VALUE), Detail_Interest_bordem_Value: Int(INTEREST_BORDEM_VALUE), Detail_Love_hate_Value: Int(LOVE_HATE_VALUE))
+        event = Event(Detail_EventName: EventName, Detail_EventPhoto: EventPhoto, Detail_does_have_photo: DOES_HAVE_PHOTO, Detail_EventDescription: EventDescription, Detail_EventTime: EventTime, Detail_Happy_Sad_Value: Int(HAPPY_SAD_VALUE), Detail_Anger_fear_Value: Int(ANGER_FEAR_VALUE), Detail_Interest_bordem_Value: Int(INTEREST_BORDEM_VALUE), Detail_Love_hate_Value: Int(LOVE_HATE_VALUE))
     
     }
     

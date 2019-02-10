@@ -15,13 +15,14 @@ class Event  {
     var EventPhoto: UIImage?
     var does_have_photo: Bool
     var EventDescription: String
+    var EventTime: String
     
     var Happy_Sad_Value: Int
     var Anger_fear_Value: Int
     var Interest_bordem_Value: Int
     var Love_hate_Value: Int
  
-    init?(Detail_EventName: String, Detail_EventPhoto: UIImage?, Detail_does_have_photo: Bool, Detail_EventDescription: String,Detail_Happy_Sad_Value: Int, Detail_Anger_fear_Value: Int, Detail_Interest_bordem_Value: Int, Detail_Love_hate_Value: Int) {
+    init?(Detail_EventName: String, Detail_EventPhoto: UIImage?, Detail_does_have_photo: Bool, Detail_EventDescription: String, Detail_EventTime: String, Detail_Happy_Sad_Value: Int, Detail_Anger_fear_Value: Int, Detail_Interest_bordem_Value: Int, Detail_Love_hate_Value: Int) {
     
     
     
@@ -30,6 +31,7 @@ class Event  {
         self.EventPhoto = Detail_EventPhoto
         self.does_have_photo = Detail_does_have_photo
         self.EventDescription = Detail_EventDescription
+        self.EventTime = Detail_EventTime
         self.Happy_Sad_Value = Detail_Happy_Sad_Value
         self.Anger_fear_Value = Detail_Anger_fear_Value
         self.Interest_bordem_Value = Detail_Interest_bordem_Value

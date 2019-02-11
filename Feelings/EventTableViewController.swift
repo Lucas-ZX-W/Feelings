@@ -66,8 +66,8 @@ class EventTableViewController: UITableViewController {
         // Functions to control the cell view emojis:
         
         if event.Happy_Sad_Value == 0 {
-        cell.Cell_Happy_Sad_Emoji.isHidden = true
-        //cell.Cell_Happy_Sad_Emoji.text = "😶"
+        //cell.Cell_Happy_Sad_Emoji.isHidden = true
+        cell.Cell_Happy_Sad_Emoji.text = "😶"
         }
         else if event.Happy_Sad_Value == 3{
         cell.Cell_Happy_Sad_Emoji.text = "😁"

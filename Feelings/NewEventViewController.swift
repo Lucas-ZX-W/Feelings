@@ -39,26 +39,23 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
         
         New_Happy_Sad_Value.text = String(Int(sender.value))
         
-        if Int(sender.value) == 0 {
+        switch Int(sender.value) {
+        case 0:
         New_Happy_Sad_Emoji.text = "😶"
-        }
-        else if Int(sender.value) == 3{
+        case 3:
         New_Happy_Sad_Emoji.text = "😁"
-        }
-        else if Int(sender.value) == 2{
+        case 2:
         New_Happy_Sad_Emoji.text = "😊"
-        }
-        else if Int(sender.value) == 1 {
+        case 1:
         New_Happy_Sad_Emoji.text = "🙂"
-        }
-        else if Int(sender.value) == -1{
+        case -1:
         New_Happy_Sad_Emoji.text = "😕"
-        }
-        else if Int(sender.value) == -2{
+        case -2:
         New_Happy_Sad_Emoji.text = "☹️"
-        }
-        else if Int(sender.value) == -3{
+        case -3:
         New_Happy_Sad_Emoji.text = "😭"
+        default:
+        New_Happy_Sad_Emoji.text = "nil"
         }
     
     }
@@ -113,10 +110,19 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
 
         // Do any additional setup after loading the view.
         NewEventNameField.delegate = self
-        
         updateSaveButtonState()
     
     // Clear the textview of the default text when selected - Does not work; only runs once
+//    switch NewEventDescription.isFirstResponder{
+//    case true:
+//        if NewEventDescription.text == "Tap to Enter Text"{
+//        NewEventDescription.text = ""
+//        }
+//    case false:
+//        if NewEventDescription.text == ""{
+//        NewEventDescription.text = "Tap to Enter Text"
+//    }
+//   }
     //if NewEventDescription.isFirstResponder == true && NewEventDescription.text == "Tap to Enter Text"{
     //NewEventDescription.text = ""
     //} else if NewEventDescription.isFirstResponder == true && NewEventDescription.text == "" {

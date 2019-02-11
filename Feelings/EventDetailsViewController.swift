@@ -19,6 +19,12 @@ class EventDetailsViewController: UIViewController {
     
     @IBOutlet weak var Detail_Happy_Sad_Value: UILabel!
     @IBOutlet weak var Emoji_Happy_Sad: UILabel!
+    @IBOutlet weak var Detail_Anger_Fear_Value: UILabel!
+    @IBOutlet weak var Emoji_Anger_Fear: UILabel!
+    @IBOutlet weak var Detail_Interest_Bordem_Value: UILabel!
+    @IBOutlet weak var Emoji_Interest_Bordem: UILabel!
+    @IBOutlet weak var Detail_Love_Hate_Value: UILabel!
+    @IBOutlet weak var Emoji_Love_Hate: UILabel!
     
     
     var event: Event?
@@ -42,35 +48,58 @@ class EventDetailsViewController: UIViewController {
         } else {
         DetailEventImage.isHidden = true}
         DetailEventDescription.text = event.EventDescription
-        Detail_Happy_Sad_Value.text = String(event.Happy_Sad_Value)
         DetailEventTime.text = event.EventTime
+
+        Detail_Happy_Sad_Value.text = String(event.Happy_Sad_Value)
+        Detail_Anger_Fear_Value.text = String(event.Anger_fear_Value)
+        Detail_Interest_Bordem_Value.text = String(event.Interest_bordem_Value)
+        Detail_Love_Hate_Value.text = String(event.Love_hate_Value)
         }
         
         // Controlling Emojis
         //Happy / Sad
-       
-        if Detail_Happy_Sad_Value.text == "0" {
+        switch Detail_Happy_Sad_Value.text {
+        case "0":
         Emoji_Happy_Sad.text = "😶"
-        }
-        else if Detail_Happy_Sad_Value.text == "3"{
+        case "3":
         Emoji_Happy_Sad.text = "😁"
-        }
-        else if Detail_Happy_Sad_Value.text == "2"{
+        case "2":
         Emoji_Happy_Sad.text = "😊"
-        }
-        else if Detail_Happy_Sad_Value.text == "1" {
+        case "1":
         Emoji_Happy_Sad.text = "🙂"
-        }
-        else if Detail_Happy_Sad_Value.text == "-1"{
+        case "-1":
         Emoji_Happy_Sad.text = "😕"
-        }
-        else if Detail_Happy_Sad_Value.text == "-2"{
+        case "-2":
         Emoji_Happy_Sad.text = "☹️"
-        }
-        else if Detail_Happy_Sad_Value.text == "-3"{
+        case "-3":
         Emoji_Happy_Sad.text = "😭"
+        default:
+        Emoji_Happy_Sad.text = "nil"
         }
        
+       //Anger / Fear
+       switch Detail_Anger_Fear_Value.text{
+       case "0":
+       Emoji_Happy_Sad.text = "😶"
+       case "3":
+       Emoji_Anger_Fear.text = "😡"
+       case "2":
+       Emoji_Anger_Fear.text = "😤"
+       case "1":
+       Emoji_Anger_Fear.text = "😠"
+       case "-1":
+       Emoji_Anger_Fear.text = "😨"
+       case "-2":
+       Emoji_Anger_Fear.text = "😰"
+       case "-3":
+       Emoji_Anger_Fear.text = "😱"
+       default:
+       Emoji_Anger_Fear.text = "nil"
+    }
+    
+    // Interest / Bordem
+    
+    
     }
 
     override func didReceiveMemoryWarning() {

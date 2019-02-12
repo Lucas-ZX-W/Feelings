@@ -57,12 +57,13 @@ class EventTableViewController: UITableViewController {
         
       let event = events[indexPath.row]
         
-        // Configure the cell...
+        // MARK: Configure the cell...
 
         cell.EventNameLabel.text = event.EventName
         if event.does_have_photo == true {
         cell.DefaultEventPhoto.image = event.EventPhoto}
         cell.Cell_EventTime.text = event.EventTime
+        
         // Functions to control the cell view emojis:
         
         if event.Happy_Sad_Value == 0 {

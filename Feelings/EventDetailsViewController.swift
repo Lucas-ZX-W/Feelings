@@ -35,7 +35,6 @@ class EventDetailsViewController: UIViewController {
     arg.isScrollEnabled = false
     }
   
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -56,7 +55,7 @@ class EventDetailsViewController: UIViewController {
         Detail_Love_Hate_Value.text = String(event.Love_hate_Value)
         }
         
-        // Controlling Emojis
+        // MARK: Controlling Emojis
         //Happy / Sad
         switch Detail_Happy_Sad_Value.text {
         case "0":
@@ -98,7 +97,26 @@ class EventDetailsViewController: UIViewController {
     }
     
     // Interest / Bordem
+    switch Detail_Interest_Bordem_Value.text{
+    case "0":
+    Emoji_Interest_Bordem.text = "😶"
+    case "3":
+    Emoji_Interest_Bordem.text = "😳"
+    case "2":
+    Emoji_Interest_Bordem.text = "🤔"
+    case "1":
+    Emoji_Interest_Bordem.text = "😯"
+    case "-1":
+    Emoji_Interest_Bordem.text = "😐"
+    case "-2":
+    Emoji_Interest_Bordem.text = "😑"
+    case "-3":
+    Emoji_Interest_Bordem.text = "😪"
+    default:
+    Emoji_Interest_Bordem.text = "nil"
+    }
     
+    // Love / Hate
     
     }
 

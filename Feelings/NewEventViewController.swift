@@ -9,7 +9,7 @@
 import UIKit
 import os.log
 
-class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
     @IBOutlet weak var NewEventNameLabel: UILabel!
     @IBOutlet weak var NewEventNameField: UITextField!
@@ -30,7 +30,7 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
   
     var did_select_photo = false
 
-    //Corrsponding Steppers
+    // MARK: Corrsponding Steppers
     
     @IBAction func New_Happy_Sad_Value_Stepper(_ sender: UIStepper) {
     
@@ -86,7 +86,7 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
     }
     // Return 0 if the steppers are not touched, the corresponding value is it was touched
     func get_emotion_values (Raw: String) -> Int{
-    if Raw == "Sad" || Raw == "Fear" || Raw == "Bordem" || Raw == "Hate" {
+    if Raw == "Sadness" || Raw == "Fear" || Raw == "Bordem" || Raw == "Hate" {
     return 1
         } else {
         return Int(Raw)!
@@ -109,27 +109,13 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        NewEventNameField.returnKeyType = .done
         NewEventNameField.delegate = self
+        NewEventDescription.returnKeyType = .done
+        NewEventDescription.delegate = self
         updateSaveButtonState()
     
-    // Clear the textview of the default text when selected - Does not work; only runs once
-//    switch NewEventDescription.isFirstResponder{
-//    case true:
-//        if NewEventDescription.text == "Tap to Enter Text"{
-//        NewEventDescription.text = ""
-//        }
-//    case false:
-//        if NewEventDescription.text == ""{
-//        NewEventDescription.text = "Tap to Enter Text"
-//    }
-//   }
-    //if NewEventDescription.isFirstResponder == true && NewEventDescription.text == "Tap to Enter Text"{
-    //NewEventDescription.text = ""
-    //} else if NewEventDescription.isFirstResponder == true && NewEventDescription.text == "" {
-    //NewEventDescription.text = "Tap to Enter Text"
-        //}
-    
-    // Detecting Keyboard Activities
+    // MARK: Detecting Keyboard Activities
        NotificationCenter.default.addObserver(self, selector: #selector(keyboard_comingup(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
        NotificationCenter.default.addObserver(self, selector: #selector(keyboard_comingup(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
        NotificationCenter.default.addObserver(self, selector: #selector(keyboard_comingup(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
@@ -146,13 +132,34 @@ deinit {
     guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else{
 return
     }
-    //let inset = UIEdgeInsets(top: 0, left: 0, bottom: -keyboardRect.height, right: 0)
     
  if (notification.name == UIResponder.keyboardWillShowNotification && NewEventDescription.isFirstResponder) || (notification.name == UIResponder.keyboardWillChangeFrameNotification && NewEventDescription.isFirstResponder){
     view.frame.origin.y = -keyboardRect.height
     } else {
     view.frame.origin.y = 0
     }}
+    
+// MARK: Clear the textview of the default text when selected
+
+func textViewDidBeginEditing(_ textView: UITextView){
+    if textView.text == "How are you feeling?"{
+    textView.text = ""
+    }
+    }
+    
+func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+    if(text == "\n") {
+        textView.resignFirstResponder()
+        return false
+    }
+    return true
+}
+
+func textViewDidEndEditing(_ textView: UITextView) {
+if textView.text == ""{
+    textView.text = "How are you feeling?"
+    }
+}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

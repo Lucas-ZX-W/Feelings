@@ -65,30 +65,85 @@ class EventTableViewController: UITableViewController {
         cell.Cell_EventTime.text = event.EventTime
         
         // Functions to control the cell view emojis:
-        
-        if event.Happy_Sad_Value == 0 {
+        // Happy / Sad
+        switch event.Happy_Sad_Value {
+        case 0:
         //cell.Cell_Happy_Sad_Emoji.isHidden = true
         cell.Cell_Happy_Sad_Emoji.text = "😶"
-        }
-        else if event.Happy_Sad_Value == 3{
+        case 3:
         cell.Cell_Happy_Sad_Emoji.text = "😁"
-        }
-        else if event.Happy_Sad_Value == 2{
+        case 2:
         cell.Cell_Happy_Sad_Emoji.text = "😊"
-        }
-        else if event.Happy_Sad_Value == 1 {
+        case 1:
         cell.Cell_Happy_Sad_Emoji.text = "🙂"
-        }
-        else if event.Happy_Sad_Value == -1{
+        case -1:
         cell.Cell_Happy_Sad_Emoji.text = "😕"
-        }
-        else if event.Happy_Sad_Value == -2{
+        case -2:
         cell.Cell_Happy_Sad_Emoji.text = "☹️"
-        }
-        else if event.Happy_Sad_Value == -3{
+        case -3:
         cell.Cell_Happy_Sad_Emoji.text = "😭"
+        default:
+        cell.Cell_Happy_Sad_Emoji.text = "nil"
         }
     
+        //Anger / Fear
+       switch event.Anger_fear_Value{
+       case 0:
+       cell.Cell_Anger_Fear_Emoji.text = "😶"
+       case 3:
+       cell.Cell_Anger_Fear_Emoji.text = "😡"
+       case 2:
+       cell.Cell_Anger_Fear_Emoji.text = "😤"
+       case 1:
+       cell.Cell_Anger_Fear_Emoji.text = "😠"
+       case -1:
+       cell.Cell_Anger_Fear_Emoji.text = "😨"
+       case -2:
+       cell.Cell_Anger_Fear_Emoji.text = "😰"
+       case -3:
+       cell.Cell_Anger_Fear_Emoji.text = "😱"
+       default:
+       cell.Cell_Anger_Fear_Emoji.text = "nil"
+        }
+        
+        switch event.Interest_bordem_Value{
+        case 0:
+        cell.Cell_Interest_Bordem_Emoji.text = "😶"
+        case 3:
+        cell.Cell_Interest_Bordem_Emoji.text = "😳"
+        case 2:
+        cell.Cell_Interest_Bordem_Emoji.text = "🤔"
+        case 1:
+        cell.Cell_Interest_Bordem_Emoji.text = "😯"
+        case -1:
+        cell.Cell_Interest_Bordem_Emoji.text = "😐"
+        case -2:
+        cell.Cell_Interest_Bordem_Emoji.text = "😑"
+        case -3:
+        cell.Cell_Interest_Bordem_Emoji.text = "😪"
+        default:
+        cell.Cell_Interest_Bordem_Emoji.text = "nil"
+        }
+        
+        switch event.Love_hate_Value{
+        case 0:
+        cell.Cell_Love_Hate_Emoji.text = "😶"
+        case 3:
+        cell.Cell_Love_Hate_Emoji.text = "😍"
+        case 2:
+        cell.Cell_Love_Hate_Emoji.text = "🥰"
+        case 1:
+        cell.Cell_Love_Hate_Emoji.text = "😘"
+        case -1:
+        cell.Cell_Love_Hate_Emoji.text = "😏"
+        case -2:
+        cell.Cell_Love_Hate_Emoji.text = "😖"
+        case -3:
+        cell.Cell_Love_Hate_Emoji.text = "😈"
+        default:
+        cell.Cell_Love_Hate_Emoji.text = "nil"
+        }
+        
         //Hide the default photo if the photo is not changed
         
 //        if event.does_have_photo == false{
@@ -207,12 +262,8 @@ class EventTableViewController: UITableViewController {
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             
             }
-            //let newIndexPath = IndexPath(row: events.count, section: 0)
-
-        //events.append(event)
-            //tableView.insertRows(at: [newIndexPath], with: .automatic)
         }
-        }
+    }
     
     
     

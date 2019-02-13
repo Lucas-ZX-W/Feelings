@@ -16,10 +16,11 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
     @IBOutlet weak var NewEventImage: UIImageView!
     @IBOutlet weak var NewEventDescription: UITextView!
     
-    
     @IBOutlet weak var New_Happy_Sad_Emoji: UILabel!
+    @IBOutlet weak var New_Anger_Fear_Emoji: UILabel!
+    @IBOutlet weak var New_Interest_Bordem_Emoji: UILabel!
+    @IBOutlet weak var New_Love_Hate_Emoji: UILabel!
     
-   
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var New_Happy_Sad_Value: UILabel!
     @IBOutlet weak var New_Anger_Fear_Value: UILabel!
@@ -57,7 +58,6 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
         default:
         New_Happy_Sad_Emoji.text = "nil"
         }
-    
     }
     
     @IBAction func New_Anger_Fear_Value_Stepper(_ sender: UIStepper) {
@@ -66,6 +66,25 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
     sender.minimumValue = -3.0
     
         New_Anger_Fear_Value.text = String(Int(sender.value))
+    
+    switch Int(sender.value){
+       case 0:
+       New_Anger_Fear_Emoji.text = "😶"
+       case 3:
+       New_Anger_Fear_Emoji.text = "😡"
+       case 2:
+       New_Anger_Fear_Emoji.text = "😤"
+       case 1:
+       New_Anger_Fear_Emoji.text = "😠"
+       case -1:
+       New_Anger_Fear_Emoji.text = "😨"
+       case -2:
+       New_Anger_Fear_Emoji.text = "😰"
+       case -3:
+       New_Anger_Fear_Emoji.text = "😱"
+       default:
+       New_Anger_Fear_Emoji.text = "nil"
+        }
     }
     
     @IBAction func New_Interest_Bordem_Value_Stepper(_ sender: UIStepper) {
@@ -74,6 +93,25 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
     sender.minimumValue = -3.0
     
         New_Interest_Bordem_Value.text = String(Int(sender.value))
+        
+        switch Int(sender.value){
+        case 0:
+        New_Interest_Bordem_Emoji.text = "😶"
+        case 3:
+        New_Interest_Bordem_Emoji.text = "😳"
+        case 2:
+        New_Interest_Bordem_Emoji.text = "🤔"
+        case 1:
+        New_Interest_Bordem_Emoji.text = "😯"
+        case -1:
+        New_Interest_Bordem_Emoji.text = "😐"
+        case -2:
+        New_Interest_Bordem_Emoji.text = "😑"
+        case -3:
+        New_Interest_Bordem_Emoji.text = "😪"
+        default:
+        New_Interest_Bordem_Emoji.text = "nil"
+        }
     }
     
     @IBAction func New_Love_Hate_Value_Stepper(_ sender: UIStepper) {
@@ -82,7 +120,25 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
     sender.minimumValue = -3.0
     
         New_Love_Hate_Value.text = String(Int(sender.value))
-    
+        
+        switch Int(sender.value){
+        case 0:
+        New_Love_Hate_Emoji.text = "😶"
+        case 3:
+        New_Love_Hate_Emoji.text = "😍"
+        case 2:
+        New_Love_Hate_Emoji.text = "🥰"
+        case 1:
+        New_Love_Hate_Emoji.text = "😘"
+        case -1:
+        New_Love_Hate_Emoji.text = "😏"
+        case -2:
+        New_Love_Hate_Emoji.text = "😖"
+        case -3:
+        New_Love_Hate_Emoji.text = "😈"
+        default:
+        New_Love_Hate_Emoji.text = "nil"
+        }
     }
     // Return 0 if the steppers are not touched, the corresponding value is it was touched
     func get_emotion_values (Raw: String) -> Int{
@@ -143,8 +199,7 @@ return
 
 func textViewDidBeginEditing(_ textView: UITextView){
     if textView.text == "How are you feeling?"{
-    textView.text = ""
-    }
+    textView.text = "" }
     }
     
 func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {

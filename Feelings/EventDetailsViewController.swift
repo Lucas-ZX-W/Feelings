@@ -117,6 +117,24 @@ class EventDetailsViewController: UIViewController {
     }
     
     // Love / Hate
+    switch Detail_Love_Hate_Value.text{
+    case "0":
+    Emoji_Love_Hate.text = "😶"
+    case "3":
+    Emoji_Love_Hate.text = "😍"
+    case "2":
+    Emoji_Love_Hate.text = "🥰"
+    case "1":
+    Emoji_Love_Hate.text = "😘"
+    case "-1":
+    Emoji_Love_Hate.text = "😏"
+    case "-2":
+    Emoji_Love_Hate.text = "😖"
+    case "-3":
+    Emoji_Love_Hate.text = "😈"
+    default:
+    Emoji_Love_Hate.text = "nil"
+        }
     
     }
 

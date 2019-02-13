@@ -8,11 +8,13 @@
 
 import UIKit
 import os.log
+import LocalAuthentication
 
 var events = [Event]()
 
 class EventTableViewController: UITableViewController {
-
+    
+    @IBOutlet var Memories_Table_View: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +32,78 @@ class EventTableViewController: UITableViewController {
         // Don't forget to call the fucking Function you dumbass!
       //loadSampleEvent()
     
+// FIXME: Either get the blur to work right or use the pre-made blur, or jut colour the whole thing black
+    //view.backgroundColor = .white
+    let blurEffect = UIBlurEffect(style: .light)
+    let blurView = UIVisualEffectView(effect: blurEffect)
+    blurView.translatesAutoresizingMaskIntoConstraints = false
+    blurView.tag = 1
+    blurView.frame.size.height = UIScreen.main.bounds.height
+    blurView.frame.size.width = UIScreen.main.bounds.width
+
+    view.insertSubview(blurView, at: 0)
+
+//    NSLayoutConstraint.activate([
+//      blurView.heightAnchor.constraint(equalTo: view.heightAnchor),
+//      blurView.widthAnchor.constraint(equalTo: view.widthAnchor),
+//      ])
+    }
+    
+    // MARK: Local authentication
+    func authentication(){
+        let context = LAContext()
+        var error: NSError?
+        
+        // check if Touch ID is available
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+
+            let reason = "Authenticate with Biometrics"
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason ) { success, error in
+
+        if success {
+
+        // Move to the main thread because a state update triggers UI changes.
+        DispatchQueue.main.async { [unowned self] in
+//            self.state = .loggedin
+                //self.Memories_Table_View.subviews.forEach { $0.isHidden = true }
+                //self.showAlertController("Biometrics Authentication Succeeded")
+          self.view.subviews.filter({$0.tag == 1}).forEach({$0.removeFromSuperview()})
+            }
+        } else {
+        //print(error?.localizedDescription ?? "Failed to authenticate")
+        self.showAlertController("Biometrics Authentication Failed")
+//            let viewController: MenuViewController = self.storyboard?.instantiateViewController(withIdentifier: "VC") as! MenuViewController
+//        self.navigationController?.pushViewController(viewController, animated: true)
+    }}
+    } else {
+    showAlertController("Biometrics not available")
+//            let viewController: MenuViewController = self.storyboard?.instantiateViewController(withIdentifier: "VC") as! MenuViewController
+//    self.navigationController?.pushViewController(viewController, animated: true)
+    }}
+    
+    func showAlertController(_ message: String) {
+        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+    authentication()
     }
    
-   
+   override func viewDidDisappear(_ animated: Bool) {
+    //self.Memories_Table_View.subviews.forEach { $0.isHidden = false }
+    let blurEffect = UIBlurEffect(style: .light)
+    let blurView = UIVisualEffectView(effect: blurEffect)
+    blurView.translatesAutoresizingMaskIntoConstraints = false
+    blurView.tag = 1
+
+    blurView.frame.size.height = UIScreen.main.bounds.height
+    blurView.frame.size.width = UIScreen.main.bounds.width
+    view.insertSubview(blurView, at: 0)
+}
+    // End of authentication and blur view
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

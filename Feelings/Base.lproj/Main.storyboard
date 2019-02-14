@@ -372,10 +372,13 @@
                         <outlet property="NewEventImage" destination="7nI-Uo-Rvh" id="VTv-r9-cmO"/>
                         <outlet property="NewEventNameField" destination="GyY-bO-EDv" id="t3F-qx-0od"/>
                         <outlet property="NewEventNameLabel" destination="2R8-az-G1W" id="iC8-Z2-fo7"/>
+                        <outlet property="New_Anger_Fear_Emoji" destination="pFo-dp-bpW" id="yKN-dt-cid"/>
                         <outlet property="New_Anger_Fear_Value" destination="jLN-QQ-f70" id="CgD-x7-8AQ"/>
                         <outlet property="New_Happy_Sad_Emoji" destination="BIY-jE-87C" id="nUX-RK-AW9"/>
                         <outlet property="New_Happy_Sad_Value" destination="dDY-dI-ARr" id="TSR-fC-RFd"/>
+                        <outlet property="New_Interest_Bordem_Emoji" destination="BQT-e8-dfK" id="Pgp-os-yxD"/>
                         <outlet property="New_Interest_Bordem_Value" destination="s23-aE-Pe0" id="Jvs-sC-Le6"/>
+                        <outlet property="New_Love_Hate_Emoji" destination="n4z-CJ-riO" id="0eF-7t-JWp"/>
                         <outlet property="New_Love_Hate_Value" destination="ZhB-il-ad9" id="bz9-rQ-xsX"/>
                         <outlet property="saveButton" destination="pGv-rw-Wt3" id="bfT-cd-Jfr"/>
                         <outlet property="scrollView" destination="DDX-tv-W8u" id="eUk-88-Igo"/>

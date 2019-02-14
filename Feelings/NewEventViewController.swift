@@ -56,7 +56,7 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
         case -3:
         New_Happy_Sad_Emoji.text = "😭"
         default:
-        New_Happy_Sad_Emoji.text = "nil"
+        New_Happy_Sad_Emoji.text = "YES"
         }
     }
     
@@ -83,7 +83,7 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
        case -3:
        New_Anger_Fear_Emoji.text = "😱"
        default:
-       New_Anger_Fear_Emoji.text = "nil"
+       New_Anger_Fear_Emoji.text = "YES"
         }
     }
     
@@ -110,7 +110,7 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
         case -3:
         New_Interest_Bordem_Emoji.text = "😪"
         default:
-        New_Interest_Bordem_Emoji.text = "nil"
+        New_Interest_Bordem_Emoji.text = "YES"
         }
     }
     
@@ -137,7 +137,7 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
         case -3:
         New_Love_Hate_Emoji.text = "😈"
         default:
-        New_Love_Hate_Emoji.text = "nil"
+        New_Love_Hate_Emoji.text = "YES"
         }
     }
     // Return 0 if the steppers are not touched, the corresponding value is it was touched
@@ -215,6 +215,10 @@ if textView.text == ""{
     textView.text = "How are you feeling?"
     }
 }
+
+    override func viewDidAppear(_ animated: Bool) {
+    memories_authenticate = false
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

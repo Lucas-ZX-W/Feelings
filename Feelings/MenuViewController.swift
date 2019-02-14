@@ -26,6 +26,8 @@ class MenuViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
     
+    memories_authenticate = true
+    
     test_label.text = String(get_happy_value())
     
     }

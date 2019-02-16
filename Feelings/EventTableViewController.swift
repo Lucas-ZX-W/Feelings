@@ -53,7 +53,7 @@ class EventTableViewController: UITableViewController{
         // Move to the main thread because a state update triggers UI changes.
         DispatchQueue.main.async { [unowned self] in
             self.Memories_Table_View.isUserInteractionEnabled = true
-            self.view.subviews.filter({$0.tag == 1}).forEach({$0.removeFromSuperview()})
+            self.view.subviews.filter({$0.tag == 1}).forEach({$0.isHidden = true})
             //self.state = .loggedin
             //self.showAlertController("Biometrics Authentication Succeeded")
             }
@@ -78,10 +78,7 @@ class EventTableViewController: UITableViewController{
         
         if memories_authenticate == true{
         Memories_Table_View.isUserInteractionEnabled = false
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
-            visualEffectView.frame = Memories_Table_View.bounds
-            visualEffectView.tag = 1
-            Memories_Table_View.addSubview(visualEffectView)
+        self.view.subviews.filter({$0.tag == 1}).forEach({$0.isHidden = false})
         authentication()}
     }
     // End of authentication

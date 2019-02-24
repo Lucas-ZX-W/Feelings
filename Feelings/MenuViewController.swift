@@ -10,12 +10,10 @@ import UIKit
 import os.log
 
 class MenuViewController: UIViewController {
-    @IBOutlet weak var test_label: UILabel!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+    
         // Do any additional setup after loading the view.
     }
 
@@ -25,11 +23,7 @@ class MenuViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-    
     memories_authenticate = true
-    
-    test_label.text = String(get_happy_value())
-    
     }
 
     /*

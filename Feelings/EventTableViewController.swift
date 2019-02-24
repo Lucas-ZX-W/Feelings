@@ -12,10 +12,13 @@ import LocalAuthentication
 
 var events = [Event]()
 var memories_authenticate = true
+var saved_memory_success = false
 
 class EventTableViewController: UITableViewController{
     
     @IBOutlet var Memories_Table_View: UITableView!
+    let haptic_notification = UINotificationFeedbackGenerator()
+    var alert = UIAlertController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +49,7 @@ class EventTableViewController: UITableViewController{
         // check if ID is available
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
 
-            let reason = "Authenticate with Biometrics"
+            let reason = "Authenticate to Access Memories"
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason ) { success, error in
 
         if success {
@@ -59,10 +62,29 @@ class EventTableViewController: UITableViewController{
             }
         } else {
         //print(error?.localizedDescription ?? "Failed to authenticate")
-        self.showAlertController("Biometrics Authentication Failed")
-    }}
+        self.showAlertController("Authentication Failed")
+//        let homeView = self.storyboard?.instantiateViewController(withIdentifier: "Menu") as! MenuViewController
+//            self.navigationController?.pushViewController(homeView, animated: true)
+        }}
     } else {
-    showAlertController("Biometrics not available")
+    //showAlertController("Biometrics not available, using password")
+        let reason = "Authenticate to Access Memories using password"
+            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason ) { success, error in
+
+        if success {
+        // Move to the main thread because a state update triggers UI changes.
+        DispatchQueue.main.async { [unowned self] in
+            self.Memories_Table_View.isUserInteractionEnabled = true
+            self.view.subviews.filter({$0.tag == 1}).forEach({$0.isHidden = true})
+            //self.state = .loggedin
+            //self.showAlertController("Biometrics Authentication Succeeded")
+            }
+        } else {
+        //print(error?.localizedDescription ?? "Failed to authenticate")
+        self.showAlertController("Authentication Failed")
+//        let homeView = self.storyboard?.instantiateViewController(withIdentifier: "Menu") as! MenuViewController
+//            self.navigationController?.pushViewController(homeView, animated: true)
+        }}
     }}
     
     func showAlertController(_ message: String) {
@@ -82,6 +104,19 @@ class EventTableViewController: UITableViewController{
         authentication()}
     }
     // End of authentication
+    
+    //MARK:  Confirmation message and taptic for saving new event
+    override func viewDidAppear(_ animated: Bool) {
+        if saved_memory_success == true{
+        //self.showAlertController("Memory Saved")
+        self.alert = UIAlertController(title: nil, message: "Memory Saved", preferredStyle: .alert)
+        self.present(self.alert, animated: true, completion: nil)
+        haptic_notification.notificationOccurred(.success)
+        saved_memory_success = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2){
+        self.dismiss(animated: true, completion: nil)}
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -307,10 +342,8 @@ class EventTableViewController: UITableViewController{
             }  else  {
            //Adding a new event instead of editing it.
                 let newIndexPath = IndexPath(row: events.count, section: 0)
-            
                 events.append(event)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
-            
             }
         }
     }

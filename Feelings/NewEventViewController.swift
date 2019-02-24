@@ -218,6 +218,7 @@ if textView.text == ""{
 
     override func viewDidAppear(_ animated: Bool) {
     memories_authenticate = false
+    saved_memory_success = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -264,10 +265,8 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         picker.dismiss(animated: true, completion: nil)
     }
     
-    
     // MARK: Navigation
 
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         super.prepare(for: segue, sender: sender)
@@ -289,15 +288,12 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         DOES_HAVE_PHOTO = false
         }
         
-        
         let HAPPY_SAD_VALUE = get_emotion_values(Raw: New_Happy_Sad_Value.text!)
         let ANGER_FEAR_VALUE = get_emotion_values(Raw: New_Anger_Fear_Value.text!)
         let INTEREST_BORDEM_VALUE = get_emotion_values(Raw: New_Interest_Bordem_Value.text!)
         let LOVE_HATE_VALUE = get_emotion_values(Raw: New_Love_Hate_Value.text!)
         
-        
         event = Event(Detail_EventName: EventName, Detail_EventPhoto: EventPhoto, Detail_does_have_photo: DOES_HAVE_PHOTO, Detail_EventDescription: EventDescription, Detail_EventTime: EventTime, Detail_Happy_Sad_Value: Int(HAPPY_SAD_VALUE), Detail_Anger_fear_Value: Int(ANGER_FEAR_VALUE), Detail_Interest_bordem_Value: Int(INTEREST_BORDEM_VALUE), Detail_Love_hate_Value: Int(LOVE_HATE_VALUE))
-    
     }
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
@@ -330,9 +326,6 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         let text = NewEventNameField.text ?? ""
         saveButton.isEnabled = !text.isEmpty
     }
-
-
-
 
 }
 

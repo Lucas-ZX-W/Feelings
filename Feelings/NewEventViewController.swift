@@ -149,14 +149,26 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
         }
     }
     // Get the time and date from the device, function called when new event is created
-    func get_Event_Time () -> String{
-    let time = DateFormatter.localizedString(from: Date(), dateStyle: DateFormatter.Style.none, timeStyle: .short)
+    func get_Event_Time () -> [Any]{
+//    let time = DateFormatter.localizedString(from: Date(), dateStyle: DateFormatter.Style.none, timeStyle: .short)
+    let hour_24 = Calendar.current.component(.hour, from: Date())
+    let min = Calendar.current.component(.minute, from: Date())
+    let sec = Calendar.current.component(.second, from: Date())
+    var hour_12 = 0
+    var APM = ""
+    if hour_24 > 12{
+        hour_12 = hour_24 - 12
+        APM = "PM"
+        } else {
+        hour_12 = hour_24
+        APM = "AM"
+        }
     let day = Calendar.current.component(.day, from: Date())
     let month = Calendar.current.component(.month, from: Date())
     let year = Calendar.current.component(.year, from: Date())
     
-    let result = time + "   " + String(month) + "/" + String(day) + "/" + String(year)
-    return result
+    let display_time = String(hour_12) + ":" + String(min) + ":" + String(sec) + APM + "   " + String(month) + "/" + String(day) + "/" + String(year)
+    return [display_time, [hour_12, APM, hour_24, min, sec, day, month, year]]
     }
     
   var event: Event?
@@ -279,7 +291,9 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
     let EventName = NewEventNameField.text ?? ""
     let EventPhoto = NewEventImage.image
     let EventDescription = NewEventDescription.text ?? ""
-    let EventTime = get_Event_Time()
+    let time_array = get_Event_Time()
+    let EventTime_Display = time_array[0]
+    let EventDate_Compute = time_array[1]
         
     var DOES_HAVE_PHOTO = true
     if did_select_photo == true{
@@ -293,7 +307,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         let INTEREST_BORDEM_VALUE = get_emotion_values(Raw: New_Interest_Bordem_Value.text!)
         let LOVE_HATE_VALUE = get_emotion_values(Raw: New_Love_Hate_Value.text!)
         
-        event = Event(Detail_EventName: EventName, Detail_EventPhoto: EventPhoto, Detail_does_have_photo: DOES_HAVE_PHOTO, Detail_EventDescription: EventDescription, Detail_EventTime: EventTime, Detail_Happy_Sad_Value: Int(HAPPY_SAD_VALUE), Detail_Anger_fear_Value: Int(ANGER_FEAR_VALUE), Detail_Interest_bordem_Value: Int(INTEREST_BORDEM_VALUE), Detail_Love_hate_Value: Int(LOVE_HATE_VALUE))
+        event = Event(Detail_EventName: EventName, Detail_EventPhoto: EventPhoto, Detail_does_have_photo: DOES_HAVE_PHOTO, Detail_EventDescription: EventDescription, Detail_EventTime_Display: EventTime_Display as! String, Detail_EventDate_Compute: [EventDate_Compute], Detail_Happy_Sad_Value: Int(HAPPY_SAD_VALUE), Detail_Anger_fear_Value: Int(ANGER_FEAR_VALUE), Detail_Interest_bordem_Value: Int(INTEREST_BORDEM_VALUE), Detail_Love_hate_Value: Int(LOVE_HATE_VALUE))
     }
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {

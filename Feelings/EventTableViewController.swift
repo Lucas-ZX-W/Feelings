@@ -17,6 +17,8 @@ var saved_memory_success = false
 class EventTableViewController: UITableViewController{
     
     @IBOutlet var Memories_Table_View: UITableView!
+    @IBOutlet weak var Add_Memory_Button: UIBarButtonItem!
+    
     let haptic_notification = UINotificationFeedbackGenerator()
     var alert = UIAlertController()
     
@@ -56,6 +58,7 @@ class EventTableViewController: UITableViewController{
         // Move to the main thread because a state update triggers UI changes.
         DispatchQueue.main.async { [unowned self] in
             self.Memories_Table_View.isUserInteractionEnabled = true
+            self.Add_Memory_Button.isEnabled = true
             self.view.subviews.filter({$0.tag == 1}).forEach({$0.isHidden = true})
             //self.state = .loggedin
             //self.showAlertController("Biometrics Authentication Succeeded")
@@ -75,6 +78,7 @@ class EventTableViewController: UITableViewController{
         // Move to the main thread because a state update triggers UI changes.
         DispatchQueue.main.async { [unowned self] in
             self.Memories_Table_View.isUserInteractionEnabled = true
+            self.Add_Memory_Button.isEnabled = true
             self.view.subviews.filter({$0.tag == 1}).forEach({$0.isHidden = true})
             //self.state = .loggedin
             //self.showAlertController("Biometrics Authentication Succeeded")
@@ -100,6 +104,7 @@ class EventTableViewController: UITableViewController{
         
         if memories_authenticate == true{
         Memories_Table_View.isUserInteractionEnabled = false
+        self.Add_Memory_Button.isEnabled = false
         self.view.subviews.filter({$0.tag == 1}).forEach({$0.isHidden = false})
         authentication()}
     }
@@ -113,7 +118,7 @@ class EventTableViewController: UITableViewController{
         self.present(self.alert, animated: true, completion: nil)
         haptic_notification.notificationOccurred(.success)
         saved_memory_success = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8){
         self.dismiss(animated: true, completion: nil)}
         }
     }
@@ -147,7 +152,7 @@ class EventTableViewController: UITableViewController{
         cell.EventNameLabel.text = event.EventName
         if event.does_have_photo == true {
         cell.DefaultEventPhoto.image = event.EventPhoto}
-        cell.Cell_EventTime.text = event.EventTime
+        cell.Cell_EventTime.text = event.EventTime_Display
         
         // Functions to control the cell view emojis:
         // Happy / Sad

@@ -127,6 +127,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="Add_Memory_Button" destination="3Dh-5V-BME" id="btu-rv-Flj"/>
                         <outlet property="Memories_Table_View" destination="tea-W4-cEz" id="lK9-yg-9hY"/>
                     </connections>
                 </tableViewController>

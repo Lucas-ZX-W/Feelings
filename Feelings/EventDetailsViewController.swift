@@ -47,7 +47,7 @@ class EventDetailsViewController: UIViewController {
         } else {
         DetailEventImage.isHidden = true}
         DetailEventDescription.text = event.EventDescription
-        DetailEventTime.text = event.EventTime
+        DetailEventTime.text = event.EventTime_Display
 
         Detail_Happy_Sad_Value.text = String(event.Happy_Sad_Value)
         Detail_Anger_Fear_Value.text = String(event.Anger_fear_Value)

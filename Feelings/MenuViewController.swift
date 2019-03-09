@@ -25,6 +25,12 @@ class MenuViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
     memories_authenticate = true
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+    //MARK: Update the time period specific arrays for displaying in the Menu
+    
+    
+}
 
     /*
     // MARK: - Navigation

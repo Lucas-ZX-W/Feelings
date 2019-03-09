@@ -47,7 +47,7 @@ class Event  {
     }
     }
 
-//Functions
+//MARK: Functions
 
 func get_happy_value () -> Int{
     var a = 0

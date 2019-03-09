@@ -10,7 +10,13 @@ import UIKit
 import os.log
 import LocalAuthentication
 
-var events = [Event]()
+//MARK: Data Arrays
+var events = [Event]() // Main memories array (All Time)
+var events_7_days = [Event].self
+var events_14_days = [Event].self
+var events_1_month = [Event].self
+
+//MARK: Corss app variables
 var memories_authenticate = true
 var saved_memory_success = false
 

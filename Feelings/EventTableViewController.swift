@@ -12,9 +12,9 @@ import LocalAuthentication
 
 //MARK: Data Arrays
 var events = [Event]() // Main memories array (All Time)
-var events_7_days = [Event].self
-var events_14_days = [Event].self
-var events_1_month = [Event].self
+var events_7_days = [Event]()
+var events_14_days = [Event]()
+var events_1_month = [Event]()
 
 //MARK: Corss app variables
 var memories_authenticate = true

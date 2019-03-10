@@ -80,3 +80,25 @@ func get_love_value () -> Int{
     }
     return a
     }
+
+func update_time () {
+let cal = Calendar.current
+    var date = cal.startOfDay(for: Date())
+    for _ in 1 ... 7 {
+        let day = cal.component(.day, from: date)
+        days_7.append(day)
+        date = cal.date(byAdding: .day, value: -1, to: date)!
+    }
+
+    for _ in 1 ... 14 {
+        let day = cal.component(.day, from: date)
+        days_14.append(day)
+        date = cal.date(byAdding: .day, value: -1, to: date)!
+    }
+
+    for _ in 1 ... 30 {
+        let day = cal.component(.day, from: date)
+        days_30.append(day)
+        date = cal.date(byAdding: .day, value: -1, to: date)!
+    }
+}

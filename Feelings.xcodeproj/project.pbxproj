@@ -44,6 +44,7 @@
 		A014EE3820AA4ED10083DDA0 /* FeelingsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingsUITests.swift; sourceTree = "<group>"; };
 		A014EE3A20AA4ED10083DDA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0A4EC4F20BD1C7700CA0D2E /* NewEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
+		A0E3C87722741CD700853C02 /* Memory_Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Memory_Data.xcdatamodel; sourceTree = "<group>"; };
 		A0F2C4A920B251A600D49A39 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		A0F2C4AB20B255FE00D49A39 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		A0F2C4AD20B2564F00D49A39 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +92,7 @@
 			children = (
 				A014EE2320AA4ECF0083DDA0 /* art.scnassets */,
 				A014EE2120AA4ECF0083DDA0 /* AppDelegate.swift */,
+				A0E3C87622741CD700853C02 /* Memory_Data.xcdatamodeld */,
 				A0F2C4A920B251A600D49A39 /* Data.swift */,
 				A014EE2720AA4ECF0083DDA0 /* Main.storyboard */,
 				A0FBBA3A20BF4F88001CDC7F /* EventDetailsViewController.swift */,
@@ -489,6 +491,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A0E3C87622741CD700853C02 /* Memory_Data.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A0E3C87722741CD700853C02 /* Memory_Data.xcdatamodel */,
+			);
+			currentVersion = A0E3C87722741CD700853C02 /* Memory_Data.xcdatamodel */;
+			path = Memory_Data.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A014EE1620AA4ECF0083DDA0 /* Project object */;
 }

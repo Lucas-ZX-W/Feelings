@@ -9,9 +9,11 @@
 import UIKit
 import os.log
 import LocalAuthentication
+import CoreData
 
 //MARK: Data Arrays
-var events = [Event]() // Main memories array (All Time)
+var events: [NSManagedObject] = [] // Main memories array (All Time)
+//FIXME: Configure all other arrays and their sorting functions for NSmanagedObject
 var events_7_days = [Event]()
 var events_14_days = [Event]()
 var events_1_month = [Event]()
@@ -155,14 +157,14 @@ class EventTableViewController: UITableViewController{
         
         // MARK: Configure the cell...
 
-        cell.EventNameLabel.text = event.EventName
-        if event.does_have_photo == true {
-        cell.DefaultEventPhoto.image = event.EventPhoto}
-        cell.Cell_EventTime.text = event.EventTime_Display
+        cell.EventNameLabel.text = event.value(forKeyPath: "eventname") as? String
+        if event.value(forKeyPath: "does_have_photo") as? Bool == true {
+			cell.DefaultEventPhoto.image = UIImage(data:((event.value(forKeyPath: "eventphoto") as? Data)!),scale:1.0)}
+        cell.Cell_EventTime.text = event.value(forKeyPath: "eventtime_display") as? String
         
         // Functions to control the cell view emojis:
         // Happy / Sad
-        switch event.Happy_Sad_Value {
+        switch event.value(forKeyPath: "happy_sad_value") as? Int {
         case 0:
         //cell.Cell_Happy_Sad_Emoji.isHidden = true
         cell.Cell_Happy_Sad_Emoji.text = "😶"
@@ -183,7 +185,7 @@ class EventTableViewController: UITableViewController{
         }
     
         //Anger / Fear
-       switch event.Anger_fear_Value{
+       switch event.value(forKeyPath: "anger_fear_value") as? Int{
        case 0:
        cell.Cell_Anger_Fear_Emoji.text = "😶"
        case 3:
@@ -202,7 +204,7 @@ class EventTableViewController: UITableViewController{
        cell.Cell_Anger_Fear_Emoji.text = "nil"
         }
         
-        switch event.Interest_bordem_Value{
+        switch event.value(forKeyPath: "interest_bordem_value") as? Int{
         case 0:
         cell.Cell_Interest_Bordem_Emoji.text = "😶"
         case 3:
@@ -221,7 +223,7 @@ class EventTableViewController: UITableViewController{
         cell.Cell_Interest_Bordem_Emoji.text = "nil"
         }
         
-        switch event.Love_hate_Value{
+        switch event.value(forKeyPath: "love_hate_value") as? Int{
         case 0:
         cell.Cell_Love_Hate_Emoji.text = "😶"
         case 3:
@@ -314,6 +316,7 @@ class EventTableViewController: UITableViewController{
             guard let indexPath = tableView.indexPath(for: selectedeventcell) else {fatalError("The Selected Cell is not being displayed by the table")
             }
             let selectedevent = events[indexPath.row]
+            // FIXME: edit code file of eventdetail controller to accept NSManaged Object
             eventDetailsViewController.event = selectedevent
             
             //case "EditEvent":
@@ -349,6 +352,7 @@ class EventTableViewController: UITableViewController{
             NewEventViewController, let event = sourceViewController.event{
     
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            // FIXME: edit code file of newevent controller to accept NSManaged Object
             events[selectedIndexPath.row] = event
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
             }  else  {

@@ -230,7 +230,7 @@ if textView.text == ""{
 
     override func viewDidAppear(_ animated: Bool) {
     memories_authenticate = false
-    saved_memory_success = true
+    //saved_memory_success = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -287,6 +287,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
             os_log("Cancelling Action, The Save Button Was not Pressed", log: OSLog.default,type: .debug)
         return
         }
+        saved_memory_success = true
     
     let EventName = NewEventNameField.text ?? ""
     let EventPhoto = NewEventImage.image
@@ -312,7 +313,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
-   
+    saved_memory_success = false
     }
 
     // MARK: Actions

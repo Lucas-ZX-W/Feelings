@@ -8,6 +8,7 @@
 
 import UIKit
 import os.log
+import CoreData
 
 class EventDetailsViewController: UIViewController {
 
@@ -27,7 +28,7 @@ class EventDetailsViewController: UIViewController {
     @IBOutlet weak var Emoji_Love_Hate: UILabel!
     
     
-    var event: Event?
+    var event: NSManagedObject?
     
     func adjustUITextViewHeight(arg : UITextView){
     arg.translatesAutoresizingMaskIntoConstraints = true
@@ -37,22 +38,22 @@ class EventDetailsViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-
+		
         if let event = event {
         
         //This sets the scene up to display the correct content inside the array.
-        DetailEventName.text = event.EventName
-        if event.does_have_photo == true{
-        DetailEventImage.image = event.EventPhoto
+        DetailEventName.text = event.value(forKeyPath: "eventname") as? String
+        if event.value(forKeyPath: "does_have_photo") as? Bool == true{
+        DetailEventImage.image = UIImage(data:((event.value(forKeyPath: "eventphoto") as? Data)!),scale:1.0)
         } else {
         DetailEventImage.isHidden = true}
-        DetailEventDescription.text = event.EventDescription
-        DetailEventTime.text = event.EventTime_Display
+        DetailEventDescription.text = event.value(forKeyPath: "eventdescription") as? String
+        DetailEventTime.text = event.value(forKeyPath: "eventtime_display") as? String
 
-        Detail_Happy_Sad_Value.text = String(event.Happy_Sad_Value)
-        Detail_Anger_Fear_Value.text = String(event.Anger_fear_Value)
-        Detail_Interest_Bordem_Value.text = String(event.Interest_bordem_Value)
-        Detail_Love_Hate_Value.text = String(event.Love_hate_Value)
+        Detail_Happy_Sad_Value.text = String((event.value(forKeyPath: "happy_sad_value") as? Int)!)
+        Detail_Anger_Fear_Value.text = String((event.value(forKeyPath: "anger_fear_value") as? Int)!)
+        Detail_Interest_Bordem_Value.text = String((event.value(forKeyPath: "interest_bordem_value") as? Int)!)
+        Detail_Love_Hate_Value.text = String((event.value(forKeyPath: "love_hate_value") as? Int)!)
         }
         
         // MARK: Controlling Emojis

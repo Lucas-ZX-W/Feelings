@@ -8,6 +8,7 @@
 
 import UIKit
 import os.log
+import CoreData
 
 class EventTableViewCell: UITableViewCell {
 

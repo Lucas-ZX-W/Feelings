@@ -8,6 +8,7 @@
 
 import UIKit
 import os.log
+import CoreData
 
 var days_7 = [Int]()
 var days_14 = [Int]()
@@ -19,20 +20,20 @@ class MenuViewController: UIViewController {
         super.viewDidLoad()
 
 //MARK: Initially updating time_specific arrays at launch
-    update_time()
-    func update_arrays_onload (days_range: [Int]) -> [Event]{
-    var return_list = [Event]()
-    for event in events{
-        if days_range.contains(event.EventDate_Compute[5] as! Int){
-            return_list.append(event)
-        }}
-        return return_list
-        }
+    //update_time()
+//    func update_arrays_onload (days_range: [Int]) -> [Event]{
+//    var return_list = [Event]()
+//    for event in events{
+//        if days_range.contains(event.EventDate_Compute[5] as! Int){
+//            return_list.append(event)
+//        }}
+//        return return_list
+//        }
 
-    events_7_days = update_arrays_onload(days_range: days_7)
-    events_14_days = update_arrays_onload(days_range: days_14)
-    events_1_month = update_arrays_onload(days_range: days_30)
-    
+//    events_7_days = update_arrays_onload(days_range: days_7)
+//    events_14_days = update_arrays_onload(days_range: days_14)
+//    events_1_month = update_arrays_onload(days_range: days_30)
+		
     }
 
     override func didReceiveMemoryWarning() {

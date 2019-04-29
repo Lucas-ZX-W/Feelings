@@ -8,6 +8,7 @@
 
 import UIKit
 import os.log
+import CoreData
 
 class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
@@ -148,6 +149,7 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
         return Int(Raw)!
         }
     }
+	
     // Get the time and date from the device, function called when new event is created
     func get_Event_Time () -> [Any]{
 //    let time = DateFormatter.localizedString(from: Date(), dateStyle: DateFormatter.Style.none, timeStyle: .short)
@@ -168,15 +170,16 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
     let year = Calendar.current.component(.year, from: Date())
     
     let display_time = String(hour_12) + ":" + String(min) + ":" + String(sec) + APM + "   " + String(month) + "/" + String(day) + "/" + String(year)
-    return [display_time, [hour_12, APM, hour_24, min, sec, day, month, year]]
+    return [display_time, hour_12, APM, hour_24, min, sec, day, month, year]
     }
-    
-  var event: Event?
+	
+	// MARK: event_data_segue variable
+	var event_data_segue: [Any]? = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+	// Do any additional setup after loading the view.
         NewEventNameField.returnKeyType = .done
         NewEventNameField.delegate = self
         NewEventDescription.returnKeyType = .done
@@ -277,7 +280,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         picker.dismiss(animated: true, completion: nil)
     }
     
-    // MARK: Navigation
+    // MARK: Segue
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -290,11 +293,18 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         saved_memory_success = true
     
     let EventName = NewEventNameField.text ?? ""
-    let EventPhoto = NewEventImage.image
+    let EventPhoto = NewEventImage.image?.pngData()
     let EventDescription = NewEventDescription.text ?? ""
     let time_array = get_Event_Time()
-    let EventTime_Display = time_array[0]
-    let EventDate_Compute = time_array[1]
+    let EventTime_Display = time_array[0] // Array follows the structure: [display_time, hour_12, A/PM, Hour_24, Min, Sec, Day, Month, Year]
+    let hour_12 = time_array[1]
+    let A_PM = time_array[2]
+    let hour_24 = time_array[3]
+    let Minutes = time_array[4]
+    let Seconds = time_array[5]
+    let Day = time_array[6]
+    let Month = time_array[7]
+    let Year = time_array[8]
         
     var DOES_HAVE_PHOTO = true
     if did_select_photo == true{
@@ -302,13 +312,16 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         } else {
         DOES_HAVE_PHOTO = false
         }
-        
+
         let HAPPY_SAD_VALUE = get_emotion_values(Raw: New_Happy_Sad_Value.text!)
         let ANGER_FEAR_VALUE = get_emotion_values(Raw: New_Anger_Fear_Value.text!)
         let INTEREST_BORDEM_VALUE = get_emotion_values(Raw: New_Interest_Bordem_Value.text!)
         let LOVE_HATE_VALUE = get_emotion_values(Raw: New_Love_Hate_Value.text!)
-        
-        event = Event(Detail_EventName: EventName, Detail_EventPhoto: EventPhoto, Detail_does_have_photo: DOES_HAVE_PHOTO, Detail_EventDescription: EventDescription, Detail_EventTime_Display: EventTime_Display as! String, Detail_EventDate_Compute: [EventDate_Compute], Detail_Happy_Sad_Value: Int(HAPPY_SAD_VALUE), Detail_Anger_fear_Value: Int(ANGER_FEAR_VALUE), Detail_Interest_bordem_Value: Int(INTEREST_BORDEM_VALUE), Detail_Love_hate_Value: Int(LOVE_HATE_VALUE))
+		
+	// Segue data is in the following format:
+		event_data_segue = [Year, Seconds, Month, Minutes, LOVE_HATE_VALUE, INTEREST_BORDEM_VALUE, hour_24, hour_12, HAPPY_SAD_VALUE, EventTime_Display, EventPhoto!, EventName, EventDescription, DOES_HAVE_PHOTO, Day, ANGER_FEAR_VALUE, A_PM]
+		
+//        event = Event(Detail_EventName: EventName, Detail_EventPhoto: EventPhoto, Detail_does_have_photo: DOES_HAVE_PHOTO, Detail_EventDescription: EventDescription, Detail_EventTime_Display: EventTime_Display as! String, Detail_EventDate_Compute: [EventDate_Compute], Detail_Happy_Sad_Value: Int(HAPPY_SAD_VALUE), Detail_Anger_fear_Value: Int(ANGER_FEAR_VALUE), Detail_Interest_bordem_Value: Int(INTEREST_BORDEM_VALUE), Detail_Love_hate_Value: Int(LOVE_HATE_VALUE))
     }
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {

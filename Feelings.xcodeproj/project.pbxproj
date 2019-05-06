@@ -14,6 +14,8 @@
 		A014EE2B20AA4ED10083DDA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A014EE2A20AA4ED10083DDA0 /* Assets.xcassets */; };
 		A014EE2E20AA4ED10083DDA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A014EE2C20AA4ED10083DDA0 /* LaunchScreen.storyboard */; };
 		A014EE3920AA4ED10083DDA0 /* FeelingsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A014EE3820AA4ED10083DDA0 /* FeelingsUITests.swift */; };
+		A06756432280094F003FCC0E /* RestKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06756422280094F003FCC0E /* RestKit.framework */; };
+		A067564522800953003FCC0E /* ToneAnalyzerV3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A067564422800953003FCC0E /* ToneAnalyzerV3.framework */; };
 		A0A4EC5020BD1C7700CA0D2E /* NewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A4EC4F20BD1C7700CA0D2E /* NewEventViewController.swift */; };
 		A0F2C4AA20B251A600D49A39 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2C4A920B251A600D49A39 /* Data.swift */; };
 		A0F2C4AC20B255FE00D49A39 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2C4AB20B255FE00D49A39 /* EventTableViewCell.swift */; };
@@ -44,6 +46,8 @@
 		A014EE3420AA4ED10083DDA0 /* FeelingsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeelingsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A014EE3820AA4ED10083DDA0 /* FeelingsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingsUITests.swift; sourceTree = "<group>"; };
 		A014EE3A20AA4ED10083DDA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A06756422280094F003FCC0E /* RestKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RestKit.framework; path = Carthage/Build/iOS/RestKit.framework; sourceTree = "<group>"; };
+		A067564422800953003FCC0E /* ToneAnalyzerV3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ToneAnalyzerV3.framework; path = Carthage/Build/iOS/ToneAnalyzerV3.framework; sourceTree = "<group>"; };
 		A0A4EC4F20BD1C7700CA0D2E /* NewEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
 		A0F2C4A920B251A600D49A39 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		A0F2C4AB20B255FE00D49A39 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
@@ -57,6 +61,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A06756432280094F003FCC0E /* RestKit.framework in Frameworks */,
+				A067564522800953003FCC0E /* ToneAnalyzerV3.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +82,7 @@
 				A014EE2020AA4ECF0083DDA0 /* Feelings */,
 				A014EE3720AA4ED10083DDA0 /* FeelingsUITests */,
 				A014EE1F20AA4ECF0083DDA0 /* Products */,
+				A06756412280094F003FCC0E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,6 +124,15 @@
 			path = FeelingsUITests;
 			sourceTree = "<group>";
 		};
+		A06756412280094F003FCC0E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A067564422800953003FCC0E /* ToneAnalyzerV3.framework */,
+				A06756422280094F003FCC0E /* RestKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -127,6 +143,7 @@
 				A014EE1A20AA4ECF0083DDA0 /* Sources */,
 				A014EE1B20AA4ECF0083DDA0 /* Frameworks */,
 				A014EE1C20AA4ECF0083DDA0 /* Resources */,
+				A067564022800864003FCC0E /* Carthage Imports */,
 			);
 			buildRules = (
 			);
@@ -215,6 +232,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A067564022800864003FCC0E /* Carthage Imports */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/RestKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ToneAnalyzerV3.framework",
+			);
+			name = "Carthage Imports";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RestKit.framework\n",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ToneAnalyzerV3.framework\n",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A014EE1A20AA4ECF0083DDA0 /* Sources */ = {
@@ -390,6 +432,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9HEUH9ZE2Q;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Feelings/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -409,6 +455,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9HEUH9ZE2Q;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Feelings/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (

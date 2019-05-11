@@ -10,6 +10,7 @@ import UIKit
 import os.log
 import LocalAuthentication
 import CoreData
+import AVFoundation // Old style vibration
 
 //MARK: Data Arrays
 var events: [NSManagedObject] = [] // Main memories array (All Time)
@@ -29,7 +30,7 @@ class EventTableViewController: UITableViewController{
     
     let haptic_notification = UINotificationFeedbackGenerator()
     var alert = UIAlertController()
-    
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 

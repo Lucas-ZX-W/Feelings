@@ -9,6 +9,8 @@
 import UIKit
 import os.log
 import CoreData
+import RestKit
+import ToneAnalyzerV3
 
 class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
@@ -27,9 +29,15 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
     @IBOutlet weak var New_Anger_Fear_Value: UILabel!
     @IBOutlet weak var New_Interest_Bordem_Value: UILabel!
     @IBOutlet weak var New_Love_Hate_Value: UILabel!
-    
-    @IBOutlet weak var scrollView: UIScrollView!    
-  
+	
+	@IBOutlet weak var Happy_Sad_Stepper: UIStepper!
+	@IBOutlet weak var Anger_Fear_Stepper: UIStepper!
+	@IBOutlet weak var Interest_Bordem_Stepper: UIStepper!
+	@IBOutlet weak var Love_Hate_Stepper: UIStepper!
+	
+	@IBOutlet weak var Call_API_Tone_Analyzer_Button: UIButton!
+	@IBOutlet weak var Auto_Manual_Button: UIButton!
+	
     var did_select_photo = false
 
     // MARK: Corrsponding Steppers
@@ -141,6 +149,34 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
         New_Love_Hate_Emoji.text = "YES"
         }
     }
+	
+    //MARK: API call and manual values
+	
+	@IBAction func Call_Tone_Analyzer(_ sender: UIButton) {
+		let text_to_API = NewEventDescription.text
+	
+	}
+	
+	@IBAction func Manual_Auto_Values(_ sender: UIButton) {
+		if Happy_Sad_Stepper.isHidden == false && Anger_Fear_Stepper.isHidden == false && Interest_Bordem_Stepper.isHidden == false && Love_Hate_Stepper.isHidden == false {
+			Happy_Sad_Stepper.isHidden = true
+			Anger_Fear_Stepper.isHidden = true
+			Interest_Bordem_Stepper.isHidden = true
+			Love_Hate_Stepper.isHidden = true
+			sender.setTitle("Auto Adjust", for: .normal)
+			Call_API_Tone_Analyzer_Button.isUserInteractionEnabled = false
+			Call_API_Tone_Analyzer_Button.setTitle("Analyzer Disabled", for: .disabled)
+		
+		} else if Happy_Sad_Stepper.isHidden == true && Anger_Fear_Stepper.isHidden == true && Interest_Bordem_Stepper.isHidden == true && Love_Hate_Stepper.isHidden == true {
+			Happy_Sad_Stepper.isHidden = false
+			Anger_Fear_Stepper.isHidden = false
+			Interest_Bordem_Stepper.isHidden = false
+			Love_Hate_Stepper.isHidden = false
+			sender.setTitle("Manual Adjust", for: .normal)
+			Call_API_Tone_Analyzer_Button.isUserInteractionEnabled = true
+		}
+	}
+	
     // Return 0 if the steppers are not touched, the corresponding value is it was touched
     func get_emotion_values (Raw: String) -> Int{
     if Raw == "Sadness" || Raw == "Fear" || Raw == "Bordem" || Raw == "Hate" {
@@ -178,13 +214,18 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+		
 	// Do any additional setup after loading the view.
         NewEventNameField.returnKeyType = .done
         NewEventNameField.delegate = self
         NewEventDescription.returnKeyType = .done
         NewEventDescription.delegate = self
         updateSaveButtonState()
+		
+		Call_API_Tone_Analyzer_Button.setTitle("Analyze Text - Ready", for: .normal)
+		
+	// Watson Tone Analyzer
+        watson_tone_analyzer.serviceURL = "https://gateway.watsonplatform.net/tone-analyzer/api"
     
     // MARK: Detecting Keyboard Activities
        NotificationCenter.default.addObserver(self, selector: #selector(keyboard_comingup(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -196,13 +237,11 @@ deinit {
        NotificationCenter.default.addObserver(self, selector: #selector(keyboard_comingup(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
        NotificationCenter.default.addObserver(self, selector: #selector(keyboard_comingup(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
        NotificationCenter.default.addObserver(self, selector: #selector(keyboard_comingup(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-    
     }
+	
 @objc func keyboard_comingup (notification: Notification){
 
-    guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else{
-return
-    }
+    guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
     
  if (notification.name == UIResponder.keyboardWillShowNotification && NewEventDescription.isFirstResponder) || (notification.name == UIResponder.keyboardWillChangeFrameNotification && NewEventDescription.isFirstResponder){
     view.frame.origin.y = -keyboardRect.height
@@ -211,10 +250,14 @@ return
     }}
     
 // MARK: Clear the textview of the default text when selected
-
+// Disable analyze button when editing
 func textViewDidBeginEditing(_ textView: UITextView){
     if textView.text == "How are you feeling?"{
-    textView.text = "" }
+    	textView.text = ""
+	}
+	Auto_Manual_Button.isUserInteractionEnabled = false
+    Call_API_Tone_Analyzer_Button.isUserInteractionEnabled = false
+	Call_API_Tone_Analyzer_Button.setTitle("Cannot Analyze While Editing", for: .disabled)
     }
     
 func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -226,9 +269,11 @@ func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replace
 }
 
 func textViewDidEndEditing(_ textView: UITextView) {
-if textView.text == ""{
-    textView.text = "How are you feeling?"
+	if textView.text == ""{
+    	textView.text = "How are you feeling?"
     }
+    Auto_Manual_Button.isUserInteractionEnabled = true
+	Call_API_Tone_Analyzer_Button.isUserInteractionEnabled = true
 }
 
     override func viewDidAppear(_ animated: Bool) {

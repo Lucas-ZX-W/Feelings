@@ -9,6 +9,71 @@
 import UIKit
 import os.log
 import CoreData
+import RestKit
+import ToneAnalyzerV3
+
+//MARK: Watson API
+
+	let watson_tone_analyzer = ToneAnalyzer(version: "2.0.1", apiKey: "Nf_WkaaDfCwJH0yI3Wd4jb8MJpOTDYR5B_DOP88kQj7a")
+
+	
+
+//MARK: Functions
+
+func get_happy_value () -> Int{
+    var a = 0
+    for e in events{
+		a += (e.value(forKeyPath: "happy_sad_value") as? Int)!
+    }
+    return a
+    }
+
+func get_anger_value () -> Int{
+    var a = 0
+    for e in events{
+    a += (e.value(forKeyPath: "anger_fear_value") as? Int)!
+    }
+    return a
+    }
+
+func get_interest_value () -> Int{
+    var a = 0
+    for e in events{
+    a += (e.value(forKeyPath: "interest_bordem_value") as? Int)!
+    }
+    return a
+    }
+
+func get_love_value () -> Int{
+    var a = 0
+    for e in events{
+    a += (e.value(forKeyPath: "love_hate_value") as? Int)!
+    }
+    return a
+    }
+
+//MARK: Updating the time arrays for menu
+func update_time () {
+let cal = Calendar.current
+    var date = cal.startOfDay(for: Date())
+    for _ in 1 ... 7 {
+        let day = cal.component(.day, from: date)
+        days_7.append(day)
+        date = cal.date(byAdding: .day, value: -1, to: date)!
+    }
+
+    for _ in 1 ... 14 {
+        let day = cal.component(.day, from: date)
+        days_14.append(day)
+        date = cal.date(byAdding: .day, value: -1, to: date)!
+    }
+
+    for _ in 1 ... 30 {
+        let day = cal.component(.day, from: date)
+        days_30.append(day)
+        date = cal.date(byAdding: .day, value: -1, to: date)!
+    }
+}
 
 //class Event  {
 //
@@ -47,59 +112,3 @@ import CoreData
 //        }
 //    }
 //    }
-
-//MARK: Functions
-
-func get_happy_value () -> Int{
-    var a = 0
-    for e in events{
-		a += (e.value(forKeyPath: "happy_sad_value") as? Int)!
-    }
-    return a
-    }
-
-func get_anger_value () -> Int{
-    var a = 0
-    for e in events{
-    a += (e.value(forKeyPath: "anger_fear_value") as? Int)!
-    }
-    return a
-    }
-
-func get_interest_value () -> Int{
-    var a = 0
-    for e in events{
-    a += (e.value(forKeyPath: "interest_bordem_value") as? Int)!
-    }
-    return a
-    }
-
-func get_love_value () -> Int{
-    var a = 0
-    for e in events{
-    a += (e.value(forKeyPath: "love_hate_value") as? Int)!
-    }
-    return a
-    }
-
-func update_time () {
-let cal = Calendar.current
-    var date = cal.startOfDay(for: Date())
-    for _ in 1 ... 7 {
-        let day = cal.component(.day, from: date)
-        days_7.append(day)
-        date = cal.date(byAdding: .day, value: -1, to: date)!
-    }
-
-    for _ in 1 ... 14 {
-        let day = cal.component(.day, from: date)
-        days_14.append(day)
-        date = cal.date(byAdding: .day, value: -1, to: date)!
-    }
-
-    for _ in 1 ... 30 {
-        let day = cal.component(.day, from: date)
-        days_30.append(day)
-        date = cal.date(byAdding: .day, value: -1, to: date)!
-    }
-}

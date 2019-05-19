@@ -374,41 +374,43 @@ class EventTableViewController: UITableViewController{
         if let sourceViewController = sender.source as?
             NewEventViewController, let event_from_segue = sourceViewController.event_data_segue{
 			
-            // Segue data is in the following format: [Year, Seconds, Month, Minutes, LOVE_HATE_VALUE, INTEREST_BORDEM_VALUE, hour_24, hour_12, HAPPY_SAD_VALUE, EventTime_Display, EventPhoto!, EventName, EventDescription, DOES_HAVE_PHOTO, Day, ANGER_FEAR_VALUE, A_PM]
+            // Segue data is in the following format: [ANGER_FEAR_VALUE, DOES_HAVE_PHOTO, Event_Date, EventDescription, EventName, EventPhoto, EventTime_Display, HAPPY_SAD_VALUE, INTEREST_BORDEM_VALUE, LOVE_HATE_VALUE]
 			
             // List follows the list in the data model under reverse alphebatical order
-			memory.setValue(event_from_segue[0], forKeyPath: "year")
-			memory.setValue(event_from_segue[1], forKeyPath: "seconds")
-			memory.setValue(event_from_segue[2], forKeyPath: "month")
-			memory.setValue(event_from_segue[3], forKeyPath: "minutes")
-			memory.setValue(event_from_segue[4], forKeyPath: "love_hate_value")
-			memory.setValue(event_from_segue[5], forKeyPath: "interest_bordem_value")
-			memory.setValue(event_from_segue[6], forKeyPath: "hour_24")
-			memory.setValue(event_from_segue[7], forKeyPath: "hour_12")
-			memory.setValue(event_from_segue[8], forKeyPath: "happy_sad_value")
-			memory.setValue(event_from_segue[9], forKeyPath: "eventtime_display")
-			memory.setValue(event_from_segue[10], forKeyPath: "eventphoto")
-			memory.setValue(event_from_segue[11], forKeyPath: "eventname")
-			memory.setValue(event_from_segue[12], forKeyPath: "eventdescription")
-			memory.setValue(event_from_segue[13], forKeyPath: "does_have_photo")
-			memory.setValue(event_from_segue[14], forKeyPath: "day")
-			memory.setValue(event_from_segue[15], forKeyPath: "anger_fear_value")
-			memory.setValue(event_from_segue[16], forKeyPath: "a_pm")
+			memory.setValue(event_from_segue[0], forKeyPath: "anger_fear_value")
+			memory.setValue(event_from_segue[1], forKeyPath: "does_have_photo")
+			memory.setValue(event_from_segue[2], forKeyPath: "eventdate")
+			memory.setValue(event_from_segue[3], forKeyPath: "eventdescription")
+			memory.setValue(event_from_segue[4], forKeyPath: "eventname")
+			memory.setValue(event_from_segue[5], forKeyPath: "eventphoto")
+			memory.setValue(event_from_segue[6], forKeyPath: "eventtime_display")
+			memory.setValue(event_from_segue[7], forKeyPath: "happy_sad_value")
+			memory.setValue(event_from_segue[8], forKeyPath: "interest_bordem_value")
+			memory.setValue(event_from_segue[9], forKeyPath: "love_hate_value")
     
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
-            events[selectedIndexPath.row] = memory
+            	events[selectedIndexPath.row] = memory
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
-            }  else  {
+            } else {
            //Adding a new event instead of editing it.
-                let newIndexPath = IndexPath(row: events.count, section: 0)
-                do {
+				let newIndexPath = IndexPath(row: 0, section: 0)
+				do {
 					try managedContext.save()
-                	events.append(memory)
+					events.insert(memory, at: 0)
 				} catch let error as NSError {
 					print("Could not save. \(error), \(error.userInfo)")
 				}
-				
-                tableView.insertRows(at: [newIndexPath], with: .automatic)
+				tableView.insertRows(at: [newIndexPath], with: .automatic)
+
+// Below for appending the memory to the end of the list (oldest -> newest)
+//                let newIndexPath = IndexPath(row: events.count, section: 0)
+//                do {
+//					try managedContext.save()
+//                	events.append(memory)
+//				} catch let error as NSError {
+//					print("Could not save. \(error), \(error.userInfo)")
+//				}
+//                tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
         }
     }

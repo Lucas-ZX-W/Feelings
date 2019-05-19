@@ -10,10 +10,6 @@ import UIKit
 import os.log
 import CoreData
 
-var days_7 = [Int]()
-var days_14 = [Int]()
-var days_30 = [Int]()
-
 class MenuViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -29,10 +25,6 @@ class MenuViewController: UIViewController {
 //        }}
 //        return return_list
 //        }
-
-//    events_7_days = update_arrays_onload(days_range: days_7)
-//    events_14_days = update_arrays_onload(days_range: days_14)
-//    events_1_month = update_arrays_onload(days_range: days_30)
 		
     }
 
@@ -46,7 +38,6 @@ class MenuViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-    update_time()
     // write function in data.swift to insert new events not already in the time specific arrays
 }
 

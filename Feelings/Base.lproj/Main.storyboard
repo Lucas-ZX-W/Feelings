@@ -147,10 +147,10 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dj8-i7-1FF">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="764.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="779.5"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5Lf-id-hRd">
-                                                <rect key="frame" x="0.0" y="30" width="375" height="734.5"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="5Lf-id-hRd">
+                                                <rect key="frame" x="0.0" y="30" width="375" height="749.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="QlO-40-GpK">
                                                         <rect key="frame" x="62.5" y="0.0" width="250" height="524"/>
@@ -303,14 +303,14 @@
                                                             </stackView>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4oT-Rh-FuT">
-                                                        <rect key="frame" x="37.5" y="544" width="300" height="190.5"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4oT-Rh-FuT">
+                                                        <rect key="frame" x="37.5" y="549" width="300" height="200.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9X8-wX-n50">
                                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chT-W6-6Ch" userLabel="Call API Button">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="171.5" height="30"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="180" height="30"/>
                                                                         <state key="normal" title="Analyze Text - Ready">
                                                                             <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         </state>
@@ -319,8 +319,8 @@
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDP-kG-EwO">
-                                                                        <rect key="frame" x="171.5" y="0.0" width="128.5" height="30"/>
-                                                                        <state key="normal" title="Manually Adjust">
+                                                                        <rect key="frame" x="180" y="0.0" width="120" height="30"/>
+                                                                        <state key="normal" title="Manual Adjust">
                                                                             <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         </state>
                                                                         <connections>
@@ -330,13 +330,13 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Event Text " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0e-U4-A0Z">
-                                                                <rect key="frame" x="0.0" y="35" width="300" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="40" width="300" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="How are you feeling?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0oE-iT-ie6" userLabel="NewEventDescription">
-                                                                <rect key="frame" x="0.0" y="60.5" width="300" height="130"/>
+                                                                <rect key="frame" x="0.0" y="70.5" width="300" height="130"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="130" id="C3U-IW-mtI"/>
@@ -392,8 +392,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="Anger_Fear_Stepper" destination="51f-Ic-B9J" id="UgI-gi-nSN"/>
                         <outlet property="Auto_Manual_Button" destination="cDP-kG-EwO" id="zId-MG-dwE"/>
-                        <outlet property="Call_API_Button" destination="chT-W6-6Ch" id="PTV-A2-v94"/>
                         <outlet property="Call_API_Tone_Analyzer_Button" destination="chT-W6-6Ch" id="n9M-5z-dYQ"/>
                         <outlet property="Happy_Sad_Stepper" destination="m5k-ty-bpJ" id="p8A-wN-sLa"/>
                         <outlet property="Interest_Bordem_Stepper" destination="hFw-Yj-ifr" id="7GS-4b-fUk"/>
@@ -411,7 +411,7 @@
                         <outlet property="New_Love_Hate_Emoji" destination="n4z-CJ-riO" id="0eF-7t-JWp"/>
                         <outlet property="New_Love_Hate_Value" destination="ZhB-il-ad9" id="bz9-rQ-xsX"/>
                         <outlet property="saveButton" destination="pGv-rw-Wt3" id="bfT-cd-Jfr"/>
-                        <outlet property="scrollView" destination="DDX-tv-W8u" id="eUk-88-Igo"/>
+                        <outlet property="scrollView" destination="DDX-tv-W8u" id="YH7-u1-zox"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VCj-AE-bfO" userLabel="First Responder" sceneMemberID="firstResponder"/>

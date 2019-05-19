@@ -38,6 +38,8 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
 	@IBOutlet weak var Call_API_Tone_Analyzer_Button: UIButton!
 	@IBOutlet weak var Auto_Manual_Button: UIButton!
 	
+	@IBOutlet weak var scrollView: UIScrollView!
+	
     var did_select_photo = false
 
     // MARK: Corrsponding Steppers
@@ -187,7 +189,7 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
     }
 	
     // Get the time and date from the device, function called when new event is created
-    func get_Event_Time () -> [Any]{
+    func get_Event_Time () -> (String, Date){
 //    let time = DateFormatter.localizedString(from: Date(), dateStyle: DateFormatter.Style.none, timeStyle: .short)
     let hour_24 = Calendar.current.component(.hour, from: Date())
     let min = Calendar.current.component(.minute, from: Date())
@@ -205,8 +207,19 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
     let month = Calendar.current.component(.month, from: Date())
     let year = Calendar.current.component(.year, from: Date())
     
-    let display_time = String(hour_12) + ":" + String(min) + ":" + String(sec) + APM + "   " + String(month) + "/" + String(day) + "/" + String(year)
-    return [display_time, hour_12, APM, hour_24, min, sec, day, month, year]
+    let display_time = String(hour_12) + ":" + String(min) + ":" + String(sec) + " " + APM + "   " + String(month) + "/" + String(day) + "/" + String(year)
+		
+	var date_components = DateComponents()
+	date_components.second = sec
+	date_components.minute = min
+	date_components.hour = hour_24
+	date_components.day = day
+	date_components.month = month
+	date_components.year = year
+	date_components.timeZone = TimeZone.current
+	let date = (Calendar.current.date(from: date_components))!
+		
+    return (display_time, date)
     }
 	
 	// MARK: event_data_segue variable
@@ -224,6 +237,11 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
 		
 		Call_API_Tone_Analyzer_Button.setTitle("Analyze Text - Ready", for: .normal)
 		
+		Happy_Sad_Stepper.isHidden = true
+		Anger_Fear_Stepper.isHidden = true
+		Interest_Bordem_Stepper.isHidden = true
+		Love_Hate_Stepper.isHidden = true
+	
 	// Watson Tone Analyzer
         watson_tone_analyzer.serviceURL = "https://gateway.watsonplatform.net/tone-analyzer/api"
     
@@ -279,6 +297,12 @@ func textViewDidEndEditing(_ textView: UITextView) {
     override func viewDidAppear(_ animated: Bool) {
     memories_authenticate = false
     //saved_memory_success = true
+    Happy_Sad_Stepper.isHidden = true
+    Anger_Fear_Stepper.isHidden = true
+    Interest_Bordem_Stepper.isHidden = true
+    Love_Hate_Stepper.isHidden = true
+    Call_API_Tone_Analyzer_Button.isUserInteractionEnabled = true
+    Call_API_Tone_Analyzer_Button.setTitle("Analyze Text - Ready", for: .normal)
     }
 
     override func didReceiveMemoryWarning() {
@@ -338,18 +362,11 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         saved_memory_success = true
     
     let EventName = NewEventNameField.text ?? ""
-    let EventPhoto = NewEventImage.image?.pngData()
+    let EventPhoto = (NewEventImage.image?.pngData())!
     let EventDescription = NewEventDescription.text ?? ""
-    let time_array = get_Event_Time()
-    let EventTime_Display = time_array[0] // Array follows the structure: [display_time, hour_12, A/PM, Hour_24, Min, Sec, Day, Month, Year]
-    let hour_12 = time_array[1]
-    let A_PM = time_array[2]
-    let hour_24 = time_array[3]
-    let Minutes = time_array[4]
-    let Seconds = time_array[5]
-    let Day = time_array[6]
-    let Month = time_array[7]
-    let Year = time_array[8]
+    let time_tuple = get_Event_Time()
+    let EventTime_Display = time_tuple.0
+    let Event_Date = time_tuple.1
         
     var DOES_HAVE_PHOTO = true
     if did_select_photo == true{
@@ -364,7 +381,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         let LOVE_HATE_VALUE = get_emotion_values(Raw: New_Love_Hate_Value.text!)
 		
 	// Segue data is in the following format:
-		event_data_segue = [Year, Seconds, Month, Minutes, LOVE_HATE_VALUE, INTEREST_BORDEM_VALUE, hour_24, hour_12, HAPPY_SAD_VALUE, EventTime_Display, EventPhoto!, EventName, EventDescription, DOES_HAVE_PHOTO, Day, ANGER_FEAR_VALUE, A_PM]
+		event_data_segue = [ANGER_FEAR_VALUE, DOES_HAVE_PHOTO, Event_Date, EventDescription, EventName, EventPhoto, EventTime_Display, HAPPY_SAD_VALUE, INTEREST_BORDEM_VALUE, LOVE_HATE_VALUE]
 		
 //        event = Event(Detail_EventName: EventName, Detail_EventPhoto: EventPhoto, Detail_does_have_photo: DOES_HAVE_PHOTO, Detail_EventDescription: EventDescription, Detail_EventTime_Display: EventTime_Display as! String, Detail_EventDate_Compute: [EventDate_Compute], Detail_Happy_Sad_Value: Int(HAPPY_SAD_VALUE), Detail_Anger_fear_Value: Int(ANGER_FEAR_VALUE), Detail_Interest_bordem_Value: Int(INTEREST_BORDEM_VALUE), Detail_Love_hate_Value: Int(LOVE_HATE_VALUE))
     }

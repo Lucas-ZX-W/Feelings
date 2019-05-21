@@ -99,13 +99,14 @@ class EventTableViewController: UITableViewController{
 //            self.navigationController?.pushViewController(homeView, animated: true)
         }}
     }}
-    
+	
+// Alert controller template
     func showAlertController(_ message: String) {
         let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alertController, animated: true, completion: nil)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         // Deselects the selected cell when returning
         if let indexPath = tableView.indexPathForSelectedRow {
@@ -315,7 +316,7 @@ class EventTableViewController: UITableViewController{
         switch(segue.identifier ?? "") {
         
         case "AddNewItem":
-            os_log("Adding a new Event.", log: OSLog.default, type: .debug)
+            return //os_log("Adding a new Event.", log: OSLog.default, type: .debug)
 
         case "ShowEventDetail":
             guard let eventDetailsViewController = segue.destination as?

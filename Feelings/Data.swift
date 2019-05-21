@@ -14,9 +14,48 @@ import ToneAnalyzerV3
 
 //MARK: Watson API
 
-	let watson_tone_analyzer = ToneAnalyzer(version: "2.0.1", apiKey: "Nf_WkaaDfCwJH0yI3Wd4jb8MJpOTDYR5B_DOP88kQj7a")
+let watson_tone_analyzer = ToneAnalyzer(version: "2017-09-21", apiKey: "Nf_WkaaDfCwJH0yI3Wd4jb8MJpOTDYR5B_DOP88kQj7a")
 
+func parse_return_json_data(input: Data) -> [Int] {
+	var emotions_list: [(String?, Double?)] = []
+	// Return values
+	var happy_sad_value: Int = 0
+	var anger_fear_value: Int = 0
+	var intrest_bordem_value: Int = 0
+	var love_hate_value: Int = 0
+
+	// Compute value directly from API
+	var api_Anger: Int = 0
+	var api_Fear: Int = 0
+	var api_Joy: Int = 0
+	var api_Sadness: Int = 0
+	var api_Analytical: Int = 0
+	var api_Confident: Int = 0
+	var api_Tentative: Int = 0
+
+	do {
+		if let json = try JSONSerialization.jsonObject(with: input, options: []) as? [String: Any] {
+			
+			if let document_tone: Dictionary<String, Array<Dictionary<String, Any>>> = json["document_tone"] as! Dictionary<String, Array<Dictionary<String, Any>>> {
+			
+				if let document_tones_list = document_tone["tones"]{
+					for emotion in document_tones_list{
+						let tuple = (emotion["tone_name"], emotion["score"])
+						emotions_list.append(tuple as! (String?, Double?))
+					}
+				}
+			}
+		}
+	} catch let err {
+		print(err.localizedDescription)
+	}
+	// Parse through emotions_list for Int values of api_direct values
 	
+	// Compute api_direct values to final return values
+
+	// Final return
+	return [happy_sad_value, anger_fear_value, intrest_bordem_value, love_hate_value]
+}
 
 //MARK: Functions
 

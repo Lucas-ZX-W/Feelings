@@ -14,6 +14,9 @@ class MenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+        // Watson Tone Analyzer
+        watson_tone_analyzer.serviceURL = "https://gateway.watsonplatform.net/tone-analyzer/api"
 
 //MARK: Initially updating time_specific arrays at launch
     //update_time()

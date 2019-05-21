@@ -41,6 +41,9 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
 	@IBOutlet weak var scrollView: UIScrollView!
 	
     var did_select_photo = false
+	
+	var alert = UIAlertController()
+	let haptic_notification = UINotificationFeedbackGenerator()
 
     // MARK: Corrsponding Steppers
     
@@ -155,8 +158,26 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
     //MARK: API call and manual values
 	
 	@IBAction func Call_Tone_Analyzer(_ sender: UIButton) {
-		let text_to_API = NewEventDescription.text
-	
+		if NewEventDescription.text == "How are you feeling?" {
+			self.alert = UIAlertController(title: nil, message: "Please Enter Event Text", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        	self.present(self.alert, animated: true, completion: nil)
+        	haptic_notification.notificationOccurred(.success)
+		} else {
+			print("Sending request to API")
+//			let text_to_API = NewEventDescription.text
+//
+//			watson_tone_analyzer.tone(toneContent: .text(text_to_API!)) {
+//			  response, error in
+//
+//			  guard let toneAnalysis = response?.result else {
+//				print(error as Any)
+//				return
+//			  }
+//
+//			  print(toneAnalysis)
+//			}
+		}
 	}
 	
 	@IBAction func Manual_Auto_Values(_ sender: UIButton) {
@@ -167,7 +188,7 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
 			Love_Hate_Stepper.isHidden = true
 			sender.setTitle("Auto Adjust", for: .normal)
 			Call_API_Tone_Analyzer_Button.isUserInteractionEnabled = false
-			Call_API_Tone_Analyzer_Button.setTitle("Analyzer Disabled", for: .disabled)
+			Call_API_Tone_Analyzer_Button.setTitle("Analyzer Disabled", for: .normal)
 		
 		} else if Happy_Sad_Stepper.isHidden == true && Anger_Fear_Stepper.isHidden == true && Interest_Bordem_Stepper.isHidden == true && Love_Hate_Stepper.isHidden == true {
 			Happy_Sad_Stepper.isHidden = false
@@ -176,6 +197,7 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
 			Love_Hate_Stepper.isHidden = false
 			sender.setTitle("Manual Adjust", for: .normal)
 			Call_API_Tone_Analyzer_Button.isUserInteractionEnabled = true
+			Call_API_Tone_Analyzer_Button.setTitle("Analyze Text - Ready", for: .normal)
 		}
 	}
 	
@@ -235,15 +257,10 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
         NewEventDescription.delegate = self
         updateSaveButtonState()
 		
-		Call_API_Tone_Analyzer_Button.setTitle("Analyze Text - Ready", for: .normal)
-		
 		Happy_Sad_Stepper.isHidden = true
 		Anger_Fear_Stepper.isHidden = true
 		Interest_Bordem_Stepper.isHidden = true
 		Love_Hate_Stepper.isHidden = true
-	
-	// Watson Tone Analyzer
-        watson_tone_analyzer.serviceURL = "https://gateway.watsonplatform.net/tone-analyzer/api"
     
     // MARK: Detecting Keyboard Activities
        NotificationCenter.default.addObserver(self, selector: #selector(keyboard_comingup(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -275,7 +292,7 @@ func textViewDidBeginEditing(_ textView: UITextView){
 	}
 	Auto_Manual_Button.isUserInteractionEnabled = false
     Call_API_Tone_Analyzer_Button.isUserInteractionEnabled = false
-	Call_API_Tone_Analyzer_Button.setTitle("Cannot Analyze While Editing", for: .disabled)
+	Call_API_Tone_Analyzer_Button.setTitle("Cannot Analyze While Editing", for: .normal)
     }
     
 func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {

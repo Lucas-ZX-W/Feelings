@@ -22,10 +22,10 @@ class EventDetailsViewController: UIViewController {
     @IBOutlet weak var Emoji_Happy_Sad: UILabel!
     @IBOutlet weak var Detail_Anger_Fear_Value: UILabel!
     @IBOutlet weak var Emoji_Anger_Fear: UILabel!
-    @IBOutlet weak var Detail_Interest_Bordem_Value: UILabel!
-    @IBOutlet weak var Emoji_Interest_Bordem: UILabel!
-    @IBOutlet weak var Detail_Love_Hate_Value: UILabel!
-    @IBOutlet weak var Emoji_Love_Hate: UILabel!
+    @IBOutlet weak var Detail_Confidence_Inhibition_Value: UILabel!
+    @IBOutlet weak var Emoji_Confidence_Inhibition: UILabel!
+    @IBOutlet weak var Detail_Analytical_Emotional_Value: UILabel!
+    @IBOutlet weak var Emoji_Analytical_Emotional: UILabel!
     
     
     var event: NSManagedObject?
@@ -52,8 +52,8 @@ class EventDetailsViewController: UIViewController {
 
         Detail_Happy_Sad_Value.text = String((event.value(forKeyPath: "happy_sad_value") as? Int)!)
         Detail_Anger_Fear_Value.text = String((event.value(forKeyPath: "anger_fear_value") as? Int)!)
-        Detail_Interest_Bordem_Value.text = String((event.value(forKeyPath: "interest_bordem_value") as? Int)!)
-        Detail_Love_Hate_Value.text = String((event.value(forKeyPath: "love_hate_value") as? Int)!)
+        Detail_Confidence_Inhibition_Value.text = String((event.value(forKeyPath: "confidence_inhibition_value") as? Int)!)
+        Detail_Analytical_Emotional_Value.text = String((event.value(forKeyPath: "analytical_emotional_value") as? Int)!)
         }
         
         // MARK: Controlling Emojis
@@ -98,43 +98,43 @@ class EventDetailsViewController: UIViewController {
     }
     
     // Interest / Bordem
-    switch Detail_Interest_Bordem_Value.text{
+    switch Detail_Confidence_Inhibition_Value.text{
     case "0":
-    Emoji_Interest_Bordem.text = "😶"
+    Emoji_Confidence_Inhibition.text = "😶"
     case "3":
-    Emoji_Interest_Bordem.text = "😳"
+    Emoji_Confidence_Inhibition.text = "😎"
     case "2":
-    Emoji_Interest_Bordem.text = "🤔"
+    Emoji_Confidence_Inhibition.text = "😉"
     case "1":
-    Emoji_Interest_Bordem.text = "😯"
+    Emoji_Confidence_Inhibition.text = "😏"
     case "-1":
-    Emoji_Interest_Bordem.text = "😐"
+    Emoji_Confidence_Inhibition.text = "😐"
     case "-2":
-    Emoji_Interest_Bordem.text = "😑"
+    Emoji_Confidence_Inhibition.text = "😒"
     case "-3":
-    Emoji_Interest_Bordem.text = "😪"
+    Emoji_Confidence_Inhibition.text = "😓"
     default:
-    Emoji_Interest_Bordem.text = "nil"
+    Emoji_Confidence_Inhibition.text = "nil"
     }
     
     // Love / Hate
-    switch Detail_Love_Hate_Value.text{
+    switch Detail_Analytical_Emotional_Value.text{
     case "0":
-    Emoji_Love_Hate.text = "😶"
+    Emoji_Analytical_Emotional.text = "😶"
     case "3":
-    Emoji_Love_Hate.text = "😍"
+    Emoji_Analytical_Emotional.text = "🤓"
     case "2":
-    Emoji_Love_Hate.text = "🥰"
+    Emoji_Analytical_Emotional.text = "🧐"
     case "1":
-    Emoji_Love_Hate.text = "😘"
+    Emoji_Analytical_Emotional.text = "🤨"
     case "-1":
-    Emoji_Love_Hate.text = "😏"
+    Emoji_Analytical_Emotional.text = "😛"
     case "-2":
-    Emoji_Love_Hate.text = "😖"
+    Emoji_Analytical_Emotional.text = "😝"
     case "-3":
-    Emoji_Love_Hate.text = "😈"
+    Emoji_Analytical_Emotional.text = "🤪"
     default:
-    Emoji_Love_Hate.text = "nil"
+    Emoji_Analytical_Emotional.text = "nil"
         }
     
     }

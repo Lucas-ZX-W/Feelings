@@ -21,19 +21,19 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     @IBOutlet weak var New_Happy_Sad_Emoji: UILabel!
     @IBOutlet weak var New_Anger_Fear_Emoji: UILabel!
-    @IBOutlet weak var New_Interest_Bordem_Emoji: UILabel!
-    @IBOutlet weak var New_Love_Hate_Emoji: UILabel!
+    @IBOutlet weak var New_Confidence_Inhibition_Emoji: UILabel!
+    @IBOutlet weak var New_Analytical_Emotional_Emoji: UILabel!
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var New_Happy_Sad_Value: UILabel!
     @IBOutlet weak var New_Anger_Fear_Value: UILabel!
-    @IBOutlet weak var New_Interest_Bordem_Value: UILabel!
-    @IBOutlet weak var New_Love_Hate_Value: UILabel!
+    @IBOutlet weak var New_Confidence_Inhibition_Value: UILabel!
+    @IBOutlet weak var New_Analytical_Emotional_Value: UILabel!
 	
 	@IBOutlet weak var Happy_Sad_Stepper: UIStepper!
 	@IBOutlet weak var Anger_Fear_Stepper: UIStepper!
-	@IBOutlet weak var Interest_Bordem_Stepper: UIStepper!
-	@IBOutlet weak var Love_Hate_Stepper: UIStepper!
+	@IBOutlet weak var Confidence_Inhibition_Stepper: UIStepper!
+	@IBOutlet weak var Analytical_Emotional_Stepper: UIStepper!
 	
 	@IBOutlet weak var Call_API_Tone_Analyzer_Button: UIButton!
 	@IBOutlet weak var Auto_Manual_Button: UIButton!
@@ -101,57 +101,57 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
         }
     }
     
-    @IBAction func New_Interest_Bordem_Value_Stepper(_ sender: UIStepper) {
+    @IBAction func New_Confidence_Inhibition_Value_Stepper(_ sender: UIStepper) {
     
     sender.maximumValue = 3.0
     sender.minimumValue = -3.0
     
-        New_Interest_Bordem_Value.text = String(Int(sender.value))
+        New_Confidence_Inhibition_Value.text = String(Int(sender.value))
         
         switch Int(sender.value){
         case 0:
-        New_Interest_Bordem_Emoji.text = "😶"
+        New_Confidence_Inhibition_Emoji.text = "😶"
         case 3:
-        New_Interest_Bordem_Emoji.text = "😳"
+        New_Confidence_Inhibition_Emoji.text = "😎"
         case 2:
-        New_Interest_Bordem_Emoji.text = "🤔"
+        New_Confidence_Inhibition_Emoji.text = "😉"
         case 1:
-        New_Interest_Bordem_Emoji.text = "😯"
+        New_Confidence_Inhibition_Emoji.text = "😏"
         case -1:
-        New_Interest_Bordem_Emoji.text = "😐"
+        New_Confidence_Inhibition_Emoji.text = "😐"
         case -2:
-        New_Interest_Bordem_Emoji.text = "😑"
+        New_Confidence_Inhibition_Emoji.text = "😒"
         case -3:
-        New_Interest_Bordem_Emoji.text = "😪"
+        New_Confidence_Inhibition_Emoji.text = "😓"
         default:
-        New_Interest_Bordem_Emoji.text = "YES"
+        New_Confidence_Inhibition_Emoji.text = "YES"
         }
     }
     
-    @IBAction func New_Love_Hate_Value_Stepper(_ sender: UIStepper) {
+    @IBAction func New_Analytical_Emotional_Value_Stepper(_ sender: UIStepper) {
     
     sender.maximumValue = 3.0
     sender.minimumValue = -3.0
     
-        New_Love_Hate_Value.text = String(Int(sender.value))
+        New_Analytical_Emotional_Value.text = String(Int(sender.value))
         
         switch Int(sender.value){
         case 0:
-        New_Love_Hate_Emoji.text = "😶"
+        New_Analytical_Emotional_Emoji.text = "😶"
         case 3:
-        New_Love_Hate_Emoji.text = "😍"
+        New_Analytical_Emotional_Emoji.text = "🤓"
         case 2:
-        New_Love_Hate_Emoji.text = "🥰"
+        New_Analytical_Emotional_Emoji.text = "🧐"
         case 1:
-        New_Love_Hate_Emoji.text = "😘"
+        New_Analytical_Emotional_Emoji.text = "🤨"
         case -1:
-        New_Love_Hate_Emoji.text = "😏"
+        New_Analytical_Emotional_Emoji.text = "😛"
         case -2:
-        New_Love_Hate_Emoji.text = "😖"
+        New_Analytical_Emotional_Emoji.text = "😝"
         case -3:
-        New_Love_Hate_Emoji.text = "😈"
+        New_Analytical_Emotional_Emoji.text = "🤪"
         default:
-        New_Love_Hate_Emoji.text = "YES"
+        New_Analytical_Emotional_Emoji.text = "YES"
         }
     }
 	
@@ -181,20 +181,20 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
 	}
 	
 	@IBAction func Manual_Auto_Values(_ sender: UIButton) {
-		if Happy_Sad_Stepper.isHidden == false && Anger_Fear_Stepper.isHidden == false && Interest_Bordem_Stepper.isHidden == false && Love_Hate_Stepper.isHidden == false {
+		if Happy_Sad_Stepper.isHidden == false && Anger_Fear_Stepper.isHidden == false && Confidence_Inhibition_Stepper.isHidden == false && Analytical_Emotional_Stepper.isHidden == false {
 			Happy_Sad_Stepper.isHidden = true
 			Anger_Fear_Stepper.isHidden = true
-			Interest_Bordem_Stepper.isHidden = true
-			Love_Hate_Stepper.isHidden = true
+			Confidence_Inhibition_Stepper.isHidden = true
+			Analytical_Emotional_Stepper.isHidden = true
 			sender.setTitle("Auto Adjust", for: .normal)
 			Call_API_Tone_Analyzer_Button.isUserInteractionEnabled = false
 			Call_API_Tone_Analyzer_Button.setTitle("Analyzer Disabled", for: .normal)
 		
-		} else if Happy_Sad_Stepper.isHidden == true && Anger_Fear_Stepper.isHidden == true && Interest_Bordem_Stepper.isHidden == true && Love_Hate_Stepper.isHidden == true {
+		} else if Happy_Sad_Stepper.isHidden == true && Anger_Fear_Stepper.isHidden == true && Confidence_Inhibition_Stepper.isHidden == true && Analytical_Emotional_Stepper.isHidden == true {
 			Happy_Sad_Stepper.isHidden = false
 			Anger_Fear_Stepper.isHidden = false
-			Interest_Bordem_Stepper.isHidden = false
-			Love_Hate_Stepper.isHidden = false
+			Confidence_Inhibition_Stepper.isHidden = false
+			Analytical_Emotional_Stepper.isHidden = false
 			sender.setTitle("Manual Adjust", for: .normal)
 			Call_API_Tone_Analyzer_Button.isUserInteractionEnabled = true
 			Call_API_Tone_Analyzer_Button.setTitle("Analyze Text - Ready", for: .normal)
@@ -259,8 +259,8 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
 		
 		Happy_Sad_Stepper.isHidden = true
 		Anger_Fear_Stepper.isHidden = true
-		Interest_Bordem_Stepper.isHidden = true
-		Love_Hate_Stepper.isHidden = true
+		Confidence_Inhibition_Stepper.isHidden = true
+		Analytical_Emotional_Stepper.isHidden = true
     
     // MARK: Detecting Keyboard Activities
        NotificationCenter.default.addObserver(self, selector: #selector(keyboard_comingup(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -316,8 +316,8 @@ func textViewDidEndEditing(_ textView: UITextView) {
     //saved_memory_success = true
     Happy_Sad_Stepper.isHidden = true
     Anger_Fear_Stepper.isHidden = true
-    Interest_Bordem_Stepper.isHidden = true
-    Love_Hate_Stepper.isHidden = true
+    Confidence_Inhibition_Stepper.isHidden = true
+    Analytical_Emotional_Stepper.isHidden = true
     Call_API_Tone_Analyzer_Button.isUserInteractionEnabled = true
     Call_API_Tone_Analyzer_Button.setTitle("Analyze Text - Ready", for: .normal)
     }
@@ -394,11 +394,11 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
         let HAPPY_SAD_VALUE = get_emotion_values(Raw: New_Happy_Sad_Value.text!)
         let ANGER_FEAR_VALUE = get_emotion_values(Raw: New_Anger_Fear_Value.text!)
-        let INTEREST_BORDEM_VALUE = get_emotion_values(Raw: New_Interest_Bordem_Value.text!)
-        let LOVE_HATE_VALUE = get_emotion_values(Raw: New_Love_Hate_Value.text!)
+        let CONFIDENCE_INHIBITION_VALUE = get_emotion_values(Raw: New_Confidence_Inhibition_Value.text!)
+        let ANALYTICAL_EMOTIONAL_VALUE = get_emotion_values(Raw: New_Analytical_Emotional_Value.text!)
 		
 	// Segue data is in the following format:
-		event_data_segue = [ANGER_FEAR_VALUE, DOES_HAVE_PHOTO, Event_Date, EventDescription, EventName, EventPhoto, EventTime_Display, HAPPY_SAD_VALUE, INTEREST_BORDEM_VALUE, LOVE_HATE_VALUE]
+		event_data_segue = [ANALYTICAL_EMOTIONAL_VALUE, ANGER_FEAR_VALUE, CONFIDENCE_INHIBITION_VALUE,DOES_HAVE_PHOTO, Event_Date, EventDescription, EventName, EventPhoto, EventTime_Display, HAPPY_SAD_VALUE]
 		
 //        event = Event(Detail_EventName: EventName, Detail_EventPhoto: EventPhoto, Detail_does_have_photo: DOES_HAVE_PHOTO, Detail_EventDescription: EventDescription, Detail_EventTime_Display: EventTime_Display as! String, Detail_EventDate_Compute: [EventDate_Compute], Detail_Happy_Sad_Value: Int(HAPPY_SAD_VALUE), Detail_Anger_fear_Value: Int(ANGER_FEAR_VALUE), Detail_Interest_bordem_Value: Int(INTEREST_BORDEM_VALUE), Detail_Love_hate_Value: Int(LOVE_HATE_VALUE))
     }

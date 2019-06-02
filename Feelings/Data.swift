@@ -89,7 +89,7 @@ func get_anger_value () -> Int{
 func get_confidence_value () -> Int{
     var a = 0
     for e in events{
-    a += (e.value(forKeyPath: "interest_bordem_value") as? Int)!
+    a += (e.value(forKeyPath: "confidence_inhibition_value") as? Int)!
     }
     return a
     }
@@ -97,7 +97,7 @@ func get_confidence_value () -> Int{
 func get_analytical_value () -> Int{
     var a = 0
     for e in events{
-    a += (e.value(forKeyPath: "love_hate_value") as? Int)!
+    a += (e.value(forKeyPath: "analytical_emotional_value") as? Int)!
     }
     return a
     }

@@ -103,11 +103,11 @@
                                 </tableViewCellContentView>
                                 <gestureRecognizers/>
                                 <connections>
+                                    <outlet property="Cell_Analytical_Emotional_Emoji" destination="vGn-IS-BIj" id="bse-3i-25V"/>
                                     <outlet property="Cell_Anger_Fear_Emoji" destination="zRN-6n-rZw" id="buh-n8-64Z"/>
+                                    <outlet property="Cell_Confidence_Inhibition_Emoji" destination="cqa-lz-nPQ" id="5MB-BE-CcQ"/>
                                     <outlet property="Cell_EventTime" destination="hAa-cg-pfM" id="BdE-PB-Nj2"/>
                                     <outlet property="Cell_Happy_Sad_Emoji" destination="Ccy-YB-3OT" id="upm-GW-yBg"/>
-                                    <outlet property="Cell_Interest_Bordem_Emoji" destination="cqa-lz-nPQ" id="4F9-nt-Hsv"/>
-                                    <outlet property="Cell_Love_Hate_Emoji" destination="vGn-IS-BIj" id="0aS-CA-0A2"/>
                                     <outlet property="DefaultEventPhoto" destination="zPu-G7-K7D" id="J4c-jk-nkP"/>
                                     <outlet property="EventNameLabel" destination="4D9-OQ-9Lg" id="ATg-cp-gWh"/>
                                     <segue destination="cYm-HD-44H" kind="show" identifier="ShowEventDetail" id="NuY-PP-uJl"/>
@@ -153,16 +153,16 @@
                                                 <rect key="frame" x="0.0" y="30" width="375" height="749.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="QlO-40-GpK">
-                                                        <rect key="frame" x="62.5" y="0.0" width="250" height="524"/>
+                                                        <rect key="frame" x="27.5" y="0.0" width="320" height="524"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Event Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2R8-az-G1W">
-                                                                <rect key="frame" x="69" y="0.0" width="112.5" height="24"/>
+                                                                <rect key="frame" x="104" y="0.0" width="112.5" height="24"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GyY-bO-EDv">
-                                                                <rect key="frame" x="25" y="34" width="200" height="30"/>
+                                                                <rect key="frame" x="60" y="34" width="200" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="200" id="u3w-dO-o2x"/>
                                                                     <constraint firstAttribute="height" constant="30" id="u4R-FF-vTy"/>
@@ -172,7 +172,7 @@
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="No Image Added" translatesAutoresizingMaskIntoConstraints="NO" id="7nI-Uo-Rvh">
-                                                                <rect key="frame" x="0.0" y="74" width="250" height="200"/>
+                                                                <rect key="frame" x="35" y="74" width="250" height="200"/>
                                                                 <gestureRecognizers/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="250" id="csJ-pY-6Gn"/>
@@ -182,29 +182,29 @@
                                                                     <outletCollection property="gestureRecognizers" destination="U4M-ev-RfS" appends="YES" id="nwE-Jb-Xut"/>
                                                                 </connections>
                                                             </imageView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="xya-KJ-tnH">
-                                                                <rect key="frame" x="1" y="284" width="248" height="240"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="xya-KJ-tnH">
+                                                                <rect key="frame" x="0.0" y="284" width="320" height="240"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="nx3-Ag-Rfk">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="94" height="240"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="140" height="240"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Xpd-8D-yFg">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="94" height="110"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="140" height="110"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Joy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIY-jE-87C">
-                                                                                        <rect key="frame" x="25.5" y="0.0" width="43" height="50.5"/>
+                                                                                        <rect key="frame" x="48.5" y="0.0" width="43" height="50.5"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sadness" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDY-dI-ARr">
-                                                                                        <rect key="frame" x="14.5" y="55.5" width="65.5" height="20.5"/>
+                                                                                        <rect key="frame" x="37.5" y="55.5" width="65.5" height="20.5"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-3" maximumValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="m5k-ty-bpJ" userLabel="Happy Sad Stepper">
-                                                                                        <rect key="frame" x="0.0" y="81" width="94" height="29"/>
+                                                                                        <rect key="frame" x="23" y="81" width="94" height="29"/>
                                                                                         <connections>
                                                                                             <action selector="New_Happy_Sad_Value_Stepper:" destination="u3g-w4-TNh" eventType="valueChanged" id="gh6-No-UbE"/>
                                                                                         </connections>
@@ -215,24 +215,24 @@
                                                                                 </constraints>
                                                                             </stackView>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Pxz-EC-WK4">
-                                                                                <rect key="frame" x="0.0" y="130" width="94" height="110"/>
+                                                                                <rect key="frame" x="0.0" y="130" width="140" height="110"/>
                                                                                 <subviews>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Interest" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQT-e8-dfK">
-                                                                                        <rect key="frame" x="2" y="0.0" width="90.5" height="50.5"/>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Confidence" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQT-e8-dfK">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="140" height="50.5"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bordem" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s23-aE-Pe0">
-                                                                                        <rect key="frame" x="17" y="55.5" width="60.5" height="20.5"/>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inhibition" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s23-aE-Pe0">
+                                                                                        <rect key="frame" x="35" y="55.5" width="70" height="20.5"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-3" maximumValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="hFw-Yj-ifr" userLabel="Interest Bordem Stepper">
-                                                                                        <rect key="frame" x="0.0" y="81" width="94" height="29"/>
+                                                                                        <rect key="frame" x="23" y="81" width="94" height="29"/>
                                                                                         <connections>
-                                                                                            <action selector="New_Interest_Bordem_Value_Stepper:" destination="u3g-w4-TNh" eventType="valueChanged" id="g9X-Sk-fAV"/>
+                                                                                            <action selector="New_Confidence_Inhibition_Value_Stepper:" destination="u3g-w4-TNh" eventType="valueChanged" id="HMF-66-zyd"/>
                                                                                         </connections>
                                                                                     </stepper>
                                                                                 </subviews>
@@ -243,25 +243,25 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wiK-ZP-z9U">
-                                                                        <rect key="frame" x="154" y="0.0" width="94" height="240"/>
+                                                                        <rect key="frame" x="180" y="0.0" width="140" height="240"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="tYY-H5-ybd">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="94" height="110"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="140" height="110"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Anger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFo-dp-bpW">
-                                                                                        <rect key="frame" x="10.5" y="0.0" width="73" height="50.5"/>
+                                                                                        <rect key="frame" x="33.5" y="0.0" width="73" height="50.5"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fear" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLN-QQ-f70">
-                                                                                        <rect key="frame" x="30" y="55.5" width="34" height="20.5"/>
+                                                                                        <rect key="frame" x="53" y="55.5" width="34" height="20.5"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-3" maximumValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="51f-Ic-B9J" userLabel="Anger Fear Stepper">
-                                                                                        <rect key="frame" x="0.0" y="81" width="94" height="29"/>
+                                                                                        <rect key="frame" x="23" y="81" width="94" height="29"/>
                                                                                         <connections>
                                                                                             <action selector="New_Anger_Fear_Value_Stepper:" destination="u3g-w4-TNh" eventType="valueChanged" id="jsU-Xq-xI8"/>
                                                                                         </connections>
@@ -272,24 +272,24 @@
                                                                                 </constraints>
                                                                             </stackView>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="tit-7V-LB8">
-                                                                                <rect key="frame" x="0.0" y="130" width="94" height="110"/>
+                                                                                <rect key="frame" x="0.0" y="130" width="140" height="110"/>
                                                                                 <subviews>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Love" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n4z-CJ-riO">
-                                                                                        <rect key="frame" x="18" y="0.0" width="58" height="50.5"/>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Analytical" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n4z-CJ-riO">
+                                                                                        <rect key="frame" x="11.5" y="0.0" width="117.5" height="50.5"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZhB-il-ad9">
-                                                                                        <rect key="frame" x="29" y="55.5" width="36.5" height="20.5"/>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emotional" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZhB-il-ad9">
+                                                                                        <rect key="frame" x="32.5" y="55.5" width="75.5" height="20.5"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-3" maximumValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="eZe-0l-Hvv" userLabel="Love Hate Stepper">
-                                                                                        <rect key="frame" x="0.0" y="81" width="94" height="29"/>
+                                                                                        <rect key="frame" x="23" y="81" width="94" height="29"/>
                                                                                         <connections>
-                                                                                            <action selector="New_Love_Hate_Value_Stepper:" destination="u3g-w4-TNh" eventType="valueChanged" id="tVL-Qz-HGp"/>
+                                                                                            <action selector="New_Analytical_Emotional_Value_Stepper:" destination="u3g-w4-TNh" eventType="valueChanged" id="Bnb-G3-QOY"/>
                                                                                         </connections>
                                                                                     </stepper>
                                                                                 </subviews>
@@ -392,24 +392,24 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="Analytical_Emotional_Stepper" destination="eZe-0l-Hvv" id="uEs-bl-CWg"/>
                         <outlet property="Anger_Fear_Stepper" destination="51f-Ic-B9J" id="UgI-gi-nSN"/>
                         <outlet property="Auto_Manual_Button" destination="cDP-kG-EwO" id="zId-MG-dwE"/>
                         <outlet property="Call_API_Tone_Analyzer_Button" destination="chT-W6-6Ch" id="n9M-5z-dYQ"/>
+                        <outlet property="Confidence_Inhibition_Stepper" destination="hFw-Yj-ifr" id="ztf-c3-J9x"/>
                         <outlet property="Happy_Sad_Stepper" destination="m5k-ty-bpJ" id="p8A-wN-sLa"/>
-                        <outlet property="Interest_Bordem_Stepper" destination="hFw-Yj-ifr" id="7GS-4b-fUk"/>
-                        <outlet property="Love_Hate_Stepper" destination="eZe-0l-Hvv" id="Q8u-pl-20D"/>
                         <outlet property="NewEventDescription" destination="0oE-iT-ie6" id="ZeZ-mA-VCP"/>
                         <outlet property="NewEventImage" destination="7nI-Uo-Rvh" id="VTv-r9-cmO"/>
                         <outlet property="NewEventNameField" destination="GyY-bO-EDv" id="t3F-qx-0od"/>
                         <outlet property="NewEventNameLabel" destination="2R8-az-G1W" id="iC8-Z2-fo7"/>
+                        <outlet property="New_Analytical_Emotional_Emoji" destination="n4z-CJ-riO" id="R0N-F2-qAT"/>
+                        <outlet property="New_Analytical_Emotional_Value" destination="ZhB-il-ad9" id="LlC-0k-NS6"/>
                         <outlet property="New_Anger_Fear_Emoji" destination="pFo-dp-bpW" id="yKN-dt-cid"/>
                         <outlet property="New_Anger_Fear_Value" destination="jLN-QQ-f70" id="CgD-x7-8AQ"/>
+                        <outlet property="New_Confidence_Inhibition_Emoji" destination="BQT-e8-dfK" id="p67-Pg-VVn"/>
+                        <outlet property="New_Confidence_Inhibition_Value" destination="s23-aE-Pe0" id="3TU-cg-pQd"/>
                         <outlet property="New_Happy_Sad_Emoji" destination="BIY-jE-87C" id="nUX-RK-AW9"/>
                         <outlet property="New_Happy_Sad_Value" destination="dDY-dI-ARr" id="TSR-fC-RFd"/>
-                        <outlet property="New_Interest_Bordem_Emoji" destination="BQT-e8-dfK" id="Pgp-os-yxD"/>
-                        <outlet property="New_Interest_Bordem_Value" destination="s23-aE-Pe0" id="Jvs-sC-Le6"/>
-                        <outlet property="New_Love_Hate_Emoji" destination="n4z-CJ-riO" id="0eF-7t-JWp"/>
-                        <outlet property="New_Love_Hate_Value" destination="ZhB-il-ad9" id="bz9-rQ-xsX"/>
                         <outlet property="saveButton" destination="pGv-rw-Wt3" id="bfT-cd-Jfr"/>
                         <outlet property="scrollView" destination="DDX-tv-W8u" id="YH7-u1-zox"/>
                     </connections>
@@ -845,14 +845,14 @@
                         <outlet property="DetailEventImage" destination="yq8-0R-cwY" id="Sb9-fD-Aag"/>
                         <outlet property="DetailEventName" destination="ZEB-4d-Z3z" id="GVP-7D-buV"/>
                         <outlet property="DetailEventTime" destination="Jmq-zl-C3J" id="cvw-Ec-s8i"/>
+                        <outlet property="Detail_Analytical_Emotional_Value" destination="gKx-jh-6WG" id="bIz-dl-klf"/>
                         <outlet property="Detail_Anger_Fear_Value" destination="Xeg-hJ-pIp" id="Y23-43-F2s"/>
+                        <outlet property="Detail_Confidence_Inhibition_Value" destination="jdm-Vl-Ctq" id="XkP-kK-0rL"/>
                         <outlet property="Detail_Happy_Sad_Value" destination="Mgp-dx-Hw2" id="Nev-VF-788"/>
-                        <outlet property="Detail_Interest_Bordem_Value" destination="jdm-Vl-Ctq" id="VvM-r0-od4"/>
-                        <outlet property="Detail_Love_Hate_Value" destination="gKx-jh-6WG" id="UQS-s7-Ysz"/>
+                        <outlet property="Emoji_Analytical_Emotional" destination="tq6-S8-xuh" id="msT-OQ-ifg"/>
                         <outlet property="Emoji_Anger_Fear" destination="i9z-22-PSU" id="ejb-oP-AIc"/>
+                        <outlet property="Emoji_Confidence_Inhibition" destination="lYa-XL-Nnp" id="xid-z4-9cL"/>
                         <outlet property="Emoji_Happy_Sad" destination="NFZ-5Y-8Wh" id="QUa-uX-EsQ"/>
-                        <outlet property="Emoji_Interest_Bordem" destination="lYa-XL-Nnp" id="JX0-sd-BJ2"/>
-                        <outlet property="Emoji_Love_Hate" destination="tq6-S8-xuh" id="DNN-r2-bdB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pTz-1T-WAm" userLabel="First Responder" sceneMemberID="firstResponder"/>

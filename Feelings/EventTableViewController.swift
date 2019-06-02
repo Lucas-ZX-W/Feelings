@@ -220,42 +220,42 @@ class EventTableViewController: UITableViewController{
        cell.Cell_Anger_Fear_Emoji.text = "nil"
         }
         
-        switch event.value(forKeyPath: "interest_bordem_value") as? Int{
+        switch event.value(forKeyPath: "confidence_inhibition_value") as? Int{
         case 0:
-        cell.Cell_Interest_Bordem_Emoji.text = "😶"
+        cell.Cell_Confidence_Inhibition_Emoji.text = "😶"
         case 3:
-        cell.Cell_Interest_Bordem_Emoji.text = "😳"
+        cell.Cell_Confidence_Inhibition_Emoji.text = "😎"
         case 2:
-        cell.Cell_Interest_Bordem_Emoji.text = "🤔"
+        cell.Cell_Confidence_Inhibition_Emoji.text = "😉"
         case 1:
-        cell.Cell_Interest_Bordem_Emoji.text = "😯"
+        cell.Cell_Confidence_Inhibition_Emoji.text = "😏"
         case -1:
-        cell.Cell_Interest_Bordem_Emoji.text = "😐"
+        cell.Cell_Confidence_Inhibition_Emoji.text = "😐"
         case -2:
-        cell.Cell_Interest_Bordem_Emoji.text = "😑"
+        cell.Cell_Confidence_Inhibition_Emoji.text = "😒"
         case -3:
-        cell.Cell_Interest_Bordem_Emoji.text = "😪"
+        cell.Cell_Confidence_Inhibition_Emoji.text = "😓"
         default:
-        cell.Cell_Interest_Bordem_Emoji.text = "nil"
+        cell.Cell_Confidence_Inhibition_Emoji.text = "nil"
         }
         
-        switch event.value(forKeyPath: "love_hate_value") as? Int{
+        switch event.value(forKeyPath: "analytical_emotional_value") as? Int{
         case 0:
-        cell.Cell_Love_Hate_Emoji.text = "😶"
+        cell.Cell_Analytical_Emotional_Emoji.text = "😶"
         case 3:
-        cell.Cell_Love_Hate_Emoji.text = "😍"
+        cell.Cell_Analytical_Emotional_Emoji.text = "🤓"
         case 2:
-        cell.Cell_Love_Hate_Emoji.text = "🥰"
+        cell.Cell_Analytical_Emotional_Emoji.text = "🧐"
         case 1:
-        cell.Cell_Love_Hate_Emoji.text = "😘"
+        cell.Cell_Analytical_Emotional_Emoji.text = "🤨"
         case -1:
-        cell.Cell_Love_Hate_Emoji.text = "😏"
+        cell.Cell_Analytical_Emotional_Emoji.text = "😛"
         case -2:
-        cell.Cell_Love_Hate_Emoji.text = "😖"
+        cell.Cell_Analytical_Emotional_Emoji.text = "😝"
         case -3:
-        cell.Cell_Love_Hate_Emoji.text = "😈"
+        cell.Cell_Analytical_Emotional_Emoji.text = "🤪"
         default:
-        cell.Cell_Love_Hate_Emoji.text = "nil"
+        cell.Cell_Analytical_Emotional_Emoji.text = "nil"
         }
         
         //Hide the default photo if the photo is not changed
@@ -375,19 +375,19 @@ class EventTableViewController: UITableViewController{
         if let sourceViewController = sender.source as?
             NewEventViewController, let event_from_segue = sourceViewController.event_data_segue{
 			
-            // Segue data is in the following format: [ANGER_FEAR_VALUE, DOES_HAVE_PHOTO, Event_Date, EventDescription, EventName, EventPhoto, EventTime_Display, HAPPY_SAD_VALUE, INTEREST_BORDEM_VALUE, LOVE_HATE_VALUE]
+            // Segue data is in the following format: [ANALYTICAL_EMOTIONAL_VALUE, ANGER_FEAR_VALUE, CONFIDENCE_INHIBITION_VALUE,DOES_HAVE_PHOTO, Event_Date, EventDescription, EventName, EventPhoto, EventTime_Display, HAPPY_SAD_VALUE]
 			
             // List follows the list in the data model under reverse alphebatical order
-			memory.setValue(event_from_segue[0], forKeyPath: "anger_fear_value")
-			memory.setValue(event_from_segue[1], forKeyPath: "does_have_photo")
-			memory.setValue(event_from_segue[2], forKeyPath: "eventdate")
-			memory.setValue(event_from_segue[3], forKeyPath: "eventdescription")
-			memory.setValue(event_from_segue[4], forKeyPath: "eventname")
-			memory.setValue(event_from_segue[5], forKeyPath: "eventphoto")
-			memory.setValue(event_from_segue[6], forKeyPath: "eventtime_display")
-			memory.setValue(event_from_segue[7], forKeyPath: "happy_sad_value")
-			memory.setValue(event_from_segue[8], forKeyPath: "interest_bordem_value")
-			memory.setValue(event_from_segue[9], forKeyPath: "love_hate_value")
+			memory.setValue(event_from_segue[0], forKeyPath: "analytical_emotional_value")
+			memory.setValue(event_from_segue[1], forKeyPath: "anger_fear_value")
+			memory.setValue(event_from_segue[2], forKeyPath: "confidence_inhibition_value")
+			memory.setValue(event_from_segue[3], forKeyPath: "does_have_photo")
+			memory.setValue(event_from_segue[4], forKeyPath: "eventdate")
+			memory.setValue(event_from_segue[5], forKeyPath: "eventdescription")
+			memory.setValue(event_from_segue[6], forKeyPath: "eventname")
+			memory.setValue(event_from_segue[7], forKeyPath: "eventphoto")
+			memory.setValue(event_from_segue[8], forKeyPath: "eventtime_display")
+			memory.setValue(event_from_segue[9], forKeyPath: "happy_sad_value")
     
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
             	events[selectedIndexPath.row] = memory

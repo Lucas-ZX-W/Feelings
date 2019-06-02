@@ -14,24 +14,24 @@ import ToneAnalyzerV3
 
 //MARK: Watson API
 
-let watson_tone_analyzer = ToneAnalyzer(version: "2017-09-21", apiKey: "Nf_WkaaDfCwJH0yI3Wd4jb8MJpOTDYR5B_DOP88kQj7a")
+let watson_tone_analyzer = ToneAnalyzer(version: "2019-06-02", apiKey: "Nf_WkaaDfCwJH0yI3Wd4jb8MJpOTDYR5B_DOP88kQj7a") // For argument "version", use today's date for the most recent; Carthage version can be checked via the Swift SDK Github page
 
 func parse_return_json_data(input: Data) -> [Int] {
 	var emotions_list: [(String?, Double?)] = []
 	// Return values
 	var happy_sad_value: Int = 0
 	var anger_fear_value: Int = 0
-	var intrest_bordem_value: Int = 0
-	var love_hate_value: Int = 0
+	var confidence_inhibition_value: Int = 0
+	var analytical_emotional_value: Int = 0
 
 	// Compute value directly from API
-	var api_Anger: Int = 0
-	var api_Fear: Int = 0
-	var api_Joy: Int = 0
-	var api_Sadness: Int = 0
-	var api_Analytical: Int = 0
-	var api_Confident: Int = 0
-	var api_Tentative: Int = 0
+	var api_Anger: Double = 0
+	var api_Fear: Double = 0
+	var api_Joy: Double = 0
+	var api_Sadness: Double = 0
+	var api_Analytical: Double = 0
+	var api_Confident: Double = 0
+	var api_Tentative: Double = 0
 
 	do {
 		if let json = try JSONSerialization.jsonObject(with: input, options: []) as? [String: Any] {
@@ -50,11 +50,22 @@ func parse_return_json_data(input: Data) -> [Int] {
 		print(err.localizedDescription)
 	}
 	// Parse through emotions_list for Int values of api_direct values
-	
+	for set in emotions_list{
+		switch set.0 {
+			case "Anger": api_Anger = (set.1)!
+			case "Fear": api_Fear = (set.1)!
+			case "Joy": api_Joy = (set.1)!
+			case "Sadness": api_Sadness = (set.1)!
+			case "Analytical": api_Analytical = (set.1)!
+			case "Confident": api_Confident = (set.1)!
+			case "Tentative": api_Tentative = (set.1)!
+			default: ()
+		}
+	}
 	// Compute api_direct values to final return values
 
 	// Final return
-	return [happy_sad_value, anger_fear_value, intrest_bordem_value, love_hate_value]
+	return [happy_sad_value, anger_fear_value, confidence_inhibition_value, analytical_emotional_value]
 }
 
 //MARK: Functions
@@ -75,7 +86,7 @@ func get_anger_value () -> Int{
     return a
     }
 
-func get_interest_value () -> Int{
+func get_confidence_value () -> Int{
     var a = 0
     for e in events{
     a += (e.value(forKeyPath: "interest_bordem_value") as? Int)!
@@ -83,7 +94,7 @@ func get_interest_value () -> Int{
     return a
     }
 
-func get_love_value () -> Int{
+func get_analytical_value () -> Int{
     var a = 0
     for e in events{
     a += (e.value(forKeyPath: "love_hate_value") as? Int)!

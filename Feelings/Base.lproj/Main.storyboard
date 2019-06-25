@@ -219,6 +219,9 @@
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Confidence" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQT-e8-dfK">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="140" height="50.5"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="width" constant="140" id="Qsw-VB-lHM"/>
+                                                                                        </constraints>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
@@ -276,6 +279,9 @@
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Analytical" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n4z-CJ-riO">
                                                                                         <rect key="frame" x="11.5" y="0.0" width="117.5" height="50.5"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="width" constant="117.5" id="QaI-i7-kzi"/>
+                                                                                        </constraints>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>

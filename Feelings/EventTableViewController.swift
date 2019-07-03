@@ -74,9 +74,29 @@ class EventTableViewController: UITableViewController{
             }
         } else {
         //print(error?.localizedDescription ?? "Failed to authenticate")
-        self.showAlertController("Authentication Failed")
+        //self.showAlertController("Authentication Failed")
 //        let homeView = self.storyboard?.instantiateViewController(withIdentifier: "Menu") as! MenuViewController
 //            self.navigationController?.pushViewController(homeView, animated: true)
+
+		let reason = "Authenticate to Access Memories using password"
+            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason ) { success, error in
+
+        if success {
+        // Move to the main thread because a state update triggers UI changes.
+        DispatchQueue.main.async { [unowned self] in
+            self.Memories_Table_View.isUserInteractionEnabled = true
+            self.Add_Memory_Button.isEnabled = true
+            self.view.subviews.filter({$0.tag == 1}).forEach({$0.isHidden = true})
+            //self.state = .loggedin
+            //self.showAlertController("Biometrics Authentication Succeeded")
+            }
+        } else {
+        //print(error?.localizedDescription ?? "Failed to authenticate")
+        self.showAlertController("Authentication Failed")
+        //_ = self.navigationController?.popViewController(animated: true)
+	//        let homeView = self.storyboard?.instantiateViewController(withIdentifier: "Menu") as! MenuViewController
+	//            self.navigationController?.pushViewController(homeView, animated: true)
+        }}
         }}
     } else {
     //showAlertController("Biometrics not available, using password")
@@ -95,6 +115,7 @@ class EventTableViewController: UITableViewController{
         } else {
         //print(error?.localizedDescription ?? "Failed to authenticate")
         self.showAlertController("Authentication Failed")
+		//_ = self.navigationController?.popViewController(animated: true)
 //        let homeView = self.storyboard?.instantiateViewController(withIdentifier: "Menu") as! MenuViewController
 //            self.navigationController?.pushViewController(homeView, animated: true)
         }}
@@ -281,8 +302,30 @@ class EventTableViewController: UITableViewController{
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            let event_managed_object = events[indexPath.row]
+            let event_date = event_managed_object.value(forKeyPath: "eventdate")
             events.remove(at: indexPath.row)
+            //events.remove(at: abs(indexPath.row - events.count) - 1)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            // Remove the NSManagedObject from the CoreData stack
+			guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+			let managedContext = appDelegate.persistentContainer.viewContext
+			let entity = NSEntityDescription.entity(forEntityName: "Memory", in: managedContext)!
+			let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Memory")
+			request.predicate = NSPredicate(format:"eventdate = %@", event_date as! CVarArg/**"Remove"*/)
+			request.entity = entity
+			//let pred = NSPredicate(format: "name = %@", event_name as! CVarArg)
+			//request.predicate = pred
+			do {
+				if let result: [NSManagedObject]? = try managedContext.fetch(request) as! [NSManagedObject]{
+					for object in result!{
+						if object == event_managed_object{
+							managedContext.delete(object)
+						}
+					}
+					try managedContext.save()
+				}
+			} catch {}
         }
 //        } else if editingStyle == .insert {
 //            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -331,6 +374,7 @@ class EventTableViewController: UITableViewController{
             
             guard let indexPath = tableView.indexPath(for: selectedeventcell) else {fatalError("The Selected Cell is not being displayed by the table")
             }
+            //let selectedevent = events[abs(indexPath.row - events.count) - 1]
             let selectedevent = events[indexPath.row]
             eventDetailsViewController.event = selectedevent
             
@@ -394,10 +438,11 @@ class EventTableViewController: UITableViewController{
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
             } else {
            //Adding a new event instead of editing it.
-				let newIndexPath = IndexPath(row: 0, section: 0)
+				let newIndexPath = IndexPath(row: events.count, section: 0)
 				do {
 					try managedContext.save()
-					events.insert(memory, at: 0)
+					//events.insert(memory, at: 0)
+					events.append(memory)
 				} catch let error as NSError {
 					print("Could not save. \(error), \(error.userInfo)")
 				}

@@ -156,6 +156,7 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
     }
 	
     //MARK: API call and manual values
+    //FIXME: the function for adjusting the values after the result from API needs to be reworked, it seems like that it did not wait for the results to finish
 	
 	@IBAction func Call_Tone_Analyzer(_ sender: UIButton) {
 		if NewEventDescription.text == "How are you feeling?" {
@@ -165,16 +166,32 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
         	haptic_notification.notificationOccurred(.success)
 		} else {
 			print("Sending request to API")
+			var finished_toneAnalysis: ToneAnalysis? = nil
 			let text_to_API = NewEventDescription.text
+			
+			let watson_fetch_dispatch_group = DispatchGroup()
+			watson_fetch_dispatch_group.enter()
 
-			watson_tone_analyzer.tone(toneContent: .text(text_to_API!)) {
-			  response, error in
+			//DispatchQueue.main.async {
+			DispatchQueue.global(qos: .default).async{
+				watson_tone_analyzer.tone(toneContent: .text(text_to_API!)) {
+				  response, error in
 
-			  guard let toneAnalysis = response?.result else {
-				print(error as Any)
-				return
-			  }
-			  let results = parse_return_json_data(input: toneAnalysis)
+				  guard let toneAnalysis = response?.result else {
+					print(error as Any)
+					return
+				  }
+				  finished_toneAnalysis = toneAnalysis
+				  watson_fetch_dispatch_group.leave()
+				}
+			}
+			watson_fetch_dispatch_group.wait()
+			let results = parse_return_json_data(input: finished_toneAnalysis!)
+			//print(results)
+			//print(finished_toneAnalysis)
+			//watson_fetch_dispatch_group.notify(queue: .main){
+//			  let results = parse_return_json_data(input: toneAnalysis!)
+//			  print(results)
 			  //[happy_sad_value, anger_fear_value, confidence_inhibition_value, analytical_emotional_value]
 				
 			  self.Happy_Sad_Stepper.value = Double(results[0])
@@ -185,7 +202,7 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
 			  self.New_Confidence_Inhibition_Value.text = String(results[2])
 			  self.Analytical_Emotional_Stepper.value = Double(results[3])
 			  self.New_Analytical_Emotional_Value.text = String(results[3])
-				
+
 			switch results[0] {
 				case 0:
 				self.New_Happy_Sad_Emoji.text = "😶"
@@ -242,7 +259,7 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
 				default:
 				self.New_Confidence_Inhibition_Emoji.text = "YES"
 				}
-				
+
 			switch results[3]{
 				case 0:
 				self.New_Analytical_Emotional_Emoji.text = "😶"
@@ -261,8 +278,8 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
 				default:
 				self.New_Analytical_Emotional_Emoji.text = "YES"
 				}
-				
-			}
+			
+			//}
 		}
 	}
 	
@@ -272,7 +289,7 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
 			Anger_Fear_Stepper.isHidden = true
 			Confidence_Inhibition_Stepper.isHidden = true
 			Analytical_Emotional_Stepper.isHidden = true
-			sender.setTitle("Auto Adjust", for: .normal)
+			sender.setTitle("Manual Adjust", for: .normal)
 			Call_API_Tone_Analyzer_Button.isUserInteractionEnabled = false
 			Call_API_Tone_Analyzer_Button.setTitle("Analyzer Disabled", for: .normal)
 		
@@ -281,7 +298,7 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
 			Anger_Fear_Stepper.isHidden = false
 			Confidence_Inhibition_Stepper.isHidden = false
 			Analytical_Emotional_Stepper.isHidden = false
-			sender.setTitle("Manual Adjust", for: .normal)
+			sender.setTitle("Auto Adjust", for: .normal)
 			Call_API_Tone_Analyzer_Button.isUserInteractionEnabled = true
 			Call_API_Tone_Analyzer_Button.setTitle("Analyze Text - Ready", for: .normal)
 		}
@@ -289,8 +306,8 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
 	
     // Return 0 if the steppers are not touched, the corresponding value is it was touched
     func get_emotion_values (Raw: String) -> Int{
-    if Raw == "Sadness" || Raw == "Fear" || Raw == "Bordem" || Raw == "Hate" {
-    return 1
+    if Raw == "Sadness" || Raw == "Fear" || Raw == "Inhibition" || Raw == "Emotional" {
+    return 0
         } else {
         return Int(Raw)!
         }
@@ -379,6 +396,7 @@ func textViewDidBeginEditing(_ textView: UITextView){
 	Auto_Manual_Button.isUserInteractionEnabled = false
     Call_API_Tone_Analyzer_Button.isUserInteractionEnabled = false
 	Call_API_Tone_Analyzer_Button.setTitle("Cannot Analyze While Editing", for: .normal)
+	Auto_Manual_Button.isHidden = true
     }
     
 func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -395,6 +413,8 @@ func textViewDidEndEditing(_ textView: UITextView) {
     }
     Auto_Manual_Button.isUserInteractionEnabled = true
 	Call_API_Tone_Analyzer_Button.isUserInteractionEnabled = true
+	Call_API_Tone_Analyzer_Button.setTitle("Analyze Text - Ready", for: .normal)
+	Auto_Manual_Button.isHidden = false
 }
 
     override func viewDidAppear(_ animated: Bool) {

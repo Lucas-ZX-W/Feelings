@@ -98,7 +98,7 @@
                                         <constraint firstItem="Oji-Oj-NSN" firstAttribute="leading" secondItem="Tmf-kg-vRC" secondAttribute="leadingMargin" id="C0K-8F-wiQ"/>
                                         <constraint firstItem="Oji-Oj-NSN" firstAttribute="top" secondItem="Tmf-kg-vRC" secondAttribute="topMargin" id="N3r-Al-7cy"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Oji-Oj-NSN" secondAttribute="trailing" id="PEI-CV-BZS"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Oji-Oj-NSN" secondAttribute="bottom" constant="2" id="ueP-DE-LQp"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Oji-Oj-NSN" secondAttribute="bottom" constant="2" placeholder="YES" id="ueP-DE-LQp"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <gestureRecognizers/>

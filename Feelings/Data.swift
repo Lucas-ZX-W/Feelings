@@ -75,48 +75,48 @@ func parse_return_json_data(input: ToneAnalysis) -> [Int] {
 		case 0.9...1.0: anger_fear_value = 3
 		case 0.73..<0.9: anger_fear_value = 2
 		case 0.5..<0.73: anger_fear_value = 1
-		default: anger_fear_value = 0
+		default: ()
 	}
 	switch api_Fear{
 		case 0.9...1.0: anger_fear_value = -3
 		case 0.73..<0.9: anger_fear_value = -2
 		case 0.5..<0.73: anger_fear_value = -1
-		default: anger_fear_value = 0
+		default: ()
 	}
 	switch api_Joy{
 		case 0.9...1.0: happy_sad_value = 3
 		case 0.73..<0.9: happy_sad_value = 2
 		case 0.5..<0.73: happy_sad_value = 1
-		default: happy_sad_value = 0
+		default: ()
 	}
 	switch api_Sadness{
 		case 0.9...1.0: happy_sad_value = -3
 		case 0.73..<0.9: happy_sad_value = -2
 		case 0.5..<0.73: happy_sad_value = -1
-		default: happy_sad_value = 0
+		default: ()
 	}
 	switch api_Confident{
 		case 0.9...1.0: confidence_inhibition_value = 3
 		case 0.73..<0.9: confidence_inhibition_value = 2
 		case 0.5..<0.73: confidence_inhibition_value = 1
-		default: confidence_inhibition_value = 0
+		default: ()
 	}
 	switch api_Tentative{
 		case 0.9...1.0: confidence_inhibition_value = -3
 		case 0.73..<0.9: confidence_inhibition_value = -2
 		case 0.5..<0.73: confidence_inhibition_value = -1
-		default: confidence_inhibition_value = 0
+		default: ()
 	}
 	switch api_Analytical{
 		case 0.9...1.0: analytical_emotional_value = 3
 		case 0.73..<0.9: analytical_emotional_value = 2
 		case 0.5..<0.73: analytical_emotional_value = 1
-		default: analytical_emotional_value = 0
+		default: ()
 	}
 	if api_Analytical < 0.5 && analytical_emotional_value == 0{
-		if (happy_sad_value == 3 && anger_fear_value == 3) || (happy_sad_value == 3 && confidence_inhibition_value == 3) || (anger_fear_value == 3 && confidence_inhibition_value == 3){analytical_emotional_value = -3}
-		else if (happy_sad_value == 3 || confidence_inhibition_value == 3 || anger_fear_value == 3) || (happy_sad_value == 2 && anger_fear_value == 2) || (happy_sad_value == 2 && confidence_inhibition_value == 2) || (anger_fear_value == 2 && confidence_inhibition_value == 2){analytical_emotional_value = -2}
-		else if (happy_sad_value == 2 || confidence_inhibition_value == 2 || anger_fear_value == 2) || (happy_sad_value == 1 && anger_fear_value == 1) || (happy_sad_value == 1 && confidence_inhibition_value == 1) || (anger_fear_value == 1 && confidence_inhibition_value == 1){analytical_emotional_value = -1}
+		if (abs(happy_sad_value) == 3 && abs(anger_fear_value) == 3) || (abs(happy_sad_value) == 3 && abs(confidence_inhibition_value) == 3) || (abs(anger_fear_value) == 3 && abs(confidence_inhibition_value) == 3){analytical_emotional_value = -3}
+		else if (abs(happy_sad_value) == 3 || abs(confidence_inhibition_value) == 3 || abs(anger_fear_value) == 3) || (abs(happy_sad_value) == 2 && abs(anger_fear_value) == 2) || (abs(happy_sad_value) == 2 && abs(confidence_inhibition_value) == 2) || (abs(anger_fear_value) == 2 && abs(confidence_inhibition_value) == 2){analytical_emotional_value = -2}
+		else if (abs(happy_sad_value) == 2 || abs(confidence_inhibition_value) == 2 || abs(anger_fear_value) == 2) || (abs(happy_sad_value) == 1 && abs(anger_fear_value) == 1) || (abs(happy_sad_value) == 1 && abs(confidence_inhibition_value) == 1) || (abs(anger_fear_value) == 1 && abs(confidence_inhibition_value) == 1){analytical_emotional_value = -1}
 	}
 	// Final return
 	return [happy_sad_value, anger_fear_value, confidence_inhibition_value, analytical_emotional_value]
@@ -157,7 +157,7 @@ func get_analytical_value () -> Int{
     }
 
 func most_recent_to_past(until: Int, return_to: String) {
-	var return_array: [NSManagedObject] = events_7_days
+	var return_array: [NSManagedObject]? = nil
 	switch return_to{
 		case "7 days": return_array = events_7_days
 		case "14 days": return_array = events_14_days
@@ -171,10 +171,10 @@ func most_recent_to_past(until: Int, return_to: String) {
 
 	for event in events{
 		if range.contains(event.value(forKeyPath: "eventdate") as! Date){
-			return_array.append(event)
+			return_array!.append(event)
 		}
 	}
-	return_array.sort(by: {($0.value(forKeyPath: "eventdate") as! Date) > ($1.value(forKeyPath: "eventdate") as! Date)})
+	return_array!.sort(by: {($0.value(forKeyPath: "eventdate") as! Date) > ($1.value(forKeyPath: "eventdate") as! Date)})
 	//return_array.sort(by:>)
 }
 

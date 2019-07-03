@@ -58,80 +58,80 @@ class EventDetailsViewController: UIViewController {
         
         // MARK: Controlling Emojis
         //Happy / Sad
-        switch Detail_Happy_Sad_Value.text {
-        case "0":
+        switch event?.value(forKeyPath: "happy_sad_value") as! Int {
+        case 0:
         Emoji_Happy_Sad.text = "😶"
-        case "3":
+        case 3:
         Emoji_Happy_Sad.text = "😁"
-        case "2":
+        case 2:
         Emoji_Happy_Sad.text = "😊"
-        case "1":
+        case 1:
         Emoji_Happy_Sad.text = "🙂"
-        case "-1":
+        case -1:
         Emoji_Happy_Sad.text = "😕"
-        case "-2":
+        case -2:
         Emoji_Happy_Sad.text = "☹️"
-        case "-3":
+        case -3:
         Emoji_Happy_Sad.text = "😭"
         default:
         Emoji_Happy_Sad.text = "nil"
         }
        
        //Anger / Fear
-       switch Detail_Anger_Fear_Value.text{
-       case "0":
+       switch event?.value(forKeyPath: "anger_fear_value") as! Int{
+       case 0:
        Emoji_Happy_Sad.text = "😶"
-       case "3":
+       case 3:
        Emoji_Anger_Fear.text = "😡"
-       case "2":
+       case 2:
        Emoji_Anger_Fear.text = "😤"
-       case "1":
+       case 1:
        Emoji_Anger_Fear.text = "😠"
-       case "-1":
+       case -1:
        Emoji_Anger_Fear.text = "😨"
-       case "-2":
+       case -2:
        Emoji_Anger_Fear.text = "😰"
-       case "-3":
+       case -3:
        Emoji_Anger_Fear.text = "😱"
        default:
        Emoji_Anger_Fear.text = "nil"
     }
     
     // Interest / Bordem
-    switch Detail_Confidence_Inhibition_Value.text{
-    case "0":
+    switch event?.value(forKeyPath: "confidence_inhibition_value") as! Int{
+    case 0:
     Emoji_Confidence_Inhibition.text = "😶"
-    case "3":
+    case 3:
     Emoji_Confidence_Inhibition.text = "😎"
-    case "2":
+    case 2:
     Emoji_Confidence_Inhibition.text = "😉"
-    case "1":
+    case 1:
     Emoji_Confidence_Inhibition.text = "😏"
-    case "-1":
+    case -1:
     Emoji_Confidence_Inhibition.text = "😐"
-    case "-2":
+    case -2:
     Emoji_Confidence_Inhibition.text = "😒"
-    case "-3":
+    case -3:
     Emoji_Confidence_Inhibition.text = "😓"
     default:
     Emoji_Confidence_Inhibition.text = "nil"
     }
     
     // Love / Hate
-    switch Detail_Analytical_Emotional_Value.text{
-    case "0":
+    switch event?.value(forKeyPath: "analytical_emotional_value") as! Int{
+    case 0:
     Emoji_Analytical_Emotional.text = "😶"
-    case "3":
+    case 3:
     Emoji_Analytical_Emotional.text = "🤓"
-    case "2":
+    case 2:
     Emoji_Analytical_Emotional.text = "🧐"
-    case "1":
+    case 1:
     Emoji_Analytical_Emotional.text = "🤨"
-    case "-1":
+    case -1:
     Emoji_Analytical_Emotional.text = "😛"
-    case "-2":
+    case -2:
     Emoji_Analytical_Emotional.text = "😝"
-    case "-3":
+    case -3:
     Emoji_Analytical_Emotional.text = "🤪"
     default:
     Emoji_Analytical_Emotional.text = "nil"

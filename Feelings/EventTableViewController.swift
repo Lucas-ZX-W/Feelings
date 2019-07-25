@@ -17,7 +17,7 @@ var events: [NSManagedObject] = [] // Main memories array (All Time)
 //FIXME: Configure all other arrays and their sorting functions for NSmanagedObject
 var events_7_days: [NSManagedObject] = []
 var events_14_days: [NSManagedObject] = []
-var events_1_month: [NSManagedObject] = []
+var events_30_days: [NSManagedObject] = []
 
 //MARK: Corss app variables
 var memories_authenticate = true
@@ -139,6 +139,9 @@ class EventTableViewController: UITableViewController{
 		let managedContext = appDelegate.persistentContainer.viewContext
 		
 		let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Memory")
+		// Request the NSManagedObjects to be fetched in decending date order
+		let dateSort = NSSortDescriptor(key: "eventdate", ascending: false)
+		fetchRequest.sortDescriptors = [dateSort]
 		
 		do {
 			events = try managedContext.fetch(fetchRequest)
@@ -325,6 +328,9 @@ class EventTableViewController: UITableViewController{
 					}
 					try managedContext.save()
 				}
+				remove_from_time_specific(event: event_managed_object, time_specific_array_days: 7)
+				remove_from_time_specific(event: event_managed_object, time_specific_array_days: 14)
+				remove_from_time_specific(event: event_managed_object, time_specific_array_days: 30)
 			} catch {}
         }
 //        } else if editingStyle == .insert {
@@ -438,11 +444,11 @@ class EventTableViewController: UITableViewController{
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
             } else {
            //Adding a new event instead of editing it.
-				let newIndexPath = IndexPath(row: events.count, section: 0)
+				let newIndexPath = IndexPath(row: 0, section: 0)
 				do {
 					try managedContext.save()
-					//events.insert(memory, at: 0)
-					events.append(memory)
+					events.insert(memory, at: 0)
+					//events.append(memory)
 				} catch let error as NSError {
 					print("Could not save. \(error), \(error.userInfo)")
 				}
@@ -457,6 +463,11 @@ class EventTableViewController: UITableViewController{
 //					print("Could not save. \(error), \(error.userInfo)")
 //				}
 //                tableView.insertRows(at: [newIndexPath], with: .automatic)
+
+			// inserting the new event to the front of the time-specific arrays
+			events_7_days.insert(memory, at: 0)
+			events_14_days.insert(memory, at: 0)
+			events_30_days.insert(memory, at: 0)
             }
         }
     }

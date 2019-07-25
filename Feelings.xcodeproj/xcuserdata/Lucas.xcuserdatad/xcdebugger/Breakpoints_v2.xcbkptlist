@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Feelings/EventTableViewController.swift"
-            timestampString = "583546146.772222"
+            timestampString = "584852395.3355221"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "302"
-            endingLineNumber = "302"
+            startingLineNumber = "305"
+            endingLineNumber = "305"
             landmarkName = "tableView(_:commit:forRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Feelings/EventTableViewController.swift"
-            timestampString = "583546146.772815"
+            timestampString = "584852395.338196"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "436"
-            endingLineNumber = "436"
+            startingLineNumber = "439"
+            endingLineNumber = "439"
             landmarkName = "unwindToEventList(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Feelings/EventTableViewController.swift"
-            timestampString = "583546146.773182"
+            timestampString = "584852395.338608"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "364"
-            endingLineNumber = "364"
+            startingLineNumber = "367"
+            endingLineNumber = "367"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -124,44 +124,77 @@ func parse_return_json_data(input: ToneAnalysis) -> [Int] {
 
 //MARK: Functions
 
-func get_happy_value () -> Int{
+func get_happy_value (array_name: String) -> Int{
+	var array: [NSManagedObject]? = nil
+	switch array_name{
+		case "all time": array = events
+		case "7 days": array = events_7_days
+		case "14 days": array = events_14_days
+		case "30 days": array = events_30_days
+		default: ()
+	}
     var a = 0
-    for e in events{
+    for e in array!{
 		a += (e.value(forKeyPath: "happy_sad_value") as? Int)!
     }
     return a
     }
 
-func get_anger_value () -> Int{
+func get_anger_value (array_name: String) -> Int{
+	var array: [NSManagedObject]? = nil
+	switch array_name{
+		case "all time": array = events
+		case "7 days": array = events_7_days
+		case "14 days": array = events_14_days
+		case "30 days": array = events_30_days
+		default: ()
+	}
     var a = 0
-    for e in events{
+    for e in array!{
     a += (e.value(forKeyPath: "anger_fear_value") as? Int)!
     }
     return a
     }
 
-func get_confidence_value () -> Int{
+func get_confidence_value (array_name: String) -> Int{
+	var array: [NSManagedObject]? = nil
+	switch array_name{
+		case "all time": array = events
+		case "7 days": array = events_7_days
+		case "14 days": array = events_14_days
+		case "30 days": array = events_30_days
+		default: ()
+	}
     var a = 0
-    for e in events{
+    for e in array!{
     a += (e.value(forKeyPath: "confidence_inhibition_value") as? Int)!
     }
     return a
     }
 
-func get_analytical_value () -> Int{
+func get_analytical_value (array_name: String) -> Int{
+	var array: [NSManagedObject]? = nil
+	switch array_name{
+		case "all time": array = events
+		case "7 days": array = events_7_days
+		case "14 days": array = events_14_days
+		case "30 days": array = events_30_days
+		default: ()
+	}
     var a = 0
-    for e in events{
+    for e in array!{
     a += (e.value(forKeyPath: "analytical_emotional_value") as? Int)!
     }
     return a
     }
 
-func most_recent_to_past(until: Int, return_to: String) {
+/** initial function to construct the time-specific arrays at launch of app */
+func initial_most_recent_to_past(until: Int) {
 	var return_array: [NSManagedObject]? = nil
-	switch return_to{
-		case "7 days": return_array = events_7_days
-		case "14 days": return_array = events_14_days
-		case "1 month": return_array = events_1_month
+	switch until{
+		case 7: return_array = events_7_days
+		case 14: return_array = events_14_days
+		case 30: return_array = events_30_days
 		default: ()
 	}
 	
@@ -172,10 +205,46 @@ func most_recent_to_past(until: Int, return_to: String) {
 	for event in events{
 		if range.contains(event.value(forKeyPath: "eventdate") as! Date){
 			return_array!.append(event)
-		}
+		} else { break }
 	}
 	return_array!.sort(by: {($0.value(forKeyPath: "eventdate") as! Date) > ($1.value(forKeyPath: "eventdate") as! Date)})
 	//return_array.sort(by:>)
+}
+
+/** post initial function to add new events to the existing time-specific arrays; NOTE this may not need to be called since the saved event can simply be inserted after it is saved */
+func modify_most_recent_to_past(until: Int) {
+	var return_array: [NSManagedObject]? = nil
+	switch until{
+		case 7: return_array = events_7_days
+		case 14: return_array = events_14_days
+		case 30: return_array = events_30_days
+		default: ()
+	}
+	
+	let now = Date()
+	let bottom_time = (Calendar.current.date(byAdding: DateComponents(day:-until), to: Date()))!
+	let range = bottom_time...now
+
+	for event in events{
+		if range.contains(event.value(forKeyPath: "eventdate") as! Date){
+			if return_array!.contains(event) == false{
+			return_array!.insert(event, at: 0)
+			}
+		} else { break }
+	}
+	//return_array!.sort(by: {($0.value(forKeyPath: "eventdate") as! Date) > ($1.value(forKeyPath: "eventdate") as! Date)})
+	//return_array.sort(by:>)
+}
+
+func remove_from_time_specific(event: NSManagedObject, time_specific_array_days: Int){
+	var return_array: [NSManagedObject]? = nil
+	switch time_specific_array_days{
+		case 7: return_array = events_7_days
+		case 14: return_array = events_14_days
+		case 30: return_array = events_30_days
+		default: ()
+	}
+	return_array! = return_array!.filter {$0 != event}
 }
 
 //class Event  {

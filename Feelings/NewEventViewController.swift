@@ -165,7 +165,16 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
         	self.present(self.alert, animated: true, completion: nil)
         	haptic_notification.notificationOccurred(.success)
 		} else {
-			print("Sending request to API")
+			print("Sending request to API") // add constraints to the labels and display loading
+			self.New_Happy_Sad_Emoji.text = "Loading"
+			self.New_Anger_Fear_Emoji.text = "Loading"
+			self.New_Confidence_Inhibition_Emoji.text = "Loading"
+			self.New_Analytical_Emotional_Emoji.text = "Loading"
+			self.New_Happy_Sad_Value.text = "..."
+			self.New_Anger_Fear_Value.text = "..."
+			self.New_Confidence_Inhibition_Value.text = "..."
+			self.New_Analytical_Emotional_Value.text = "..."
+			
 			var finished_toneAnalysis: ToneAnalysis? = nil
 			let text_to_API = NewEventDescription.text
 			
@@ -178,7 +187,7 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
 				  response, error in
 
 				  guard let toneAnalysis = response?.result else {
-					print(error as Any)
+					print(error as Any) // print the error onto the screen using alert
 					return
 				  }
 				  finished_toneAnalysis = toneAnalysis

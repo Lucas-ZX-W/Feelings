@@ -496,7 +496,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anger / Fear" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nhp-8M-PcS">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Anger / Fear" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nhp-8M-PcS">
                                                                         <rect key="frame" x="39" y="43.5" width="94" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
@@ -571,6 +571,9 @@
                                                             <segment title="30 Days"/>
                                                             <segment title="All Time "/>
                                                         </segments>
+                                                        <connections>
+                                                            <action selector="main_segment_bar:" destination="0Pg-Ns-FSd" eventType="valueChanged" id="596-p5-8L7"/>
+                                                        </connections>
                                                     </segmentedControl>
                                                 </subviews>
                                             </stackView>
@@ -602,6 +605,17 @@
                         <viewLayoutGuide key="safeArea" id="Mg9-Ki-fS2"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Menu" id="dED-xE-Jma"/>
+                    <connections>
+                        <outlet property="main_analytical_emotional_emoji" destination="C8Y-8o-Dg1" id="u3V-vI-bqS"/>
+                        <outlet property="main_analytical_emotional_string" destination="4RA-UV-naK" id="PtT-t7-Bw6"/>
+                        <outlet property="main_anger_fear_emoji" destination="0in-wl-LKL" id="wzd-Ux-hWc"/>
+                        <outlet property="main_anger_fear_string" destination="vEP-P0-CxI" id="75K-BP-249"/>
+                        <outlet property="main_confidence_inhibition_emoji" destination="uUe-Qu-DUu" id="CHL-sw-fVO"/>
+                        <outlet property="main_confidence_inhibition_string" destination="Fjm-0c-O9n" id="p5n-qK-94r"/>
+                        <outlet property="main_happiness_sadness_emoji" destination="tg8-YR-6zs" id="Lkf-eO-wWI"/>
+                        <outlet property="main_happiness_sadness_string" destination="qN4-k0-84i" id="oCV-hR-ljG"/>
+                        <outlet property="main_segment_bar_outlet" destination="ISM-qG-ZVp" id="9vt-ON-SPs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p1Y-EX-peZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

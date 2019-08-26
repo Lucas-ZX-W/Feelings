@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Feelings/EventTableViewController.swift"
-            timestampString = "584852395.338196"
+            timestampString = "584852395.338608"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "439"
-            endingLineNumber = "439"
-            landmarkName = "unwindToEventList(sender:)"
+            startingLineNumber = "367"
+            endingLineNumber = "367"
+            landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Feelings/EventTableViewController.swift"
-            timestampString = "584852395.338608"
+            timestampString = "588554530.632813"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "367"
-            endingLineNumber = "367"
-            landmarkName = "prepare(for:sender:)"
+            startingLineNumber = "445"
+            endingLineNumber = "445"
+            landmarkName = "unwindToEventList(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

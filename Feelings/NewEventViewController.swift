@@ -163,7 +163,7 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
 			self.alert = UIAlertController(title: nil, message: "Please Enter Event Text", preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         	self.present(self.alert, animated: true, completion: nil)
-        	haptic_notification.notificationOccurred(.success)
+        	haptic_notification.notificationOccurred(.error)
 		} else {
 			print("Sending request to API") // add constraints to the labels and display loading
 			self.New_Happy_Sad_Emoji.text = "Loading"
@@ -187,7 +187,15 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
 				  response, error in
 
 				  guard let toneAnalysis = response?.result else {
-					print(error as Any) // print the error onto the screen using alert
+					let returned_error = error // print the error onto the screen using alert
+					print(returned_error as Any)
+					print("This line seperates the raw error and debug description ------------------------")
+					print(returned_error.debugDescription)
+					let error_message = "Fetch Failed, description:\(returned_error?.errorDescription), for beta only: \(returned_error.debugDescription)"
+					self.alert = UIAlertController(title: nil, message: error_message, preferredStyle: .alert)
+					self.alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        			self.present(self.alert, animated: true, completion: nil)
+					self.haptic_notification.notificationOccurred(.error)
 					return
 				  }
 				  finished_toneAnalysis = toneAnalysis

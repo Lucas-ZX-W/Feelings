@@ -12,9 +12,38 @@ import CoreData
 import RestKit
 import ToneAnalyzerV3
 
-//MARK: Watson API
+//MARK: Data Arrays and variables
+var events: [NSManagedObject] = [] // Main memories array (All Time)
+var events_7_days: [NSManagedObject] = []
+var events_14_days: [NSManagedObject] = []
+var events_30_days: [NSManagedObject] = []
 
-let watson_tone_analyzer = ToneAnalyzer(version: "2019-06-23", apiKey: "Nf_WkaaDfCwJH0yI3Wd4jb8MJpOTDYR5B_DOP88kQj7a") // For argument "version", use today's date for the most recent; Carthage version can be checked via the Swift SDK Github page
+var raw_total_happy_sad_val: Int = 0
+var raw_total_anger_fear_val: Int = 0
+var raw_total_confidence_inhibition_val: Int = 0
+var raw_total_analytical_emotional_val: Int = 0
+var all_time_array_length: Int = 0
+
+//var avg_happy_sad_val: Double = 0
+//var avg_anger_fear_val: Double = 0
+//var avg_confidence_inhibition_val: Double = 0
+//var avg_analytical_emotional_val: Double = 0
+//var total_happy_val: Int = 0
+//var total_sad_val: Int = 0
+//var total_anger_val: Int = 0
+//var total_fear_val: Int = 0
+//var total_confidence_val: Int = 0
+//var total_inhibition_val: Int = 0
+//var total_analytical_val: Int = 0
+//var total_emotional_val: Int = 0
+//var all_time_array_length: Int = 0
+
+//MARK: Corss app variables for operation
+var memories_authenticate = true
+var saved_memory_success = false
+
+//MARK: Watson API
+let watson_tone_analyzer = ToneAnalyzer(version: "2019-08-26", apiKey: "Nf_WkaaDfCwJH0yI3Wd4jb8MJpOTDYR5B_DOP88kQj7a") // For argument "version", use today's date for the most recent; Carthage version can be checked via the Swift SDK Github page
 
 func parse_return_json_data(input: ToneAnalysis) -> [Int] {
 	var emotions_list: [(String, Double)] = []
@@ -123,8 +152,8 @@ func parse_return_json_data(input: ToneAnalysis) -> [Int] {
 }
 
 //MARK: Functions
-
-func get_happy_value (array_name: String) -> Int{
+//FIXME: consider condensing these 4 functions into one; add another one / two for computing the values of just the individual emotions
+func get_happy_sad_value (array_name: String) -> Int{
 	var array: [NSManagedObject]? = nil
 	switch array_name{
 		case "all time": array = events
@@ -140,7 +169,7 @@ func get_happy_value (array_name: String) -> Int{
     return a
     }
 
-func get_anger_value (array_name: String) -> Int{
+func get_anger_fear_value (array_name: String) -> Int{
 	var array: [NSManagedObject]? = nil
 	switch array_name{
 		case "all time": array = events
@@ -156,7 +185,7 @@ func get_anger_value (array_name: String) -> Int{
     return a
     }
 
-func get_confidence_value (array_name: String) -> Int{
+func get_confidence_inhibition_value (array_name: String) -> Int{
 	var array: [NSManagedObject]? = nil
 	switch array_name{
 		case "all time": array = events
@@ -172,7 +201,7 @@ func get_confidence_value (array_name: String) -> Int{
     return a
     }
 
-func get_analytical_value (array_name: String) -> Int{
+func get_analytical_emotional_value (array_name: String) -> Int{
 	var array: [NSManagedObject]? = nil
 	switch array_name{
 		case "all time": array = events

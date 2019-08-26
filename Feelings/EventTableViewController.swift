@@ -10,18 +10,7 @@ import UIKit
 import os.log
 import LocalAuthentication
 import CoreData
-import AVFoundation // Old style vibration
-
-//MARK: Data Arrays
-var events: [NSManagedObject] = [] // Main memories array (All Time)
-//FIXME: Configure all other arrays and their sorting functions for NSmanagedObject
-var events_7_days: [NSManagedObject] = []
-var events_14_days: [NSManagedObject] = []
-var events_30_days: [NSManagedObject] = []
-
-//MARK: Corss app variables
-var memories_authenticate = true
-var saved_memory_success = false
+import AVFoundation // Old style vibration, not working currently
 
 class EventTableViewController: UITableViewController{
     
@@ -304,8 +293,13 @@ class EventTableViewController: UITableViewController{
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+			let event_managed_object = events[indexPath.row]
+        	// Modify the running emotional values
+			raw_total_happy_sad_val -= event_managed_object.value(forKeyPath: "happy_sad_value") as! Int
+			raw_total_anger_fear_val -= event_managed_object.value(forKeyPath: "anger_fear_value") as! Int
+			raw_total_confidence_inhibition_val -= event_managed_object.value(forKeyPath: "confidence_inhibition_value") as! Int
+			raw_total_analytical_emotional_val -= event_managed_object.value(forKeyPath: "analytical_emotional_value") as! Int
             // Delete the row from the data source
-            let event_managed_object = events[indexPath.row]
             let event_date = event_managed_object.value(forKeyPath: "eventdate")
             events.remove(at: indexPath.row)
             //events.remove(at: abs(indexPath.row - events.count) - 1)
@@ -331,6 +325,8 @@ class EventTableViewController: UITableViewController{
 				remove_from_time_specific(event: event_managed_object, time_specific_array_days: 7)
 				remove_from_time_specific(event: event_managed_object, time_specific_array_days: 14)
 				remove_from_time_specific(event: event_managed_object, time_specific_array_days: 30)
+				// modifies the running values
+				all_time_array_length -= 1
 			} catch {}
         }
 //        } else if editingStyle == .insert {
@@ -438,6 +434,13 @@ class EventTableViewController: UITableViewController{
 			memory.setValue(event_from_segue[7], forKeyPath: "eventphoto")
 			memory.setValue(event_from_segue[8], forKeyPath: "eventtime_display")
 			memory.setValue(event_from_segue[9], forKeyPath: "happy_sad_value")
+			
+			// Modify running values
+			all_time_array_length += 1
+			raw_total_happy_sad_val += event_from_segue[9] as! Int
+			raw_total_anger_fear_val += event_from_segue[1] as! Int
+			raw_total_confidence_inhibition_val += event_from_segue[2] as! Int
+			raw_total_analytical_emotional_val += event_from_segue[0] as! Int
     
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
             	events[selectedIndexPath.row] = memory

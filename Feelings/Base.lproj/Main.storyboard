@@ -84,7 +84,7 @@
                                                         <constraint firstAttribute="trailing" secondItem="4D9-OQ-9Lg" secondAttribute="trailing" id="Vjb-mg-V8F"/>
                                                     </constraints>
                                                 </stackView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cell_Placeholder" highlightedImage="Cell_Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="zPu-G7-K7D">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cell_Placeholder" highlightedImage="Cell_Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="zPu-G7-K7D">
                                                     <rect key="frame" x="233" y="0.0" width="110" height="92"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="110" id="Hge-xC-KGN"/>
@@ -458,7 +458,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="A56-QX-7nP">
-                                                <rect key="frame" x="13" y="55" width="349" height="287"/>
+                                                <rect key="frame" x="13" y="55" width="349" height="347.5"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wnK-qj-BDC">
@@ -563,8 +563,14 @@
                                                             </stackView>
                                                         </subviews>
                                                     </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="x total Memories in the past x days" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zG2-FQ-F0h">
+                                                        <rect key="frame" x="0.0" y="259" width="349" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ISM-qG-ZVp">
-                                                        <rect key="frame" x="0.0" y="259" width="349" height="29"/>
+                                                        <rect key="frame" x="0.0" y="319.5" width="349" height="29"/>
                                                         <segments>
                                                             <segment title="7 Days"/>
                                                             <segment title="14 Days"/>
@@ -615,6 +621,7 @@
                         <outlet property="main_happiness_sadness_emoji" destination="tg8-YR-6zs" id="Lkf-eO-wWI"/>
                         <outlet property="main_happiness_sadness_string" destination="qN4-k0-84i" id="oCV-hR-ljG"/>
                         <outlet property="main_segment_bar_outlet" destination="ISM-qG-ZVp" id="9vt-ON-SPs"/>
+                        <outlet property="total_events_string" destination="zG2-FQ-F0h" id="CYu-Cq-NEx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p1Y-EX-peZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -709,7 +716,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="yq8-0R-cwY">
+                                                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="yq8-0R-cwY">
                                                                 <rect key="frame" x="0.0" y="52" width="270" height="230"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" priority="999" constant="230" id="5Un-BB-mIs"/>

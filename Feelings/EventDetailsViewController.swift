@@ -58,85 +58,52 @@ class EventDetailsViewController: UIViewController {
         
         // MARK: Controlling Emojis
         //Happy / Sad
-        switch event?.value(forKeyPath: "happy_sad_value") as! Int {
-        case 0:
-        Emoji_Happy_Sad.text = "😶"
-        case 3:
-        Emoji_Happy_Sad.text = "😁"
-        case 2:
-        Emoji_Happy_Sad.text = "😊"
-        case 1:
-        Emoji_Happy_Sad.text = "🙂"
-        case -1:
-        Emoji_Happy_Sad.text = "😕"
-        case -2:
-        Emoji_Happy_Sad.text = "☹️"
-        case -3:
-        Emoji_Happy_Sad.text = "😭"
-        default:
-        Emoji_Happy_Sad.text = "nil"
-        }
+		switch event?.value(forKeyPath: "happy_sad_value") as! Int {
+			case 0: Emoji_Happy_Sad.text = "😶"
+			case 3: Emoji_Happy_Sad.text = "😁"
+			case 2: Emoji_Happy_Sad.text = "😊"
+			case 1: Emoji_Happy_Sad.text = "🙂"
+			case -1: Emoji_Happy_Sad.text = "😕"
+			case -2: Emoji_Happy_Sad.text = "☹️"
+			case -3: Emoji_Happy_Sad.text = "😭"
+			default: Emoji_Happy_Sad.text = "nil"
+		}
        
-       //Anger / Fear
-       switch event?.value(forKeyPath: "anger_fear_value") as! Int{
-       case 0:
-       Emoji_Happy_Sad.text = "😶"
-       case 3:
-       Emoji_Anger_Fear.text = "😡"
-       case 2:
-       Emoji_Anger_Fear.text = "😤"
-       case 1:
-       Emoji_Anger_Fear.text = "😠"
-       case -1:
-       Emoji_Anger_Fear.text = "😨"
-       case -2:
-       Emoji_Anger_Fear.text = "😰"
-       case -3:
-       Emoji_Anger_Fear.text = "😱"
-       default:
-       Emoji_Anger_Fear.text = "nil"
-    }
+		//Anger / Fear
+		switch event?.value(forKeyPath: "anger_fear_value") as! Int{
+			case 0: Emoji_Happy_Sad.text = "😶"
+			case 3: Emoji_Anger_Fear.text = "😡"
+			case 2: Emoji_Anger_Fear.text = "😤"
+			case 1: Emoji_Anger_Fear.text = "😠"
+			case -1: Emoji_Anger_Fear.text = "😨"
+			case -2: Emoji_Anger_Fear.text = "😰"
+			case -3: Emoji_Anger_Fear.text = "😱"
+			default: Emoji_Anger_Fear.text = "nil"
+		}
     
-    // Interest / Bordem
-    switch event?.value(forKeyPath: "confidence_inhibition_value") as! Int{
-    case 0:
-    Emoji_Confidence_Inhibition.text = "😶"
-    case 3:
-    Emoji_Confidence_Inhibition.text = "😎"
-    case 2:
-    Emoji_Confidence_Inhibition.text = "😉"
-    case 1:
-    Emoji_Confidence_Inhibition.text = "😏"
-    case -1:
-    Emoji_Confidence_Inhibition.text = "😐"
-    case -2:
-    Emoji_Confidence_Inhibition.text = "😒"
-    case -3:
-    Emoji_Confidence_Inhibition.text = "😓"
-    default:
-    Emoji_Confidence_Inhibition.text = "nil"
-    }
+		// Interest / Bordem
+		switch event?.value(forKeyPath: "confidence_inhibition_value") as! Int{
+			case 0: Emoji_Confidence_Inhibition.text = "😶"
+			case 3: Emoji_Confidence_Inhibition.text = "😎"
+			case 2: Emoji_Confidence_Inhibition.text = "😉"
+			case 1: Emoji_Confidence_Inhibition.text = "😏"
+			case -1: Emoji_Confidence_Inhibition.text = "😐"
+			case -2: Emoji_Confidence_Inhibition.text = "😒"
+			case -3: Emoji_Confidence_Inhibition.text = "😓"
+			default: Emoji_Confidence_Inhibition.text = "nil"
+		}
     
-    // Love / Hate
-    switch event?.value(forKeyPath: "analytical_emotional_value") as! Int{
-    case 0:
-    Emoji_Analytical_Emotional.text = "😶"
-    case 3:
-    Emoji_Analytical_Emotional.text = "🤓"
-    case 2:
-    Emoji_Analytical_Emotional.text = "🧐"
-    case 1:
-    Emoji_Analytical_Emotional.text = "🤨"
-    case -1:
-    Emoji_Analytical_Emotional.text = "😛"
-    case -2:
-    Emoji_Analytical_Emotional.text = "😝"
-    case -3:
-    Emoji_Analytical_Emotional.text = "🤪"
-    default:
-    Emoji_Analytical_Emotional.text = "nil"
-        }
-    
+		// Love / Hate
+		switch event?.value(forKeyPath: "analytical_emotional_value") as! Int{
+			case 0: Emoji_Analytical_Emotional.text = "😶"
+			case 3: Emoji_Analytical_Emotional.text = "🤓"
+			case 2: Emoji_Analytical_Emotional.text = "🧐"
+			case 1: Emoji_Analytical_Emotional.text = "🤨"
+			case -1: Emoji_Analytical_Emotional.text = "😛"
+			case -2: Emoji_Analytical_Emotional.text = "😝"
+			case -3: Emoji_Analytical_Emotional.text = "🤪"
+			default: Emoji_Analytical_Emotional.text = "nil"
+			}
     }
 
     override func viewDidAppear(_ animated: Bool) {

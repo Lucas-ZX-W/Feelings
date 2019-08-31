@@ -178,10 +178,10 @@ class EventTableViewController: UITableViewController{
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
-        let cellIdentifier = "EventTableViewCell"
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? EventTableViewCell else {fatalError("The cell is not an instance of the ViewCell class")}
+		let cellIdentifier = "EventTableViewCell"
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? EventTableViewCell else {fatalError("The cell is not an instance of the ViewCell class")}
         
-      let event = events[indexPath.row]
+		let event = events[indexPath.row]
         
         // MARK: Configure the cell...
 
@@ -194,93 +194,57 @@ class EventTableViewController: UITableViewController{
         // Functions to control the cell view emojis:
         // Happy / Sad
         switch event.value(forKeyPath: "happy_sad_value") as? Int {
-        case 0:
-        //cell.Cell_Happy_Sad_Emoji.isHidden = true
-        cell.Cell_Happy_Sad_Emoji.text = "😶"
-        case 3:
-        cell.Cell_Happy_Sad_Emoji.text = "😁"
-        case 2:
-        cell.Cell_Happy_Sad_Emoji.text = "😊"
-        case 1:
-        cell.Cell_Happy_Sad_Emoji.text = "🙂"
-        case -1:
-        cell.Cell_Happy_Sad_Emoji.text = "😕"
-        case -2:
-        cell.Cell_Happy_Sad_Emoji.text = "☹️"
-        case -3:
-        cell.Cell_Happy_Sad_Emoji.text = "😭"
-        default:
-        cell.Cell_Happy_Sad_Emoji.text = "nil"
+			case 0: cell.Cell_Happy_Sad_Emoji.text = "😶" //cell.Cell_Happy_Sad_Emoji.isHidden = true
+			case 3: cell.Cell_Happy_Sad_Emoji.text = "😁"
+			case 2: cell.Cell_Happy_Sad_Emoji.text = "😊"
+			case 1: cell.Cell_Happy_Sad_Emoji.text = "🙂"
+			case -1: cell.Cell_Happy_Sad_Emoji.text = "😕"
+			case -2: cell.Cell_Happy_Sad_Emoji.text = "☹️"
+			case -3: cell.Cell_Happy_Sad_Emoji.text = "😭"
+			default: cell.Cell_Happy_Sad_Emoji.text = "nil"
         }
     
         //Anger / Fear
-       switch event.value(forKeyPath: "anger_fear_value") as? Int{
-       case 0:
-       cell.Cell_Anger_Fear_Emoji.text = "😶"
-       case 3:
-       cell.Cell_Anger_Fear_Emoji.text = "😡"
-       case 2:
-       cell.Cell_Anger_Fear_Emoji.text = "😤"
-       case 1:
-       cell.Cell_Anger_Fear_Emoji.text = "😠"
-       case -1:
-       cell.Cell_Anger_Fear_Emoji.text = "😨"
-       case -2:
-       cell.Cell_Anger_Fear_Emoji.text = "😰"
-       case -3:
-       cell.Cell_Anger_Fear_Emoji.text = "😱"
-       default:
-       cell.Cell_Anger_Fear_Emoji.text = "nil"
-        }
+		switch event.value(forKeyPath: "anger_fear_value") as? Int{
+			case 0: cell.Cell_Anger_Fear_Emoji.text = "😶"
+			case 3: cell.Cell_Anger_Fear_Emoji.text = "😡"
+			case 2: cell.Cell_Anger_Fear_Emoji.text = "😤"
+			case 1: cell.Cell_Anger_Fear_Emoji.text = "😠"
+			case -1: cell.Cell_Anger_Fear_Emoji.text = "😨"
+			case -2: cell.Cell_Anger_Fear_Emoji.text = "😰"
+			case -3: cell.Cell_Anger_Fear_Emoji.text = "😱"
+			default: cell.Cell_Anger_Fear_Emoji.text = "nil"
+		}
         
-        switch event.value(forKeyPath: "confidence_inhibition_value") as? Int{
-        case 0:
-        cell.Cell_Confidence_Inhibition_Emoji.text = "😶"
-        case 3:
-        cell.Cell_Confidence_Inhibition_Emoji.text = "😎"
-        case 2:
-        cell.Cell_Confidence_Inhibition_Emoji.text = "😉"
-        case 1:
-        cell.Cell_Confidence_Inhibition_Emoji.text = "😏"
-        case -1:
-        cell.Cell_Confidence_Inhibition_Emoji.text = "😐"
-        case -2:
-        cell.Cell_Confidence_Inhibition_Emoji.text = "😒"
-        case -3:
-        cell.Cell_Confidence_Inhibition_Emoji.text = "😓"
-        default:
-        cell.Cell_Confidence_Inhibition_Emoji.text = "nil"
-        }
+		switch event.value(forKeyPath: "confidence_inhibition_value") as? Int{
+			case 0: cell.Cell_Confidence_Inhibition_Emoji.text = "😶"
+			case 3: cell.Cell_Confidence_Inhibition_Emoji.text = "😎"
+			case 2: cell.Cell_Confidence_Inhibition_Emoji.text = "😉"
+			case 1: cell.Cell_Confidence_Inhibition_Emoji.text = "😏"
+			case -1: cell.Cell_Confidence_Inhibition_Emoji.text = "😐"
+			case -2: cell.Cell_Confidence_Inhibition_Emoji.text = "😒"
+			case -3: cell.Cell_Confidence_Inhibition_Emoji.text = "😓"
+			default: cell.Cell_Confidence_Inhibition_Emoji.text = "nil"
+		}
         
-        switch event.value(forKeyPath: "analytical_emotional_value") as? Int{
-        case 0:
-        cell.Cell_Analytical_Emotional_Emoji.text = "😶"
-        case 3:
-        cell.Cell_Analytical_Emotional_Emoji.text = "🤓"
-        case 2:
-        cell.Cell_Analytical_Emotional_Emoji.text = "🧐"
-        case 1:
-        cell.Cell_Analytical_Emotional_Emoji.text = "🤨"
-        case -1:
-        cell.Cell_Analytical_Emotional_Emoji.text = "😛"
-        case -2:
-        cell.Cell_Analytical_Emotional_Emoji.text = "😝"
-        case -3:
-        cell.Cell_Analytical_Emotional_Emoji.text = "🤪"
-        default:
-        cell.Cell_Analytical_Emotional_Emoji.text = "nil"
-        }
-        
+		switch event.value(forKeyPath: "analytical_emotional_value") as? Int{
+			case 0: cell.Cell_Analytical_Emotional_Emoji.text = "😶"
+			case 3: cell.Cell_Analytical_Emotional_Emoji.text = "🤓"
+			case 2: cell.Cell_Analytical_Emotional_Emoji.text = "🧐"
+			case 1: cell.Cell_Analytical_Emotional_Emoji.text = "🤨"
+			case -1: cell.Cell_Analytical_Emotional_Emoji.text = "😛"
+			case -2: cell.Cell_Analytical_Emotional_Emoji.text = "😝"
+			case -3: cell.Cell_Analytical_Emotional_Emoji.text = "🤪"
+			default: cell.Cell_Analytical_Emotional_Emoji.text = "nil"
+		}
         //Hide the default photo if the photo is not changed
         
 //        if event.does_have_photo == false{
 //        cell.DefaultEventPhoto.isHidden = true
 //        }
-        
         return cell
     }
     
-
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

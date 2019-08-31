@@ -23,6 +23,10 @@ var raw_total_anger_fear_val: Int = 0
 var raw_total_confidence_inhibition_val: Int = 0
 var raw_total_analytical_emotional_val: Int = 0
 var all_time_array_length: Int = 0
+var avg_happy_sad_val: Double = 0.0
+var avg_anger_fear_val: Double = 0.0
+var avg_confidence_inhibition_val: Double = 0.0
+var avg_analytical_emotional_val: Double = 0.0
 
 //var avg_happy_sad_val: Double = 0
 //var avg_anger_fear_val: Double = 0
@@ -152,8 +156,7 @@ func parse_return_json_data(input: ToneAnalysis) -> [Int] {
 }
 
 //MARK: Functions
-//FIXME: consider condensing these 4 functions into one; add another one / two for computing the values of just the individual emotions
-func get_happy_sad_value (array_name: String) -> Int{
+func get_raw_emotions_value (array_name: String, KeyPath: String) -> Int{
 	var array: [NSManagedObject]? = nil
 	switch array_name{
 		case "all time": array = events
@@ -164,12 +167,13 @@ func get_happy_sad_value (array_name: String) -> Int{
 	}
     var a = 0
     for e in array!{
-		a += (e.value(forKeyPath: "happy_sad_value") as? Int)!
+		a += (e.value(forKeyPath: KeyPath) as? Int)!
     }
     return a
-    }
+}
 
-func get_anger_fear_value (array_name: String) -> Int{
+func get_individual_emotions_value (array_name: String, KeyPath: String, emotion: String) -> Int{
+	var a = 0
 	var array: [NSManagedObject]? = nil
 	switch array_name{
 		case "all time": array = events
@@ -178,14 +182,28 @@ func get_anger_fear_value (array_name: String) -> Int{
 		case "30 days": array = events_30_days
 		default: ()
 	}
-    var a = 0
-    for e in array!{
-    a += (e.value(forKeyPath: "anger_fear_value") as? Int)!
-    }
-    return a
-    }
+	switch emotion{
+		case "happiness", "anger", "confidence", "analytical":
+			for e in array!{
+				let x = (e.value(forKeyPath: KeyPath) as? Int)!
+				if x > 0{
+					a += x
+				}
+			}
+		case "sadness", "fear", "inhibition", "emotional":
+			for e in array!{
+					let x = (e.value(forKeyPath: KeyPath) as? Int)!
+					if x < 0{
+						a += x
+					}
+				}
+		default: ()
+	}
+	return a
+}
 
-func get_confidence_inhibition_value (array_name: String) -> Int{
+func get_num_of_involved_events (array_name: String, KeyPath: String) -> Int{
+	var a = 0
 	var array: [NSManagedObject]? = nil
 	switch array_name{
 		case "all time": array = events
@@ -194,28 +212,13 @@ func get_confidence_inhibition_value (array_name: String) -> Int{
 		case "30 days": array = events_30_days
 		default: ()
 	}
-    var a = 0
-    for e in array!{
-    a += (e.value(forKeyPath: "confidence_inhibition_value") as? Int)!
-    }
-    return a
-    }
-
-func get_analytical_emotional_value (array_name: String) -> Int{
-	var array: [NSManagedObject]? = nil
-	switch array_name{
-		case "all time": array = events
-		case "7 days": array = events_7_days
-		case "14 days": array = events_14_days
-		case "30 days": array = events_30_days
-		default: ()
+	for e in array!{
+		if (e.value(forKeyPath: KeyPath) as? Int)! != 0{
+			a += 1
+		}
 	}
-    var a = 0
-    for e in array!{
-    a += (e.value(forKeyPath: "analytical_emotional_value") as? Int)!
-    }
-    return a
-    }
+	return a
+}
 
 /** initial function to construct the time-specific arrays at launch of app */
 func initial_most_recent_to_past(until: Int) {

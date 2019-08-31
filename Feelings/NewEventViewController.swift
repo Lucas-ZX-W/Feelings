@@ -48,110 +48,66 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
     // MARK: Corrsponding Steppers
     
     @IBAction func New_Happy_Sad_Value_Stepper(_ sender: UIStepper) {
-    
-    sender.maximumValue = 3.0
-    sender.minimumValue = -3.0
-        
+    	sender.maximumValue = 3.0
+    	sender.minimumValue = -3.0
         New_Happy_Sad_Value.text = String(Int(sender.value))
-        
         switch Int(sender.value) {
-        case 0:
-        New_Happy_Sad_Emoji.text = "😶"
-        case 3:
-        New_Happy_Sad_Emoji.text = "😁"
-        case 2:
-        New_Happy_Sad_Emoji.text = "😊"
-        case 1:
-        New_Happy_Sad_Emoji.text = "🙂"
-        case -1:
-        New_Happy_Sad_Emoji.text = "😕"
-        case -2:
-        New_Happy_Sad_Emoji.text = "☹️"
-        case -3:
-        New_Happy_Sad_Emoji.text = "😭"
-        default:
-        New_Happy_Sad_Emoji.text = "YES"
+			case 0: New_Happy_Sad_Emoji.text = "😶"
+			case 3: New_Happy_Sad_Emoji.text = "😁"
+			case 2: New_Happy_Sad_Emoji.text = "😊"
+			case 1: New_Happy_Sad_Emoji.text = "🙂"
+			case -1: New_Happy_Sad_Emoji.text = "😕"
+			case -2: New_Happy_Sad_Emoji.text = "☹️"
+			case -3: New_Happy_Sad_Emoji.text = "😭"
+			default: New_Happy_Sad_Emoji.text = "YES"
         }
     }
     
     @IBAction func New_Anger_Fear_Value_Stepper(_ sender: UIStepper) {
-    
-    sender.maximumValue = 3.0
-    sender.minimumValue = -3.0
-    
+		sender.maximumValue = 3.0
+		sender.minimumValue = -3.0
         New_Anger_Fear_Value.text = String(Int(sender.value))
-    
-    switch Int(sender.value){
-       case 0:
-       New_Anger_Fear_Emoji.text = "😶"
-       case 3:
-       New_Anger_Fear_Emoji.text = "😡"
-       case 2:
-       New_Anger_Fear_Emoji.text = "😤"
-       case 1:
-       New_Anger_Fear_Emoji.text = "😠"
-       case -1:
-       New_Anger_Fear_Emoji.text = "😨"
-       case -2:
-       New_Anger_Fear_Emoji.text = "😰"
-       case -3:
-       New_Anger_Fear_Emoji.text = "😱"
-       default:
-       New_Anger_Fear_Emoji.text = "YES"
-        }
+		switch Int(sender.value){
+			case 0: New_Anger_Fear_Emoji.text = "😶"
+			case 3: New_Anger_Fear_Emoji.text = "😡"
+			case 2: New_Anger_Fear_Emoji.text = "😤"
+			case 1: New_Anger_Fear_Emoji.text = "😠"
+			case -1: New_Anger_Fear_Emoji.text = "😨"
+			case -2: New_Anger_Fear_Emoji.text = "😰"
+			case -3: New_Anger_Fear_Emoji.text = "😱"
+			default: New_Anger_Fear_Emoji.text = "YES"
+			}
     }
     
     @IBAction func New_Confidence_Inhibition_Value_Stepper(_ sender: UIStepper) {
-    
-    sender.maximumValue = 3.0
-    sender.minimumValue = -3.0
-    
+		sender.maximumValue = 3.0
+		sender.minimumValue = -3.0
         New_Confidence_Inhibition_Value.text = String(Int(sender.value))
-        
         switch Int(sender.value){
-        case 0:
-        New_Confidence_Inhibition_Emoji.text = "😶"
-        case 3:
-        New_Confidence_Inhibition_Emoji.text = "😎"
-        case 2:
-        New_Confidence_Inhibition_Emoji.text = "😉"
-        case 1:
-        New_Confidence_Inhibition_Emoji.text = "😏"
-        case -1:
-        New_Confidence_Inhibition_Emoji.text = "😐"
-        case -2:
-        New_Confidence_Inhibition_Emoji.text = "😒"
-        case -3:
-        New_Confidence_Inhibition_Emoji.text = "😓"
-        default:
-        New_Confidence_Inhibition_Emoji.text = "YES"
+			case 0: New_Confidence_Inhibition_Emoji.text = "😶"
+			case 3: New_Confidence_Inhibition_Emoji.text = "😎"
+			case 2: New_Confidence_Inhibition_Emoji.text = "😉"
+			case 1: New_Confidence_Inhibition_Emoji.text = "😏"
+			case -1: New_Confidence_Inhibition_Emoji.text = "😐"
+			case -2: New_Confidence_Inhibition_Emoji.text = "😒"
+			case -3: New_Confidence_Inhibition_Emoji.text = "😓"
+			default: New_Confidence_Inhibition_Emoji.text = "YES"
         }
     }
     
     @IBAction func New_Analytical_Emotional_Value_Stepper(_ sender: UIStepper) {
-    
-    sender.maximumValue = 3.0
-    sender.minimumValue = -3.0
-    
+		sender.maximumValue = 3.0
+		sender.minimumValue = -3.0
         New_Analytical_Emotional_Value.text = String(Int(sender.value))
-        
         switch Int(sender.value){
-        case 0:
-        New_Analytical_Emotional_Emoji.text = "😶"
-        case 3:
-        New_Analytical_Emotional_Emoji.text = "🤓"
-        case 2:
-        New_Analytical_Emotional_Emoji.text = "🧐"
-        case 1:
-        New_Analytical_Emotional_Emoji.text = "🤨"
-        case -1:
-        New_Analytical_Emotional_Emoji.text = "😛"
-        case -2:
-        New_Analytical_Emotional_Emoji.text = "😝"
-        case -3:
-        New_Analytical_Emotional_Emoji.text = "🤪"
-        default:
-        New_Analytical_Emotional_Emoji.text = "YES"
+			case 0: New_Analytical_Emotional_Emoji.text = "😶"
+			case 3: New_Analytical_Emotional_Emoji.text = "🤓"
+			case 2: New_Analytical_Emotional_Emoji.text = "🧐"
+			case 1: New_Analytical_Emotional_Emoji.text = "🤨"
+			case -1: New_Analytical_Emotional_Emoji.text = "😛"
+			case -2: New_Analytical_Emotional_Emoji.text = "😝"
+			case -3: New_Analytical_Emotional_Emoji.text = "🤪"
+			default: New_Analytical_Emotional_Emoji.text = "YES"
         }
     }
 	
@@ -211,32 +167,24 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
 //			  print(results)
 			  //[happy_sad_value, anger_fear_value, confidence_inhibition_value, analytical_emotional_value]
 				
-			  self.Happy_Sad_Stepper.value = Double(results[0])
-			  self.New_Happy_Sad_Value.text = String(results[0])
-			  self.Anger_Fear_Stepper.value = Double(results[1])
-			  self.New_Anger_Fear_Value.text = String(results[1])
-			  self.Confidence_Inhibition_Stepper.value = Double(results[2])
-			  self.New_Confidence_Inhibition_Value.text = String(results[2])
-			  self.Analytical_Emotional_Stepper.value = Double(results[3])
-			  self.New_Analytical_Emotional_Value.text = String(results[3])
+			self.Happy_Sad_Stepper.value = Double(results[0])
+			self.New_Happy_Sad_Value.text = String(results[0])
+			self.Anger_Fear_Stepper.value = Double(results[1])
+			self.New_Anger_Fear_Value.text = String(results[1])
+			self.Confidence_Inhibition_Stepper.value = Double(results[2])
+			self.New_Confidence_Inhibition_Value.text = String(results[2])
+			self.Analytical_Emotional_Stepper.value = Double(results[3])
+			self.New_Analytical_Emotional_Value.text = String(results[3])
 
 			switch results[0] {
-				case 0:
-				self.New_Happy_Sad_Emoji.text = "😶"
-				case 3:
-				self.New_Happy_Sad_Emoji.text = "😁"
-				case 2:
-				self.New_Happy_Sad_Emoji.text = "😊"
-				case 1:
-				self.New_Happy_Sad_Emoji.text = "🙂"
-				case -1:
-				self.New_Happy_Sad_Emoji.text = "😕"
-				case -2:
-				self.New_Happy_Sad_Emoji.text = "☹️"
-				case -3:
-				self.New_Happy_Sad_Emoji.text = "😭"
-				default:
-				self.New_Happy_Sad_Emoji.text = "YES"
+				case 0: self.New_Happy_Sad_Emoji.text = "😶"
+				case 3: self.New_Happy_Sad_Emoji.text = "😁"
+				case 2: self.New_Happy_Sad_Emoji.text = "😊"
+				case 1: self.New_Happy_Sad_Emoji.text = "🙂"
+				case -1: self.New_Happy_Sad_Emoji.text = "😕"
+				case -2: self.New_Happy_Sad_Emoji.text = "☹️"
+				case -3: self.New_Happy_Sad_Emoji.text = "😭"
+				default: self.New_Happy_Sad_Emoji.text = "YES"
 				}
 
 			switch results[1]{
@@ -259,43 +207,26 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
 				}
 
 			switch results[2]{
-				case 0:
-				self.New_Confidence_Inhibition_Emoji.text = "😶"
-				case 3:
-				self.New_Confidence_Inhibition_Emoji.text = "😎"
-				case 2:
-				self.New_Confidence_Inhibition_Emoji.text = "😉"
-				case 1:
-				self.New_Confidence_Inhibition_Emoji.text = "😏"
-				case -1:
-				self.New_Confidence_Inhibition_Emoji.text = "😐"
-				case -2:
-				self.New_Confidence_Inhibition_Emoji.text = "😒"
-				case -3:
-				self.New_Confidence_Inhibition_Emoji.text = "😓"
-				default:
-				self.New_Confidence_Inhibition_Emoji.text = "YES"
+				case 0: self.New_Confidence_Inhibition_Emoji.text = "😶"
+				case 3: self.New_Confidence_Inhibition_Emoji.text = "😎"
+				case 2: self.New_Confidence_Inhibition_Emoji.text = "😉"
+				case 1: self.New_Confidence_Inhibition_Emoji.text = "😏"
+				case -1: self.New_Confidence_Inhibition_Emoji.text = "😐"
+				case -2: self.New_Confidence_Inhibition_Emoji.text = "😒"
+				case -3: self.New_Confidence_Inhibition_Emoji.text = "😓"
+				default: self.New_Confidence_Inhibition_Emoji.text = "YES"
 				}
 
 			switch results[3]{
-				case 0:
-				self.New_Analytical_Emotional_Emoji.text = "😶"
-				case 3:
-				self.New_Analytical_Emotional_Emoji.text = "🤓"
-				case 2:
-				self.New_Analytical_Emotional_Emoji.text = "🧐"
-				case 1:
-				self.New_Analytical_Emotional_Emoji.text = "🤨"
-				case -1:
-				self.New_Analytical_Emotional_Emoji.text = "😛"
-				case -2:
-				self.New_Analytical_Emotional_Emoji.text = "😝"
-				case -3:
-				self.New_Analytical_Emotional_Emoji.text = "🤪"
-				default:
-				self.New_Analytical_Emotional_Emoji.text = "YES"
+				case 0: self.New_Analytical_Emotional_Emoji.text = "😶"
+				case 3: self.New_Analytical_Emotional_Emoji.text = "🤓"
+				case 2: self.New_Analytical_Emotional_Emoji.text = "🧐"
+				case 1: self.New_Analytical_Emotional_Emoji.text = "🤨"
+				case -1: self.New_Analytical_Emotional_Emoji.text = "😛"
+				case -2: self.New_Analytical_Emotional_Emoji.text = "😝"
+				case -3: self.New_Analytical_Emotional_Emoji.text = "🤪"
+				default: self.New_Analytical_Emotional_Emoji.text = "YES"
 				}
-			
 			//}
 		}
 	}

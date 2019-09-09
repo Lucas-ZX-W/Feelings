@@ -41,6 +41,22 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+        // MARK: Core Data Fetch (initial on launch) for main events array:
+		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+		
+		let managedContext = appDelegate.persistentContainer.viewContext
+		
+		let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Memory")
+		// Request the NSManagedObjects to be fetched in decending date order
+		let dateSort = NSSortDescriptor(key: "eventdate", ascending: false)
+		fetchRequest.sortDescriptors = [dateSort]
+		
+		do {
+			events = try managedContext.fetch(fetchRequest)
+	  	} catch let error as NSError {
+			print("Could not fetch. \(error), \(error.userInfo)")
+	  	}
+		
         // Watson Tone Analyzer
         watson_tone_analyzer.serviceURL = "https://gateway.watsonplatform.net/tone-analyzer/api"
 
@@ -102,7 +118,7 @@ class MenuViewController: UIViewController {
 		}
 		// then apply the values to the UI elements
 		if array_length == 0{
-			total_events_string.text = "No Memories saved in the last \(time_period)"
+			total_events_string.text = "No Memories saved for \(time_period)" // wording could be better?
 			main_happiness_sadness_string.text = "N/A"
 			main_happiness_sadness_string.text = "N/A"
 			main_confidence_inhibition_string.text = "N/A"
@@ -120,26 +136,26 @@ class MenuViewController: UIViewController {
 			if happy_sad_involved == 0{
 				main_happiness_sadness_string.text = "0 Memories"
 				main_happiness_sadness_emoji.text = "X"
-			} else {
-				main_happiness_sadness_string.text = "\(raw_total_happy_sad_val) for \(happy_sad_involved) Memories"
+			} else { // older version : "\(raw_total_happy_sad_val) for \(happy_sad_involved) Memories"
+				main_happiness_sadness_string.text = "From \(happy_sad_involved) Memories"
 			}
 			if anger_fear_involved == 0{
 				main_anger_fear_string.text = "0 Memories"
 				main_anger_fear_emoji.text = "X"
 			} else {
-				main_anger_fear_string.text = "\(raw_total_anger_fear_val) for \(anger_fear_involved) Memories"
+				main_anger_fear_string.text = "From \(anger_fear_involved) Memories"
 			}
 			if confidence_inhibition_involved == 0{
 				main_confidence_inhibition_string.text = "0 Memories"
 				main_confidence_inhibition_emoji.text = "X"
 			} else {
-				main_confidence_inhibition_string.text = "\(raw_total_confidence_inhibition_val) for \(confidence_inhibition_involved) Memories"
+				main_confidence_inhibition_string.text = "From \(confidence_inhibition_involved) Memories"
 			}
 			if analytical_emotional_involved == 0{
 				main_analytical_emotional_string.text = "0 Memories"
 				main_analytical_emotional_emoji.text = "X"
 			} else {
-				main_analytical_emotional_string.text = "\(raw_total_analytical_emotional_val) for \(analytical_emotional_involved) Memories"
+				main_analytical_emotional_string.text = "From \(analytical_emotional_involved) Memories"
 			}
 		}
 	}

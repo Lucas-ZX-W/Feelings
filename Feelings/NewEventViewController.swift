@@ -44,9 +44,16 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
 	
 	var alert = UIAlertController()
 	let haptic_notification = UINotificationFeedbackGenerator()
-
+	
+	// MARK: UIImage Selector
+	let UIImagePicker = UIImagePickerController()
+	@IBAction func event_UIImage_tapped(_ sender: Any) {
+		UIImagePicker.allowsEditing = false
+		UIImagePicker.sourceType = .photoLibrary
+		present(UIImagePicker, animated: true, completion: nil)
+	}
+	
     // MARK: Corrsponding Steppers
-    
     @IBAction func New_Happy_Sad_Value_Stepper(_ sender: UIStepper) {
     	sender.maximumValue = 3.0
     	sender.minimumValue = -3.0
@@ -175,6 +182,11 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
 			self.New_Confidence_Inhibition_Value.text = String(results[2])
 			self.Analytical_Emotional_Stepper.value = Double(results[3])
 			self.New_Analytical_Emotional_Value.text = String(results[3])
+			// Hides the values [-3,3]
+			self.New_Happy_Sad_Value.isHidden = true
+			self.New_Anger_Fear_Value.isHidden = true
+			self.New_Confidence_Inhibition_Value.isHidden = true
+			self.New_Analytical_Emotional_Value.isHidden = true
 
 			switch results[0] {
 				case 0: self.New_Happy_Sad_Emoji.text = "😶"
@@ -249,6 +261,16 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
 			sender.setTitle("Auto Adjust", for: .normal)
 			Call_API_Tone_Analyzer_Button.isUserInteractionEnabled = true
 			Call_API_Tone_Analyzer_Button.setTitle("Analyze Text - Ready", for: .normal)
+			// Hiding the values [-3,3]
+			New_Happy_Sad_Value.isHidden = true
+			New_Anger_Fear_Value.isHidden = true
+			New_Confidence_Inhibition_Value.isHidden = true
+			New_Analytical_Emotional_Value.isHidden = true
+			New_Happy_Sad_Emoji.text = "X"
+			New_Anger_Fear_Emoji.text = "X"
+			New_Confidence_Inhibition_Emoji.text = "X"
+			New_Analytical_Emotional_Emoji.text = "X"
+			
 		}
 	}
 	
@@ -306,6 +328,7 @@ class NewEventViewController: UIViewController, UITextFieldDelegate, UIImagePick
         NewEventNameField.delegate = self
         NewEventDescription.returnKeyType = .done
         NewEventDescription.delegate = self
+        UIImagePicker.delegate = self
         updateSaveButtonState()
 		
 		Happy_Sad_Stepper.isHidden = true
@@ -397,29 +420,19 @@ func textViewDidEndEditing(_ textView: UITextView) {
         navigationItem.title = textField.text
     }
     
-    //MARK: UIImagePickerControllerDelegate
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        // Dismiss the picker if the user canceled.
+    //MARK: UIImagePickerControllerDelegate methods
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            //NewEventImage.contentMode = .scaleAspectFill // cound change this in storyboard
+            NewEventImage.image = pickedImage
+        }
         dismiss(animated: true, completion: nil)
     }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-
-        
-        // The info dictionary may contain multiple representations of the image. You want to use the original.
-        guard let selectedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage else {
-            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
-        }
-        
-        // Set photoImageView to display the selected image.
-        NewEventImage.image = selectedImage
-        did_select_photo = true
-        // Dismiss the picker.
-        picker.dismiss(animated: true, completion: nil)
+	
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
-    
+	
     // MARK: Segue
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -490,12 +503,35 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
 }
 
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
-}
+//MARK: Older imagepicker and swift migration functions
+//func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+//        // Dismiss the picker if the user canceled.
+//        dismiss(animated: true, completion: nil)
+//    }
+//
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//		// Local variable inserted by Swift 4.2 migrator.
+//		let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+//
+//
+//        // The info dictionary may contain multiple representations of the image. You want to use the original.
+//        guard let selectedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage else {
+//            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+//        }
+//
+//        // Set photoImageView to display the selected image.
+//        NewEventImage.image = selectedImage
+//        did_select_photo = true
+//        // Dismiss the picker.
+//        picker.dismiss(animated: true, completion: nil)
+//    }
 
 // Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
-	return input.rawValue
-}
+//fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+//	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+//}
+//
+//// Helper function inserted by Swift 4.2 migrator.
+//fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+//	return input.rawValue
+//}
